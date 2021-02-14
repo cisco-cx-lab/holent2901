@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Lab 2 Tasks - HOLENT-2901 Advanced SD-WAN Lab</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../css/highlight.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Lab 2 Tasks";
+    var mkdocs_page_input_path = "lab2.md";
+    var mkdocs_page_url = "/lab2/";
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js"></script>
+  <script src="../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../js/highlight.pack.js"></script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../intro/" class="icon icon-home"> HOLENT-2901 Advanced SD-WAN Lab</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../intro/">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Lab Guide</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../access/">Lab Access</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../lab1/">Lab 1 Tasks</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">Lab 2 Tasks</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#lab-2-route-to-the-legacy-site">Lab 2: Route to the legacy site</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#step1-verify-current-route">Step1: Verify current route</a></li>
+        
+            <li><a class="toctree-l4" href="#step2-route-policy-for-remote2">Step2: Route policy for Remote2</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../lab3/">Lab 3 Tasks</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../survey/">Survey</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../intro/">HOLENT-2901 Advanced SD-WAN Lab</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../intro/">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Lab Guide &raquo;</li>
+        
+      
+    
+    <li>Lab 2 Tasks</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h2 id="lab-2-route-to-the-legacy-site">Lab 2: Route to the legacy site</h2>
+<hr />
+<p>In this section, you will help ACME to configure routing between sd-wan remote sites and legacy none sd-wan site. The legacy site is connected to SP <strong>priviate1</strong> with OSPF as CE-PE protocol. Legacy site prefix <strong>10.11.1.0/24</strong> is advertised to <strong>private1</strong> PE router; DC WAN Edge routers are receiving this prefix from service side over BGP.</p>
+<p><img alt="" src="../img/lab2_0_1.png" /></p>
+<p>To make sure traffic between sd-wan remotes and legacy site use optimal path, ACME requires
+- SD-WAN site Remote2 uses DC as transit site to reach legacy site over private2.
+-  SD-WAN site Remote1 route directly over private 1 to legacy site.</p>
+<hr />
+<h4 id="step1-verify-current-route">Step1: Verify current route</h4>
+<ul>
+<li>
+<p>SSH into ubuntu host in Remote1 and Remote2.
+|R1-VM1|198.18.133.200:19018|
+|---|---|
+|<strong>R1-WM1</strong>|<strong>198.18.133.200:19019</strong>|</p>
+</li>
+<li>
+<p>run <code>traceroute 10.11.1.1</code> from both hosts as show in below sreenshots</p>
+</li>
+</ul>
+<p><img alt="" src="../img/lab2_1_1.png" /></p>
+<p><img alt="" src="../img/lab2_1_2.png" /></p>
+<p>As show from the traceroute, ubuntu host from both remote sites are using DC1 as transit site to reach prefix <strong>10.11.1.0/24</strong> from legacy site.</p>
+<h4 id="step2-route-policy-for-remote2">Step2: Route policy for Remote2</h4>
+<p>The requirement for remote2 is to use DC as transit site and use transport <strong>private2</strong>. To achieve that, you can modify the central policy created in <strong>lab1</strong> to set higher OMP preference for prefix <strong>10.11.1.0/24</strong> from color <strong>private2</strong>.
+- login vManage <strong>198.18.133.200</strong> and access policy configuration from <strong>Configuration - Policies</strong>
+- Click <strong>Custom Options</strong> on the upper right corner and select <strong>Lists</strong> under <strong>Centralized Policy</strong> as show below.</p>
+<p><img alt="" src="../img/lab2_2_1.png" />
+- select <strong>Prefix</strong> and click <strong>New Prefix List</strong> to add prefix <strong>10.11.1.0/24</strong> for legacy site as show below. Click <strong>Add</strong> to save new prefix list <strong>Legacy_prefix</strong> .
+ <img alt="" src="../img/lab2_2_2.png" /></p>
+<ul>
+<li>Click <strong>Custom Options</strong> on the upper right corner and select <strong>Topology</strong> under <strong>Centralized Policy</strong>.</li>
+<li>Select Topology policy <strong>LAB_Topo_RS2</strong> created in lab1, and click the <strong>"..."</strong> to Edit.</li>
+<li>Select <strong>Route</strong> under <strong>Sequence Type</strong> from the left.
+ <img alt="" src="../img/lab2_2_3.png" /></li>
+<li>Click <strong>Sequence Rule</strong> to add new rule. For omp route that matches <strong>Legacy_prefix</strong> and <strong>private2</strong> color, set <strong>Preference</strong> 200.
+ <img alt="" src="../img/lab2_2_4.png" />
+ ##### <span style="background-color:yellow"> <strong>Note</strong>: After save, move the new created rule to the top by drag and drop the sequence number left to the rule. </span></li>
+<li>Run <code>traceroute 10.11.1.1</code> again from Remote2 host and compare the path from previous output.
+ <img alt="" src="../img/lab2_2_5.png" /></li>
+</ul>
+<p>#### Step3: Route policy for Remote1</p>
+<p>The requirement for remote1 is to use <strong>private1</strong> route directly to legacy site. To achieve that, you can leak prefix <strong>10.11.1.0/24</strong> from VPN0 into service VPN.</p>
+<p>SP <strong>private1</strong> uses OSPF as PE-CE routing protocol; create OSPF feature template and attach to R1-WE1 VPN0.
+- login vManage <strong>198.18.133.200</strong> and access feature template from <strong>Configuration - Template</strong> then click <strong>Feature</strong>
+- Click <strong>Add Template</strong> and select OSPF template as show below.
+ <img alt="" src="../img/lab2_3_1.png" />
+ - Name the template: <strong>Lab_OSPF_VPN0_V01</strong>
+ - Assign Router ID: <strong>1.1.100.1</strong>
+ <img alt="" src="../img/lab2_3_2.png" />
+ - Add <strong>connected</strong> as protocol under <strong>REDISTRIBUTE</strong> section
+ <img alt="" src="../img/lab2_3_2b.png" />
+ - enable OSPF Area 0 on interface GigabitEthernet1
+ <img alt="" src="../img/lab2_3_3.png" /><br />
+- Access device template from <strong>Configuration - Template</strong> then locate template <strong>Lab_R1_V01</strong>. Click <strong>"..."</strong> for more option and select Edit.
+ - Move to <strong>Transport &amp; Management VPN</strong> section, Add <strong>Cisco OSPF</strong> template and select <strong>Lab_OSPF_VPN0_V01</strong> from dropdown list.
+ <img alt="" src="../img/lab2_3_4.png" /> <br />
+- Update the device template and trigger vManage to update R1-VE1 configuration.
+- After vManage complete the push, SSH into <strong>R1-WE1</strong> to verify new OSPF neighbor and routes learned OSPF routes.
+ <img alt="" src="../img/lab2_3_5.png" />
+ <img alt="" src="../img/lab2_3_6.png" />
+Configure route leaking between VPN0 and service VPN, so R1-WE1 will use the OSPF route learned from OSPF in VPN0 for prefix <strong>10.11.1.0/24</strong>
+- login vManage <strong>198.18.133.200</strong> and access feature template from <strong>Configuration - Template</strong> then click <strong>Feature</strong>
+- Locate existing template <strong>"Lab_Remote_VPN1_V01"</strong>. Click <strong>"..."</strong> for more option and select Edit.
+ - Move to <strong>Global Route Leak</strong> section. Add OSPF under <strong>Add New Route Leak from Global VPN to Service VPN</strong> </n>
+ - Add connected under <strong>Add New Route Leak from Service VPN to Global VPN</strong> </n>
+ <img alt="" src="../img/lab2_3_7.png" /> <br />
+ - Update the template to trigger configuration push from vManage to R1-WE1</p>
+<p><strong>Note: As optional task, you can add route policy to limit the routes being leaked between Global and service VPN</strong>
+- SSH into R1-WE1 to verify route <strong>10.10.101.0/24</strong>being added in global route table
+ <img alt="" src="../img/lab2_3_8.png" /><br />
+- SSH into R1-WE1 to verify route <strong>10.11.1.0/24</strong> being added in VRF 1 route table. The SP prefixes <strong>172.1.x.0</strong> are also leaked into service VPN which can be limited from additional route policy in previous step.
+ <img alt="" src="../img/lab2_3_9.png" /><br />
+- Now let's verify the new route path from remote1 Ubuntu host. Run <code>traceroute 10.11.1.1</code> again from Remote1 host and compare the result from previous output.
+ <img alt="" src="../img/lab2_3_10.png" />  </p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../lab3/" class="btn btn-neutral float-right" title="Lab 3 Tasks">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../lab1/" class="btn btn-neutral" title="Lab 1 Tasks"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../lab1/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../lab3/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/require.js"></script>
+      <script src="../search/search.js"></script>
+
+</body>
+</html>

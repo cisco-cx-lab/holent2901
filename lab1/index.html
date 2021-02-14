@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Lab 1 Tasks - HOLENT-2901 Advanced SD-WAN Lab</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../css/highlight.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Lab 1 Tasks";
+    var mkdocs_page_input_path = "lab1.md";
+    var mkdocs_page_url = "/lab1/";
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js"></script>
+  <script src="../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../js/highlight.pack.js"></script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../intro/" class="icon icon-home"> HOLENT-2901 Advanced SD-WAN Lab</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../intro/">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Lab Guide</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../access/">Lab Access</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">Lab 1 Tasks</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#1-general-routing-topology">1. General Routing &amp; Topology</a></li>
+    
+
+    <li class="toctree-l3"><a href="#2-lab-design">2. Lab Design</a></li>
+    
+
+    <li class="toctree-l3"><a href="#3-acme-routing-and-topology-requirements">3. ACME Routing and Topology Requirements</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#31-lab-instructions-for-task-lab_task-1">3.1 Lab instructions for task Lab_Task 1</a></li>
+        
+            <li><a class="toctree-l4" href="#32-lab-instructions-for-task-lab_task-2">3.2 Lab instructions for task Lab_Task 2</a></li>
+        
+            <li><a class="toctree-l4" href="#4-intra-epg-isolation-configuration">4. Intra EPG Isolation Configuration</a></li>
+        
+            <li><a class="toctree-l4" href="#5-intra-epg-security">5. Intra-EPG Security</a></li>
+        
+            <li><a class="toctree-l4" href="#6-vm-attribute-based-useg-epg-configuration">6. VM Attribute Based uSeg EPG Configuration</a></li>
+        
+            <li><a class="toctree-l4" href="#7-network-attribute-based-useg-epg">7. Network Attribute Based uSeg EPG</a></li>
+        
+            <li><a class="toctree-l4" href="#8-hierarchal-matching-of-useg-attributes-using-orand-operator">8. Hierarchal Matching of uSeg Attributes Using OR/AND Operator</a></li>
+        
+            <li><a class="toctree-l4" href="#9-dns-attribute-based-useg-epg">9. DNS Attribute Based uSeg EPG</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../lab2/">Lab 2 Tasks</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../lab3/">Lab 3 Tasks</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../survey/">Survey</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../intro/">HOLENT-2901 Advanced SD-WAN Lab</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../intro/">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Lab Guide &raquo;</li>
+        
+      
+    
+    <li>Lab 1 Tasks</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="1-general-routing-topology">1. General Routing &amp; Topology</h1>
+<p>Company ACME is a multi-international company where it has branches world wide which include two Data Centers in San Jose and RTP and few regional hubs in different continents as well as remote branches world wide.</p>
+<h1 id="2-lab-design">2. Lab Design</h1>
+<p>This lab is designed to help you understand various advanced routing features based upon a large multi-international company design. The lab is based on dcloud and simulating ACME's topolgy with 5 Wan Edges(wEdges). All the basic connectivities as well as feature templates/devices templates have been pre-configured for you. You should be able to go straight to those LAB tasks.</p>
+<p><img alt="lab1 diagram" src="../../img/HOLENT-2901.png" /></p>
+<p>As shown in the above diagram: </p>
+<ul>
+<li>DC1 has two cEdges which connects to three transports </li>
+<li>DC2 has also two cEdges which connect to three transports as well</li>
+<li>RH(reginal hub) has one cEdge </li>
+<li>Both DC1-WEs and DC2-WEs are running eBGP with DC routers, BGP has been       preconfigured for you. </li>
+<li>Remote1 has one cEdge connecting to private1 and LTE</li>
+<li>Remote2 has one cEdge connecting to private2 and LTE </li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="center">Device</th>
+<th align="center">IP address</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><strong>vmanage{TNUM}</strong></td>
+<td align="center">10.10.10.11</td>
+</tr>
+<tr>
+<td align="center"><strong>DC1-WE1{TNUM}</strong></td>
+<td align="center">10.10.10.12</td>
+</tr>
+<tr>
+<td align="center"><strong>DC1-WE2{TNUM}</strong></td>
+<td align="center">20.20.20.11</td>
+</tr>
+<tr>
+<td align="center"><strong>DC2-WE1{TNUM}</strong></td>
+<td align="center">10.10.10.12</td>
+</tr>
+<tr>
+<td align="center"><strong>DC2-WE2{TNUM}</strong></td>
+<td align="center">20.20.20.11</td>
+</tr>
+<tr>
+<td align="center"><strong>RH-WE{TNUM}</strong></td>
+<td align="center">20.20.20.11</td>
+</tr>
+<tr>
+<td align="center"><strong>R1-WE1{TNUM}</strong></td>
+<td align="center">10.10.10.12</td>
+</tr>
+<tr>
+<td align="center"><strong>R2-WE2{TNUM}</strong></td>
+<td align="center">20.20.20.11</td>
+</tr>
+</tbody>
+</table>
+<h1 id="3-acme-routing-and-topology-requirements">3. ACME Routing and Topology Requirements</h1>
+<ul>
+<li>
+<p>ACME DC routers have already tagged all the routes originated from DC1 with BGP community of 65010:1000; all the routes originated from DC2 with BGP community of 65020:2000. Please configure a route-policy to ensure default route (0.0.0.0/0) coming from DC to set an OMP tag of 100. For DC1 routes, setting an OMP tag of 1000; for DC2 routes, setting an OMP tag of 2000. (Lab_Task 1)</p>
+</li>
+<li>
+<p>ACME wants to have a hub &amp; spoke topology between Remotes and DCs as well between Remotes and Regional hubs. Hub &amp; spoke topology will scale more by reducing NO. of tunnels required on the devices. </p>
+</li>
+</ul>
+<p>ACME has categorized their branches into mutliple Business Units(BUs). In the Data Center (DC) sites, the headend WAN Edges(WEs) are also categorized into mutiple BUs for horizontal scaling purpose in terms of throughputs, therefore RS only needs to build tunnels to its respective DC hub WEs.Remote Site1 only needs to build tunnels to DC1-WE1 and DC2-WE2; on the contrary, Remote Site 2 only needs to build tunnels  to DC1-WE2 and DC2-WE2.(Lab_Task 2)</p>
+<ul>
+<li>
+<p>Remote sites receive default route from both RH and DC, DCs will be preferred and load shared. If RH goes down, DCs are load shared for default(Lab_Task 2)</p>
+</li>
+<li>
+<p>Remotes sites receive more specific routes from both DCs, routes originated from local DC are preferred, if one DC goes down, it will use the routes from another DC as backup. In another words, from remote sites perspective, previously routes tagged with 1000 will prefer DC1; routes tagged with 2000 will prefer DC2.(Lab_Task 2)</p>
+</li>
+<li>
+<p>For remote sites to any other regional routes are forced to go through DC’s functional hub. For remote site1, it goes through WE1 in DC1 and 2; for remote site 2, it goes through WE2 in DC1 and 2.(Lab_Task 2)</p>
+</li>
+</ul>
+<p>Note:In these lab exercises, it's possible that there are multiple ways to achieve the requirements. The lab guide provides a detailed step by step instruction for each taks. However you're welcomed to solve it with your own solution. Just be mindful with the time.</p>
+<h2 id="31-lab-instructions-for-task-lab_task-1">3.1 Lab instructions for task Lab_Task 1</h2>
+<p><strong>Step 1.</strong> Verification of the routes received on DC WEs. 
+SSH to DC1-WE1 (repeat the same on DC1-WE2,DC2-WE1,DC2-WE2,R1-WE1 and R2-WE2 as well) and do show ip route vrf 1 and make sure 10.100.100.0/24 and 10.200.200/24 as well as 0.0.0.0/0 learned via BGP.</p>
+<p><img alt="lab1 diagram" src="../../img/lab_task1_iproute.png" /></p>
+<p><strong>Step 2.</strong> Verify the BGP communities. 10.100.100.0/24 should tag with 65010:1000; 10.200.200.0/24 should tag with 65020:2000. Execute show ip bgp vpnv4 vrf 1 <prefix> (10.100.100.0/24 and 10.200.200.0/24) on DC1-WE1,WE2 and DC2-WE1,WE2.</p>
+<p><img alt="lab1 diagram" src="../../img/lab_task1_bgpcommunity.png" /></p>
+<p><strong>Step 3.</strong> Configuring Local Route-Policy to set OMP tag for DC specific Routes. Go to Configuration-&gt;Policies-&gt;Custom Options(upper righ)-&gt;Route Policy-&gt;Add Route Policy-&gt;Create New, then do the following:</p>
+<p>Name: LAB_DCs_BGP_RP (write down this name, it will be used later)
+Description: LAB_DCs_BGP_RP
+Click +Sequence Type then click +Sequence Rule, click Math, select Address, select default.</p>
+<p><img alt="lab1 diagram" src="../../img/lab_task1_new_lp_1.png" /></p>
+<p>Click Action, change to Accept, then select OMP tag, key in 100, then save Match and Actions.</p>
+<p><img alt="lab1 diagram" src="../../img/lab_task1_new_lp_2.png" /></p>
+<p>Create two other rules:</p>
+<p>Match community-list DC1_Routes, Accept and Set Tag 1000;
+Match community-list DC2_Routes, Accept and Set Tag 2000;
+Then click on Save Route Policy</p>
+<p><img alt="lab1 diagram" src="../../img/lab_task1_new_lp_3.png" /></p>
+<p><strong>Step 4.</strong> Creating a Local Policy</p>
+<p>Click on Localized Policy, then click on Add Policy</p>
+<p><img alt="lab1 diagram" src="../../img/lab_task1_new_lp_4.png" /></p>
+<p>Click on Next,Next and Next, till you see Configure Route Policy, then click Add Route Policy, then select Import Existing Policy, Select LAB_DCs_BGP_RP click import</p>
+<p><img alt="lab1 diagram" src="../../img/lab_task1_new_lp_5.png" />
+Click on Next, Key in Policy Name: LAB_DCs_Local_policy; Policy Description: LAB_DCs_Local_policy. Check Netflow, Application and Implict ACL Logging. Then click on Save Policy (Feel free to click Preview before save)</p>
+<p><img alt="lab1 diagram" src="../../img/lab_task1_new_lp_6.png" /></p>
+<p><strong>Step 5.</strong> Configuring BGP template to apply the route-policy
+Go to Configuration-&gt;Template then search for BGP in the serch bar; select Lab_DC_VPN1_BGP_V01 and select three dots then click Edit.</p>
+<p><img alt="lab1 diagram" src="../../img/lab_task1_bgp_ft_1.png" /></p>
+<p>Select Neighbor section, then click on the pencil icon under Action.</p>
+<p><img alt="lab1 diagram" src="../../img/lab_task1_bgp_ft_2.png" /></p>
+<p>Update the following:
+Address Family changes to Global and set to On
+Address Family changes to Global and set to ipv4-unicast
+Route Policy In changes to Global and set to On
+Policy Name changes to Global and set to LAB_DCs_BGP_RP (this was the name you wrote down earlier)
+then click on Save changes and Click on Update</p>
+<p><img alt="lab1 diagram" src="../../img/lab_task1_bgp_ft_3.png" /></p>
+<p>Then click Next, feel free to review the config changes, then click Configure Devices, then check the Confim configuration box and click on OK.</p>
+<p><img alt="lab1 diagram" src="../../img/lab_task1_bgp_ft_4.png" /></p>
+<p><strong>Step 6.</strong> Verify that the OMP Tags have been properly set.</p>
+<p>SSH to DC wEdge routers(DC1-WE1,DC1-WE2,DC2-WE1,DC2-We2) and run show ip bgp vpnv4 vrf 1 <prefix> (10.100.100.0/24,10.200.200.0/24), you should see proper OMP tags are set</p>
+<p><img alt="lab1 diagram" src="../../img/lab_task1_bgp_ft_5.png" /></p>
+<h2 id="32-lab-instructions-for-task-lab_task-2">3.2 Lab instructions for task Lab_Task 2</h2>
+<p><strong>Step 1.</strong> Let's do some verification before we do any configurations.
+SSH to R1-WE1 and do show sdwan omp route vpn 1</p>
+<p><img alt="lab1 diagram" src="../../img/lab_task2_Routes_1.png" /></p>
+<p>Do you know why the default route learned from private2 shown as invalid and unreachable (Inv,U)? This is because R1-WE1 doesn't have a transport with private 2 color. If you watch the route on R2-WE1, you should notice the next hop from private 1 marked as Inv,U for the same reason where private 1 color doesn't exist on R2-WE1.</p>
+<p>Did you notice the default route is learned from 1.1.30.2 which is the Regional Hub(RH)? Do you know why? In order to answer this question, we have to look at the vSmart table as all the routes are told by vSmart.SSH to vSmart and do show omp route vpn 1 0.0.0.0/0 detail | t</p>
+<p><img alt="lab1 diagram" src="../../img/lab_task2_Routes_2.png" /></p>
+<p>OMP is very much like BGP when it comes down to route preference. In the order of preference, there is a origin-protocol, in this case the default route learned on RH is from Static (by design, in real deployment, probably it's going to be BGP as well); whereas the default learned from DCs is from iBGP. Origin protocol static is more preferred than iBGP.</p>
+<p>Now, let's look at the specific routes learned from DC. Do show sdwan omp route vpn 1 10.100.100.0/24. </p>
+<p><img alt="lab1 diagram" src="../../img/lab_task2_Routes_3.png" /></p>
+<p>You will see 4 paths and one of the paths shows Inv,U. Hopefully you can answer why it's that. But why there are 4 paths?</p>
+<p>Again, let's go to vSmart and see. SSH to vSmart and do show omp route vpn 1 10.100.100.0/24 | t.</p>
+<p><img alt="lab1 diagram" src="../../img/lab_task2_Routes_4.png" /></p>
+<p>You will see 12 ECMP routes marked as C,R (Chosen,Resolved). Why 12? Because we have 4 DC wEdges each with 3 transport, so total 12 paths. The next question will be why there are only 4 paths on the remote wEdges? This is because the ECMP settings on the wEdge by default is set to 4. If you change it to 16 (currently 16, it will be increased to 128 in the future release), you will see all 12 paths. Note: vSmart is going to randomly select 4 paths (or whatever the max ECMP value is set) installed on the device, in a very large deployment where multiple paths is more than 16 before 128 paths is supported, this may pose problem. This excercise we purposely don't change the ECMP setting and learn how to solve this issue with centralized policy. </p>
+<p><strong>Step 2.</strong> Creating a topology for centralized policy.We're going to tackle the above requirements step by step.</p>
+<p>On the side bar select the Gear(Configuration) Icon then click Policies, then select Custom Options then select on Topology, then click on Add Topology.</p>
+<p><img alt="lab1 diagram" src="../../img/lab_task2_topo_1.png" /></p>
+<p>We're going to create two topologies, one for Remote Site 1 another for Remote site 2. </p>
+<p>Creating first topology:
+Name: LAB_Topo_RS1
+Description: LAB topology for Remote Site 1
++Sequence Type then select Route 
++Sequence Rule, leave unchanged under Match(means match all), change Actions to default (we'll come back and do the routes policy later).</p>
+<p><img alt="lab1 diagram" src="../../img/lab_task2_topo_2.png" /></p>
+<p>Add new TLOC Rules:
++Sequence Type then select TLOC
++Sequence Rule, select TLOC List under Match, first TLOC list selects DCs-BU1-TLOCs (this TLOC list has been pre-defined for you which includes all the TLOCs of DC1-WE1 and DC2-WE1); change Actions to accept</p>
+<p>+Sequence Rule, select TLOC List under Match, second TLOC list selects RH (this TLOC list has been pre-defined for you which includes all the TLOCs of RH); change Actions to accept</p>
+<p>Then click save Control Policy. This policy effectively allows R1-WE1 to build tunnels to all the DCs-BU1 devices (DC1-WE1 and DC2-WE1) as well as RH, nothing else as the default action is reject.</p>
+<p><img alt="lab1 diagram" src="../../img/lab_task2_topo_3.png" /></p>
+<p>Follow the above step and create another topology with the following settings:
+Name: LAB_Topo_RS2
+Description: LAB topology for Remote Site 2
++Sequence Type then select Route 
++Sequence Rule, leave unchanged under Match(means match all), change Actions to default (we'll come back and do the routes policy later).</p>
+<p><img alt="lab1 diagram" src="../../img/lab_task2_topo_4.png" /></p>
+<p>Add new TLOC Rules:
++Sequence Type then select TLOC
++Sequence Rule, select TLOC List under Match, first TLOC list selects DCs-BU2-TLOCs (this TLOC list has been pre-defined for you which includes all the TLOCs of DC1-WE2 and DC2-WE2); change Actions to accept</p>
+<p>+Sequence Rule, select TLOC List under Match, second TLOC list selects RH (this TLOC list has been pre-defined for you which includes all the TLOCs of RH); change Actions to accept</p>
+<p>Then click save Control Policy. This policy effectively allows R2-WE1 to build tunnels to all the DCs-BU1 devices (DC1-WE2 and DC2-WE2) as well as RH, nothing else as the default action is reject.</p>
+<p><img alt="lab1 diagram" src="../../img/lab_task2_topo_5.png" /></p>
+<p><strong>Step 3.</strong> Apply the topology policy to Centralized Policy</p>
+<p>Select Configuration(Gear Icon)-&gt;Add Policy, then click next, you will see Configure Topology and VPN membership, then click Add topology, select Import Existing Topology, then click Custom Control(Route and TLOC), select LAB_Topo_RS1; then Click on Add Topology, add LAB_Topo_RS2 as well </p>
+<p><img alt="lab1 diagram" src="../../img/lab_task2_topo_6.png" />
+<img alt="lab1 diagram" src="../../img/lab_task2_topo_7.png" /></p>
+<p>Now click Next and Next, you will see Apply Policies to Sites and VPNs,</p>
+<p>Policy Name: LAB_Central_v01
+Description: Task2 Topo only
+Click New Site List Under LAB_Topo_RS1, under Outbound Site List, select RS1,then click on Add
+Click New Site List Under LAB_Topo_RS2, under Outbound Site List, select RS2,then click on Add
+then click Save Policy</p>
+<p><img alt="lab1 diagram" src="../../img/lab_task2_topo_8.png" /></p>
+<p><strong>Step 4.</strong> Activate the first Centralized Policy</p>
+<p>Go to Configuration Centralized Policy, click ...(three dots) of our LAB_Centeral_v01, then click on Activate, and Activate. Policy will be pushed to the vSmart.</p>
+<p><img alt="lab1 diagram" src="../../img/lab_task2_topo_9.png" /></p>
+<p><strong>Step 5.</strong> Verify the hub &amp; spoke topology where R1-WE1 and R2-WE1 should not have tunnel between them but everyone else.</p>
+<p>SSH to R1-WE1 &amp; R2-WE1 do show sdwan bfd sessions, you can see that </p>
+<p><img alt="lab1 diagram" src="../../img/lab_task2_topo_10.png" />
+<img alt="lab1 diagram" src="../../img/lab_task2_topo_11.png" /></p>
+<p>Verify the policy setting under <strong>Policy</strong> tab</p>
+<ul>
+<li>Policy Control Enforcement Preference: <strong>Enforced</strong> </li>
+<li>Policy Control Enforcement Direction: <strong>Ingress</strong> </li>
+</ul>
+<blockquote>
+<p>Both of the configuration are default settings and pre-requisites for MicroSegmentation feature to function properly.</p>
+</blockquote>
+<p>Note down the <strong>Segment ID*<em> (</em></strong>2752513*** shown in the sample screenshot.Your Segment ID may be different) for the VRF. you may use the notepad file on your RDP desktop. It will be used  later in the CLI show commands.</p>
+<p><img alt="lab1 diagram" src="../../img/lab1_enforced_uSeg_VRF-new2.png" /></p>
+<p><strong>Step 3.</strong> Navigate the APIC GUI and verify the bridge domain (BD) settings:</p>
+<p><strong>Tenants -&gt; useg-user{TNUM} -&gt; Networking -&gt; Bridge Domains -&gt; uSeg_BD</strong> </p>
+<p><img alt="lab1 diagram" src="../../img/lab1-BD-main-new.png" /> </p>
+<p>We are using all default parameters in the bridge domain configuration.</p>
+<p>Click on the <strong>L3 Configuration</strong> sub-tab in the Work pane to review L3 configuration for the bridge domain.</p>
+<p><img alt="lab1 diagram" src="../../img/lab1-BD-l3-new.png" /> </p>
+<ul>
+<li>BD subnets configured: <strong>10.10.10.1/24</strong>, <strong>20.20.20.1/24</strong>, and <strong>30.30.30.1/24</strong>.</li>
+</ul>
+<p><strong>Step 4.</strong> Navigate the APIC GUI and verify the base EPG configuration:</p>
+<p><strong>Tenants -&gt; useg-user{TNUM} -&gt; Application Profiles -&gt; uSeg_AP</strong> </p>
+<p>Expand on <strong>Application EPGs</strong> underneath and click on <strong>base_EPG</strong> then <strong>General</strong> to verify the base EPG policy configuration.  </p>
+<p><img alt="lab1 diagram" src="../../img/lab1-base_EPG-policy-new.png" /></p>
+<p>Note down the <strong>pcTag(sclass)</strong> value (<strong>49153</strong> in the sample screenshot) of the EPG for later use.</p>
+<p>Click on the <strong>Operational</strong> tab in the Work pane to verify the endpoints that are attached to the EPG.  </p>
+<p>Verify the endpoint names, IP addresses and note down the vlan encapsulation assigned. </p>
+<p>The endpoints might be timed out after a long idling period. Please perform a PING to their gateways on the VMs if they are not shown in the list.</p>
+<p><img alt="lab1 diagram" src="../../img/lab1-base_EPG-ops-new.png" /></p>
+<p>Click on and expand <strong>base_EPG</strong>, then click on <strong>Domains (VMs and Bare-Metals)</strong> in the Navigation pane, verify that the EGP is associated with DVS VMM Domain <strong>VMware/CLBlin2016</strong> and Allow Micro-Segmentation is set to <strong>False</strong>. Physical Domain <strong>useg-baremetal-phys</strong> is also associated.   </p>
+<p><img alt="lab1 diagram" src="../../img/lab1-base_EPG-dom-new2.png" /></p>
+<h2 id="4-intra-epg-isolation-configuration">4. Intra EPG Isolation Configuration</h2>
+<p>We will enable <strong>Intra-EPG Isolation</strong> on our base EPG to demonstrate this feature. once the <strong>Intra-EPG Isolation</strong> feature is enabled, endpoints inside the base EPG will not able to communicate with each other.</p>
+<p><strong>Step 1.</strong> Verify that all four (4) endpionts under <strong>base_EPG</strong> can ping each other and their respective gateway. </p>
+<p>username: <strong>useg-user</strong></p>
+<p>password: <strong>ciscolive.2019</strong></p>
+<p><strong>useg{TNUM}-vm-web1</strong> : <strong>{VM-WEB1-OOB}</strong></p>
+<pre><code>[useg-user@useg{TNUM}-vm-web1 ~]# ping 10.10.10.1 -c 2
+PING 10.10.10.1 (10.10.10.1) 56(84) bytes of data.
+64 bytes from 10.10.10.1: icmp_seq=1 ttl=63 time=0.477 ms
+...
+[useg-user@useg{TNUM}-vm-web1 ~]# ping 10.10.10.12 -c 2
+[useg-user@useg{TNUM}-vm-web1 ~]# ping 20.20.20.11 -c 2
+[useg-user@useg{TNUM}-vm-web1 ~]# ping 20.20.20.12 -c 2
+</code></pre>
+
+<p><strong>useg{TNUM}-vm-web2</strong> : <strong>{VM-WEB2-OOB}</strong></p>
+<pre><code>[useg-user@useg{TNUM}-vm-web2 ~]# ping 10.10.10.1 -c 2
+PING 10.10.10.1 (10.10.10.1) 56(84) bytes of data.
+64 bytes from 10.10.10.1: icmp_seq=1 ttl=63 time=0.477 ms
+...
+[useg-user@useg{TNUM}-vm-web2 ~]# ping 10.10.10.11 -c 2
+[useg-user@useg{TNUM}-vm-web2 ~]# ping 20.20.20.11 -c 2
+[useg-user@useg{TNUM}-vm-web2 ~]# ping 20.20.20.12 -c 2
+</code></pre>
+
+<p><strong>useg{TNUM}-vm-app1</strong> : <strong>{VM-APP1-OOB}</strong></p>
+<pre><code>[useg-user@useg{TNUM}-vm-app1 ~]# ping 20.20.20.1 -c 2
+[useg-user@useg{TNUM}-vm-app1 ~]# ping 10.10.10.11 -c 2
+[useg-user@useg{TNUM}-vm-app1 ~]# ping 10.10.10.12 -c 2
+[useg-user@useg{TNUM}-vm-app1 ~]# ping 20.20.20.12 -c 2
+</code></pre>
+
+<p><strong>useg{TNUM}-vm-app2</strong> : <strong>{VM-APP2-OOB}</strong></p>
+<pre><code>[useg-user@useg{TNUM}-vm-app2 ~]# ping 20.20.20.1 -c 2
+[useg-user@useg{TNUM}-vm-app2 ~]# ping 10.10.10.11 -c 2
+[useg-user@useg{TNUM}-vm-app2 ~]# ping 10.10.10.12 -c 2
+[useg-user@useg{TNUM}-vm-app2 ~]# ping 20.20.20.11 -c 2
+</code></pre>
+
+<p><strong>Step 2.</strong> Review the current zoning-rule configuration</p>
+<p>Go to <strong>Fabric -&gt; Inventory -&gt; Pod 1 -&gt; site1-leaf1 -&gt; Rules</strong>  </p>
+<p><img alt="lab1 diagram" src="../../img/rules-nointra-new2.png" /></p>
+<p>Use the <strong>Segment ID</strong> of the <strong>uSeg_VRF</strong> you noted down earlier on as <strong>scope ID</strong> (<strong>2752513</strong> in the sample screenshot) to filter the rules of interest.</p>
+<p>Verify that <strong>no</strong> specific filter shown for the <strong>base_EPG</strong> with <strong>pcTag</strong> that you noted earlier on (<strong>49153</strong> in the sample screenshot) as currently we don't have any contract associated with the base EPG.</p>
+<p><img alt="lab1 diagram" src="../../img/rules-nointrapctag-new2.png" /></p>
+<p><strong>Step 3.</strong> Go back to your tenant-&gt;application profile-&gt;uSeg_AP-&gt;Application EPGs configuration from the APIC GUI, click on EPG <strong>base_EPG</strong> in the Navagation pane, under the <strong>Policy-&gt;Gerneral</strong> tab, change the <strong>Intra-EPG Isolation</strong> from "<strong>Unenforced</strong>" mode to “<strong>Enforced</strong>” mode. </p>
+<p>You will see the following warning message regarding what are not supported with intra EPG isolation, click on <strong>OK</strong>, then click on <strong>SUBMIT</strong>. </p>
+<p><img alt="lab1 diagram" src="../../img/lab1_epg_enable_isolation_warning-new.png" /></p>
+<p>You will see a Policy Usage Warning pop-up window, click on <strong>SUBMIT CHANGES</strong> to commit the change.</p>
+<p><img alt="lab1 diagram" src="../../img/lab1_epg_change_warning-new.png" /></p>
+<p><strong>Step 4.</strong> Back onto <strong>Fabric -&gt; Inventory -&gt; Pod1 -&gt; site1-leaf1 -&gt; Rules</strong>, check the zoning-rule again. A new zoning-rule should be added to deny traffic within <strong>base_EPG</strong>. </p>
+<p>In the sample output, a new deny rule (ID <strong>4377</strong>) is added with both <strong>SrcEPG</strong> and <strong>DstEPG</strong> pcTag of <strong>49153</strong>. </p>
+<p><img alt="lab1 diagram" src="../../img/rules-intra-new2.png" /></p>
+<p><strong>Step 5.</strong>  Click on tenant-&gt;application profile-&gt;uSeg_AP-&gt;Application EPGs-&gt;base_EPG-&gt;Operational-&gt;Client End-Points. Verify the encapsulation for the base EPG has changed to (P,S) pair which is a Private VLAN implementation under the hood.</p>
+<p><img alt="lab1 diagram" src="../../img/intra-encap.png" /></p>
+<p><strong>Step 6.</strong>  Verify endpoint connectivities within the base EPG.</p>
+<p><strong>useg{TNUM}-vm-web1</strong> : <strong>{VM-WEB1-OOB}</strong></p>
+<pre><code>[useg-user@useg{TNUM}-vm-web1 ~]# ping 10.10.10.1 -c 2 -t 1
+[useg-user@useg{TNUM}-vm-web1 ~]# ping 10.10.10.12 -c 2 -t 1
+[useg-user@useg{TNUM}-vm-web1 ~]# ping 20.20.20.11 -c 2 -t 1
+[useg-user@useg{TNUM}-vm-web1 ~]# ping 20.20.20.12 -c 2 -t 1
+[useg-user@useg{TNUM}-vm-web1 ~]# ping 30.30.30.11 -c 2 -t 1
+</code></pre>
+
+<p><strong>useg{TNUM}-vm-web2</strong> : <strong>{VM-WEB2-OOB}</strong></p>
+<pre><code>[useg-user@useg{TNUM}-vm-web2 ~]# ping 10.10.10.1 -c 2 -t 1
+[useg-user@useg{TNUM}-vm-web2 ~]# ping 10.10.10.11 -c 2 -t 1
+[useg-user@useg{TNUM}-vm-web2 ~]# ping 20.20.20.11 -c 2 -t 1
+[useg-user@useg{TNUM}-vm-web2 ~]# ping 20.20.20.12 -c 2 -t 1
+[useg-user@useg{TNUM}-vm-web2 ~]# ping 30.30.30.11 -c 2 -t 1
+</code></pre>
+
+<p><strong>useg{TNUM}-vm-app1</strong> : <strong>{VM-APP1-OOB}</strong></p>
+<pre><code>[useg-user@useg{TNUM}-vm-app1 ~]# ping 20.20.20.1 -c 2 -t 1
+[useg-user@useg{TNUM}-vm-app1 ~]# ping 10.10.10.11 -c 2 -t 1
+[useg-user@useg{TNUM}-vm-app1 ~]# ping 10.10.10.12 -c 2 -t 1
+[useg-user@useg{TNUM}-vm-app1 ~]# ping 20.20.20.12 -c 2 -t 1
+[useg-user@useg{TNUM}-vm-app1 ~]# ping 30.30.30.11 -c 2 -t 1
+</code></pre>
+
+<p><strong>useg{TNUM}-vm-app2</strong> : <strong>{VM-APP2-OOB}</strong></p>
+<pre><code>[useg-user@useg{TNUM}-vm-app2 ~]# ping 20.20.20.1 -c 2 -t 1
+[useg-user@useg{TNUM}-vm-app2 ~]# ping 10.10.10.11 -c 2 -t 1
+[useg-user@useg{TNUM}-vm-app2 ~]# ping 10.10.10.12 -c 2 -t 1
+[useg-user@useg{TNUM}-vm-app2 ~]# ping 20.20.20.11 -c 2 -t 1
+[useg-user@useg{TNUM}-vm-app2 ~]# ping 30.30.30.11 -c 2 -t 1
+</code></pre>
+
+<p>All four (4) VMs can still reach their default gateway IP but can no longer ping each other. This confirms that no communication is allowed within an EPG when intra-EPG isolation is enforced. </p>
+<p>This concludes the Intra-EPG Isolation feature test. </p>
+<h2 id="5-intra-epg-security">5. Intra-EPG Security</h2>
+<p>Intra-EPG Security allows the creation of contracts for Intra EPG traffic. The feature works for VMs, bare-metal servers, and on EPGs that have a mix of VMs and bare-metal servers. Intra-EPG security can be applied to both an EPG or a uSeg EPG.</p>
+<p>The feature uses proxy ARP to work, which means we need to use leafs that are based on gen-2 ASICs (-EX) or later (-FX).</p>
+<p>In this session we will create a contract allowing ssh among <strong>useg{TNUM}-vm-web1</strong>, <strong>useg{TNUM}-vm-web2</strong>, <strong>useg{TNUM}-vm-app1</strong>, <strong>useg{TNUM}-vm-app2</strong>, and <strong>useg-bm-db</strong> to demonstrate the funcionality. </p>
+<p><strong>Step 1.</strong> Create a Contract to be used for Intra-EPG Security: <strong>Tenants -&gt; useg-user{TNUM} -&gt; Contracts</strong>. </p>
+<p><img alt="lab1 diagram" src="../../img/lab1-contractCreate.png" /></p>
+<p>Create a contract named <strong>c-ssh</strong>:  </p>
+<p><img alt="lab1 diagram" src="../../img/lab1-contract-new.png" /></p>
+<p>Create a subjct named <strong>s-ssh</strong>:</p>
+<p><img alt="lab1 diagram" src="../../img/lab1_subject-new.png" /></p>
+<p>Creae a filter named <strong>f-ssh</strong> allowing only <strong>tcp</strong> traffic to port <strong>22</strong>: </p>
+<p><img alt="lab1 diagram" src="../../img/lab1_filter.png" /></p>
+<p>Click <strong>submit</strong> to save the configuration. </p>
+<p><strong>Step 2.</strong> Apply the <strong>c-ssh</strong> contract to the base EPG going to <strong>Tenants -&gt; useg-user{TNUM} -&gt; Application Profiles -&gt; uSeg_AP -&gt; Application EPGs -&gt; base_EPG -&gt; Contracts</strong>. Click on <strong>Actions</strong> and then on <strong>Add Intra-EPG Contract</strong> on the drop down menu: </p>
+<p><img alt="lab1 diagram" src="../../img/lab1_intraepg_contract.png" /></p>
+<p><strong>Step 3.</strong> Choose the contract recently created,  Accept the Warning and click on <strong>Submit</strong> </p>
+<p><img alt="lab1 diagram" src="../../img/lab1_intraepg_warning.png" /></p>
+<p><img alt="lab1 diagram" src="../../img/lab1_add_intraepg.png" /></p>
+<p><strong>Step 4.</strong> Verify that the Intra-EPG Contract is in a “formed” state</p>
+<p><img alt="lab1 diagram" src="../../img/lab1_formed.png" /></p>
+<p><strong>Step 5.</strong> Verify endpoint connectivities within the base EPG.</p>
+<p><strong>useg{TNUM}-vm-web1</strong> : <strong>{VM-WEB1-OOB}</strong></p>
+<pre><code>[useg-user@useg{TNUM}-vm-web1 ~]# ping 10.10.10.1 -c 2 -t 1
+[useg-user@useg{TNUM}-vm-web1 ~]# ping 10.10.10.12 -c 2 -t 1
+[useg-user@useg{TNUM}-vm-web1 ~]# ping 20.20.20.11 -c 2 -t 1
+[useg-user@useg{TNUM}-vm-web1 ~]# ping 20.20.20.12 -c 2 -t 1
+[useg-user@useg{TNUM}-vm-web1 ~]# ping 30.30.30.11 -c 2 -t 1
+[useg-user@useg{TNUM}-vm-web1 ~]# ssh 10.10.10.12
+[useg-user@useg{TNUM}-vm-web1 ~]# ssh 20.20.20.11
+[useg-user@useg{TNUM}-vm-web1 ~]# ssh 20.20.20.12
+[useg-user@useg{TNUM}-vm-web1 ~]# ssh 30.30.30.11
+</code></pre>
+
+<p>If you are able to see the prompt from the remote server it means <em>ssh</em> is working. It is not necessary to log in to the servers. </p>
+<p><strong>useg{TNUM}-vm-web2</strong> : <strong>{VM-WEB2-OOB}</strong></p>
+<pre><code>[useg-user@useg{TNUM}-vm-web2 ~]# ping 10.10.10.1 -c 2 -t 1
+[useg-user@useg{TNUM}-vm-web2 ~]# ping 10.10.10.11 -c 2 -t 1
+[useg-user@useg{TNUM}-vm-web2 ~]# ping 20.20.20.11 -c 2 -t 1
+[useg-user@useg{TNUM}-vm-web2 ~]# ping 20.20.20.12 -c 2 -t 1
+[useg-user@useg{TNUM}-vm-web2 ~]# ping 30.30.30.11 -c 2 -t 1
+[useg-user@useg{TNUM}-vm-web2 ~]# ssh 10.10.10.11
+[useg-user@useg{TNUM}-vm-web2 ~]# ssh 20.20.20.11
+[useg-user@useg{TNUM}-vm-web2 ~]# ssh 20.20.20.12
+[useg-user@useg{TNUM}-vm-web2 ~]# ssh 30.30.30.11
+</code></pre>
+
+<p>If you are able to see the prompt from the remote server it means <em>ssh</em> is working. It is not necessary to log in to the servers. </p>
+<p><strong>useg{TNUM}-vm-app1</strong> : <strong>{VM-APP1-OOB}</strong></p>
+<pre><code>[useg-user@useg{TNUM}-vm-app1 ~]# ping 20.20.20.1 -c 2 -t 1
+[useg-user@useg{TNUM}-vm-app1 ~]# ping 10.10.10.11 -c 2 -t 1
+[useg-user@useg{TNUM}-vm-app1 ~]# ping 10.10.10.12 -c 2 -t 1
+[useg-user@useg{TNUM}-vm-app1 ~]# ping 20.20.20.12 -c 2 -t 1
+[useg-user@useg{TNUM}-vm-app1 ~]# ping 30.30.30.11 -c 2 -t 1
+[useg-user@useg{TNUM}-vm-app1 ~]# ssh 10.10.10.11
+[useg-user@useg{TNUM}-vm-app1 ~]# ssh 10.10.10.12
+[useg-user@useg{TNUM}-vm-app1 ~]# ssh 20.20.20.12
+[useg-user@useg{TNUM}-vm-app1 ~]# ssh 30.30.30.11
+</code></pre>
+
+<p>If you are able to see the prompt from the remote server it means <em>ssh</em> is working. It is not necessary to log in to the servers. </p>
+<p><strong>useg{TNUM}-vm-app2</strong> : <strong>{VM-APP2-OOB}</strong></p>
+<pre><code>[useg-user@useg{TNUM}-vm-app2 ~]# ping 20.20.20.1 -c 2 -t 1
+[useg-user@useg{TNUM}-vm-app2 ~]# ping 10.10.10.11 -c 2 -t 1
+[useg-user@useg{TNUM}-vm-app2 ~]# ping 10.10.10.12 -c 2 -t 1
+[useg-user@useg{TNUM}-vm-app2 ~]# ping 20.20.20.11 -c 2 -t 1
+[useg-user@useg{TNUM}-vm-app2 ~]# ping 30.30.30.11 -c 2 -t 1
+[useg-user@useg{TNUM}-vm-app2 ~]# ssh 10.10.10.11
+[useg-user@useg{TNUM}-vm-app2 ~]# ssh 10.10.10.12
+[useg-user@useg{TNUM}-vm-app2 ~]# ssh 20.20.20.11
+[useg-user@useg{TNUM}-vm-app2 ~]# ssh 30.30.30.11
+</code></pre>
+
+<p>If you are able to see the prompt from the remote server it means <em>ssh</em> is working. It is not necessary to log in to the servers. </p>
+<p>All four (4) VMs and (1) BM can still reach their default gateway IP, they can no longer ping each other but can ssh. This confirms that the only communication allowed within an EPG when intra-EPG security is enforced is controlled by the contract and it works for virtual machines and for bare metal servers.  </p>
+<p>This concludes the Intra-EPG Security feature test. </p>
+<h2 id="6-vm-attribute-based-useg-epg-configuration">6. VM Attribute Based uSeg EPG Configuration</h2>
+<p>We will create a VM Name based uSeg EPG named <strong>web_uSegEPG</strong> to host all endpoints that have <strong>web</strong> in their hostnames. </p>
+<p><strong>Step 1.</strong> Enable micro-segmentation for the VMM domain <strong>cl-useg-dvs</strong>. Double click on VMM domain <strong>cl-useg-dvs</strong> under <strong>Tenants -&gt; useg-user{TNUM} -&gt; Application Profiles -&gt; base_EPG  -&gt; Domain -&gt; VMware/CLBerlin2016</strong>. This process is disruptive to traffic to the VMs belonging to the base EPG. While it is ok in this lab, take that into consideration when implementing in a production environment.   </p>
+<p><img alt="lab1 useg diagram" src="../../img/lab1-base_EPG-dom-true-new3.png" /></p>
+<ul>
+<li>Navigate back to <strong>Tenants -&gt; useg-user{TNUM} -&gt; Application Profiles -&gt; base_EPG</strong> and ensure that the <strong>forwarding control proxy-arp box</strong> is checked.  </li>
+</ul>
+<p><img alt="lab1 useg diagram" src="../../img/lab1-bd-forwarding-control-new.png" /></p>
+<p><strong>Step 2.</strong> Create a VM-attribute based uSeg EPG under <strong>Tenants -&gt; useg-user{TNUM} -&gt; Application Profiles -&gt; uSeg_AP -&gt; uSeg EPGs</strong> by clicking on <strong>Actions</strong> in Work pane and choose <strong>Create uSeg EPG</strong></p>
+<p><img alt="lab1 useg diagram" src="../../img/lab1-uSeg-create-new.png" /></p>
+<ul>
+<li>Name it <strong>web_uSegEPG</strong></li>
+<li>Associate it with bridge domain <strong>useg-user{TNUM}/uSeg_BD</strong>, which is the same bridge domain that the base EPG <strong>base_EPG</strong> is associated with.</li>
+</ul>
+<p><img alt="lab1 useg diagram" src="../../img/lab1-web_uSegEPG-create1-new.png" /></p>
+<ul>
+<li>Click on <strong>NEXT</strong> to move to the Domains configuration window. Associate it with VMM domain <strong>CLBerlin2016</strong>, which is the same VMM domain associated with the base EPG. <ul>
+<li>Deployment Immediacy: <strong>Immediate</strong></li>
+<li>Resolution Immediacy: <strong>Immediate</strong>  </li>
+</ul>
+</li>
+<li>Click on <strong>UPDATE</strong> and then <strong>FINISH</strong> to complete the EPG configuration.</li>
+</ul>
+<p><img alt="lab1 useg diagram" src="../../img/lab1-web_uSegEPG-domain-new2.png" /></p>
+<p><strong>Step 3.</strong> Click on <strong>uSeg Attributes</strong> under <strong>web_uSegEPG</strong>. Click on the <strong>Plus</strong> signal on the right hand side to create a new filter. </p>
+<p><img alt="lab1 useg diagram" src="../../img/lab1-web_uSegEPG-attributes-new.png" /></p>
+<ul>
+<li>
+<p>In the pop up window, use the following parameters: </p>
+<ul>
+<li><strong>Match Any</strong></li>
+<li><strong>Type</strong>: choose <strong>VM Name</strong> from dropdown menu</li>
+<li><strong>Operator</strong>: choose <strong>Contains</strong> from dropdown menu</li>
+<li><strong>Value</strong>: <strong>web</strong></li>
+<li>Click on <strong>Submit</strong> to save the configuration</li>
+</ul>
+</li>
+</ul>
+<p><img alt="lab1 useg diagram" src="../../img/lab1-web_uSegEPG-attributes2-new.png" /></p>
+<p><strong>Step 4.</strong> Verify endpoints under <strong>web_uSegEPG</strong></p>
+<ul>
+<li>Click on <strong>web_uSegEPG</strong> in the Navagation pane, then click on <strong>Operational</strong> tab in the Work pane.</li>
+<li>Verify that VMs <strong>useg{TNUM}-vm-web1</strong> and <strong>useg{TNUM}-vm-web2</strong> are shown as endpoints for the new VM attribute-based EPG.   </li>
+<li>(Optional) Verify that those two (2) web VM are no longer appear as endpoints under <strong>base_EPG</strong>. MAC address of endpoints may stay in the base EPG for a while after they are moved into uSeg EPG. </li>
+</ul>
+<p>Endpoints under <strong>web_uSegEPG</strong>:</p>
+<p><img alt="lab1 useg diagram" src="../../img/lab1-web_uSegEPG-ops-new.png" /></p>
+<p>Endpoints under <strong>base_EPG</strong> after <strong>web_uSegEPG</strong> is created (MAC address of endpoints may stay in the base EPG for a while after they are moved into uSeg EPG).</p>
+<p><img alt="lab1 useg diagram" src="../../img/lab1-base_EPG-ops-aftwebuSeg-new.png" /></p>
+<p><strong>Step 4.</strong> Verify VM Port-group changes if any</p>
+<p>Although we do not provide user access to vCenter in this lab, from the APIC GUI, you can verify the same from <strong>Virtual Networking -&gt; VMM Domains -&gt; VMware -&gt; CLBerlin2016 -&gt; Controllers -&gt; vcenter -&gt; DVS - CLBerlin2016 -&gt; Portgroups</strong>. You can use filter by your tenant name for easy access and validate the port group information from there.</p>
+<p><img alt="lab1 useg diagram" src="../../img/lab1_dvs_portgroups-filter-new.png" /></p>
+<p><strong>Step 5.</strong> Verify VM Connectivities</p>
+<p><strong>useg{TNUM}-vm-web1</strong> : <strong>{VM-WEB1-OOB}</strong></p>
+<pre><code>[useg-user@useg{TNUM}-vm-web1 ~]# ping 10.10.10.1 -c 2 -t 1
+[useg-user@useg{TNUM}-vm-web1 ~]# ping 10.10.10.12 -c 2 -t 1
+[useg-user@useg{TNUM}-vm-web1 ~]# ping 20.20.20.11 -c 2 -t 1
+[useg-user@useg{TNUM}-vm-web1 ~]# ping 20.20.20.12 -c 2 -t 1
+[useg-user@useg{TNUM}-vm-web1 ~]# ping 30.30.30.11 -c 2 -t 1
+</code></pre>
+
+<p><strong>useg{TNUM}-vm-web2</strong> : <strong>{VM-WEB2-OOB}</strong></p>
+<pre><code>[useg-user@useg{TNUM}-vm-web2 ~]# ping 10.10.10.1 -c 2 -t 1
+[useg-user@useg{TNUM}-vm-web2 ~]# ping 10.10.10.11 -c 2 -t 1
+[useg-user@useg{TNUM}-vm-web2 ~]# ping 20.20.20.11 -c 2 -t 1
+[useg-user@useg{TNUM}-vm-web2 ~]# ping 20.20.20.12 -c 2 -t 1
+[useg-user@useg{TNUM}-vm-web2 ~]# ping 30.30.30.11 -c 2 -t 1
+</code></pre>
+
+<ul>
+<li><strong>useg{TNUM}-vm-web1</strong> and <strong>useg{TNUM}-vm-web2</strong> can ping each other as they are under the same uSeg EPG and <strong>Intra-EPG Isolation</strong> is not enabled. You may need to ping their gateway from both web VMs before they can ping each other (due to the fact the bridge domain is set to HA proxy mode)</li>
+<li><strong>useg{TNUM}-vm-web1</strong> and <strong>useg{TNUM}-vm-web2</strong> can <strong>not</strong> ping the two app VMs and the bare metal server that remain in <strong>base_EPG</strong> as there is no contract configured between the two EPGs</li>
+<li><strong>useg{TNUM}-vm-web1</strong> and <strong>useg{TNUM}-vm-web2</strong> can ping their default gateway IP <strong>10.10.10.1</strong></li>
+</ul>
+<p><strong>useg{TNUM}-vm-app1</strong> : <strong>{VM-APP1-OOB}</strong></p>
+<pre><code>[useg-user@useg{TNUM}-vm-app1 ~]# ping 20.20.20.1 -c 2 -t 1
+[useg-user@useg{TNUM}-vm-app1 ~]# ping 10.10.10.11 -c 2 -t 1
+[useg-user@useg{TNUM}-vm-app1 ~]# ping 10.10.10.12 -c 2 -t 1
+[useg-user@useg{TNUM}-vm-app1 ~]# ping 20.20.20.12 -c 2 -t 1
+[useg-user@useg{TNUM}-vm-app1 ~]# ping 30.30.30.11 -c 2 -t 1
+</code></pre>
+
+<p><strong>useg{TNUM}-vm-app2</strong> : <strong>{VM-APP2-OOB}</strong></p>
+<pre><code>[useg-user@useg{TNUM}-vm-app2 ~]# ping 20.20.20.1 -c 2 -t 1
+[useg-user@useg{TNUM}-vm-app2 ~]# ping 10.10.10.11 -c 2 -t 1
+[useg-user@useg{TNUM}-vm-app2 ~]# ping 10.10.10.12 -c 2 -t 1
+[useg-user@useg{TNUM}-vm-app2 ~]# ping 20.20.20.11 -c 2 -t 1
+[useg-user@useg{TNUM}-vm-app2 ~]# ping 30.30.30.11 -c 2 -t 1
+</code></pre>
+
+<ul>
+<li><strong>useg{TNUM}-vm-app1</strong> and <strong>useg{TNUM}-vm-app2</strong> can not ping each other as they are still under the <strong>base_EPG</strong> and <strong>Intra-EPG Isolation</strong> is enabled.</li>
+<li>
+<ul>
+<li><strong>useg{TNUM}-vm-app1</strong> and <strong>useg{TNUM}-vm-app2</strong> can not ping <strong>useg-bm-db</strong> as they are still under the <strong>base_EPG</strong> and <strong>Intra-EPG Isolation</strong> is enabled.</li>
+</ul>
+</li>
+<li><strong>useg{TNUM}-vm-app1</strong> and <strong>useg{TNUM}-vm-app2</strong> can <strong>not</strong> ping the two web VMs that are moved into <strong>web_uSegEPG</strong> as there is no contract configured between the two EPGs</li>
+<li><strong>useg{TNUM}-vm-app1</strong> and <strong>useg{TNUM}-vm-app2</strong> can ping their default gateway IP <strong>20.20.20.1</strong></li>
+</ul>
+<p>This concludes the VM attribute based EPG feature test.</p>
+<h2 id="7-network-attribute-based-useg-epg">7. Network Attribute Based uSeg EPG</h2>
+<p>We will create an IP address based uSeg EPG named <strong>app_uSegEPG</strong> to host all endpoints that have IP address under IP subnet <strong>20.20.20.0/24</strong>. </p>
+<p><strong>Step 1.</strong> Create a network attribute based uSeg EPG under <strong>Tenants -&gt; useg-user{TNUM} -&gt; Application Profiles -&gt; uSeg_AP -&gt; uSeg EPGs</strong> by clicking on <strong>Actions</strong> in Work pane and choose <strong>Create uSeg EPG</strong> </p>
+<p><img alt="lab1 useg diagram" src="../../img/lab1-uSeg-create-new.png" /></p>
+<ul>
+<li>Name it <strong>app_uSegEPG</strong></li>
+<li>Associate it with bridge domain <strong>useg-user{TNUM}/uSeg_BD</strong>, which is the same bridge domain that the base EPG <strong>base_EPG</strong> is associated with.</li>
+</ul>
+<p><img alt="lab1 useg diagram" src="../../img/lab1-uSeg-create3-new.png" /></p>
+<ul>
+<li>Click on <strong>NEXT</strong> to move to the Domains configuration window. Associate it with VMM domain <strong>CLBerlin2016</strong>, which is the same VMM domain associated with the base EPG.</li>
+</ul>
+<p><img alt="lab1 useg diagram" src="../../img/lab1-web_uSegEPG-domain-new3.png" /></p>
+<ul>
+<li>Click on <strong>UPDATE</strong> and then <strong>FINISH</strong> to complete the EPG configuration.</li>
+</ul>
+<p><strong>Step 2.</strong> Click on <strong>uSeg Attributes</strong> under <strong>app_uSegEPG</strong>. Click on the <strong>Plus</strong> signal on the right hand side to create a new filter. </p>
+<p><img alt="lab1 useg diagram" src="../../img/lab1-app_uSegEPG-attributes-new.png" /></p>
+<ul>
+<li>
+<p>In the pop up window, use the following parameters: </p>
+<ul>
+<li><strong>Match Any</strong></li>
+<li><strong>Type</strong>: choose <strong>IP</strong> from dropdown menu</li>
+<li><strong>Use EPG Subnet?</strong>: <strong>No</strong></li>
+<li><strong>Value</strong>: <strong>20.20.20.0/24</strong></li>
+<li>Click on <strong>Submit</strong> to save the configuration</li>
+</ul>
+</li>
+</ul>
+<p><img alt="lab1 useg diagram" src="../../img/lab1-app_uSegEPG-attributes2-new.png" /></p>
+<p><strong>Step 3.</strong> Verify endpoints under <strong>app_uSegEPG</strong></p>
+<ul>
+<li>Click on <strong>app_uSegEPG</strong> in the Navagation pane, then click on <strong>Operational</strong> tab in the Work pane.</li>
+<li>Verify that VMs <strong>useg{TNUM}-vm-app1</strong> and <strong>useg{TNUM}-vm-app2</strong> appear as endpoints for the new IP based EPG. </li>
+<li>Some IP traffic must be seen by fabric before an endpoint can be classified into an IP based EPG. You may need to perform a ping to their gateway from both app VMs.    </li>
+<li>(Optional) Verify that those two (2) app VM are no longer shown as endpoints under <strong>base_EPG</strong>. MAC address of endpoints may stay in the base EPG for a while after they are moved into uSeg EPG.</li>
+</ul>
+<p>Endpoints under <strong>app_uSegEPG</strong></p>
+<p><img alt="lab1 useg diagram" src="../../img/lab1-app_uSegEPG-ops-new.png" /></p>
+<p>Endpoints under <strong>base_EPG</strong>.</p>
+<p><img alt="lab1 useg diagram" src="../../img/lab1-base_EPG-ops-aftappuSeg-new.png" /></p>
+<p><strong>base_EPG</strong> still have the Endpoints but they are mac learn while <strong>app_uSegEPG</strong> learns the Endpoints through their IPs. </p>
+<p><strong>Step 3.</strong> Verify VM Port-group change if any</p>
+<p>From the APIC GUI, you can verify the same from <strong>VM Networking -&gt; VMware -&gt; cl-useg-dvs -&gt; Controllers -&gt; vcenter -&gt; DVS - cl-useg-dvs -&gt; Portgroups</strong>. You can use filter by your tenant name for easy access and validate the port group info from there. </p>
+<p><img alt="lab1 useg diagram" src="../../img/lab1_dvs_portgroups-filter-new.png" /></p>
+<p><strong>Step 4.</strong> Verify VM Connectivities</p>
+<p><strong>useg{TNUM}-vm-web1</strong> : <strong>{VM-WEB1-OOB}</strong></p>
+<pre><code>[useg-user@useg{TNUM}-vm-web1 ~]# ping 10.10.10.1 -c 2 -t 1
+[useg-user@useg{TNUM}-vm-web1 ~]# ping 10.10.10.12 -c 2 -t 1
+[useg-user@useg{TNUM}-vm-web1 ~]# ping 20.20.20.11 -c 2 -t 1
+[useg-user@useg{TNUM}-vm-web1 ~]# ping 20.20.20.12 -c 2 -t 1
+[useg-user@useg{TNUM}-vm-web1 ~]# ping 30.30.30.11 -c 2 -t 1
+</code></pre>
+
+<p><strong>useg{TNUM}-vm-web2</strong> : <strong>{VM-WEB2-OOB}</strong></p>
+<pre><code>[useg-user@useg{TNUM}-vm-web2 ~]# ping 10.10.10.1 -c 2 -t 1
+[useg-user@useg{TNUM}-vm-web2 ~]# ping 10.10.10.11 -c 2 -t 1
+[useg-user@useg{TNUM}-vm-web2 ~]# ping 20.20.20.11 -c 2 -t 1
+[useg-user@useg{TNUM}-vm-web2 ~]# ping 20.20.20.12 -c 2 -t 1
+[useg-user@useg{TNUM}-vm-web2 ~]# ping 30.30.30.11 -c 2 -t 1
+</code></pre>
+
+<ul>
+<li><strong>useg{TNUM}-vm-web1</strong> and <strong>useg{TNUM}-vm-web2</strong> can ping each other as they are under the same uSeg EPG and <strong>Intra-EPG Isolation</strong> is not enabled.</li>
+<li><strong>useg{TNUM}-vm-web1</strong> and <strong>useg{TNUM}-vm-web2</strong> can not ping the two app VMs that are moved in <strong>app_uSegEPG</strong> as there is no contract configured between the two EPGs</li>
+<li><strong>useg{TNUM}-vm-web1</strong> and <strong>useg{TNUM}-vm-web2</strong> can not ping the bare metal server that remain in <strong>base_EPG</strong> as there is no contract configured between the two EPGs</li>
+<li><strong>useg{TNUM}-vm-web1</strong> and <strong>useg{TNUM}-vm-web2</strong> can ping their default gateway IP <strong>10.10.10.1</strong></li>
+</ul>
+<p><strong>useg{TNUM}-vm-app1</strong> : <strong>{VM-APP1-OOB}</strong></p>
+<pre><code>[useg-user@useg{TNUM}-vm-app1 ~]# ping 20.20.20.1 -c 2 -t 1
+[useg-user@useg{TNUM}-vm-app1 ~]# ping 10.10.10.11 -c 2 -t 1
+[useg-user@useg{TNUM}-vm-app1 ~]# ping 10.10.10.12 -c 2 -t 1
+[useg-user@useg{TNUM}-vm-app1 ~]# ping 20.20.20.12 -c 2 -t 1
+[useg-user@useg{TNUM}-vm-app1 ~]# ping 30.30.30.11 -c 2 -t 1
+</code></pre>
+
+<p><strong>useg{TNUM}-vm-app2</strong> : <strong>{VM-APP2-OOB}</strong></p>
+<pre><code>[useg-user@useg{TNUM}-vm-app2 ~]# ping 20.20.20.1 -c 2 -t 1
+[useg-user@useg{TNUM}-vm-app2 ~]# ping 10.10.10.11 -c 2 -t 1
+[useg-user@useg{TNUM}-vm-app2 ~]# ping 10.10.10.12 -c 2 -t 1
+[useg-user@useg{TNUM}-vm-app2 ~]# ping 20.20.20.11 -c 2 -t 1
+[useg-user@useg{TNUM}-vm-app2 ~]# ping 30.30.30.11 -c 2 -t 1
+</code></pre>
+
+<ul>
+<li><strong>useg{TNUM}-vm-app1</strong> and <strong>useg{TNUM}-vm-app2</strong> can now ping each other as they are under the <strong>app_uSegEPG</strong> and <strong>Intra-EPG Isolation</strong> is disabled.</li>
+<li><strong>useg{TNUM}-vm-app1</strong> and <strong>useg{TNUM}-vm-app2</strong> can not ping the two web VMs that are under <strong>web_uSegEPG</strong> as there is no contract configured between the two EPGs</li>
+<li><strong>useg{TNUM}-vm-app1</strong> and <strong>useg{TNUM}-vm-app2</strong> can not ping the bare metal server that remain in <strong>base_EPG</strong> as there is no contract configured between the two EPGs</li>
+<li><strong>useg{TNUM}-vm-app1</strong> and <strong>useg{TNUM}-vm-app2</strong> can ping their default gateway IP <strong>20.20.20.1</strong></li>
+</ul>
+<p><strong>Step 5.</strong> Apply a contract between <strong>web_uSegEPG</strong> and <strong>app_uSegEPG</strong></p>
+<ul>
+<li>
+<p>To enable communication between <strong>web_uSegEPG</strong> and <strong>app_uSegEPG</strong>, we will apply <strong>common/default</strong> contract.</p>
+</li>
+<li>
+<p>Go to <strong>Tenant -&gt; useg-user{TNUM} -&gt; Application Profiles -&gt; uSeg_AP -&gt; uSeg EPGs -&gt; web_uSegEPG -&gt; Contracts</strong>, Click on <strong>Actions</strong> in Work pane, and choose <strong>Add Consumed Contract</strong></p>
+</li>
+</ul>
+<p><img alt="lab1 useg diagram" src="../../img/lab1-web_uSegEPG-contr-C-new.png" /></p>
+<ul>
+<li>
+<p>Select <strong>common/default</strong> contract from the drop down list and click on <strong>SUBMIT</strong>.</p>
+</li>
+<li>
+<p>Go to <strong>Tenant -&gt; useg-user{TNUM} -&gt; Application Profiles -&gt; uSeg_AP -&gt; uSeg EPGs -&gt; app_uSegEPG -&gt; Contracts</strong>, Click on <strong>Actions</strong> in Work pane, and choose <strong>Add Provided Contract</strong></p>
+</li>
+</ul>
+<p><img alt="lab1 useg diagram" src="../../img/lab1-app_uSegEPG-contr-P-new.png" /></p>
+<ul>
+<li>Select <strong>common/default</strong> contract from the drop down list and click on <strong>SUBMIT</strong>.</li>
+</ul>
+<p><strong>Step 6.</strong> Verify VM Connectivity</p>
+<p><strong>useg{TNUM}-vm-web1</strong> : <strong>{VM-WEB1-OOB}</strong></p>
+<pre><code>[useg-user@useg{TNUM}-vm-web1 ~]# ping 20.20.20.11 
+</code></pre>
+
+<p><strong>useg{TNUM}-vm-app1</strong> : <strong>{VM-APP1-OOB}</strong></p>
+<pre><code>[useg-user@useg{TNUM}-vm-app1 ~]# ping 10.10.10.11 -c 2 -t 1
+</code></pre>
+
+<ul>
+<li><strong>useg{TNUM}-vm-web1</strong> and <strong>useg{TNUM}-vm-app2</strong> can now ping each other as the permit-any (<em>default</em> contract in ACI) contract has been applied between the two EPGs</li>
+</ul>
+<p>This concludes the network attribute based EPG feature test.</p>
+<h2 id="8-hierarchal-matching-of-useg-attributes-using-orand-operator">8. Hierarchal Matching of uSeg Attributes Using OR/AND Operator</h2>
+<p>You can configure uSeg EPGs with multiple attributes. However, VMs can become part of only one uSeg EPG. When a VM has attributes matching more than one uSeg EPG in the tenant, Cisco APIC puts the VM into a uSeg EPG based on filtering rules. Depending on how you define the attributes, you can use different filtering rules:</p>
+<ul>
+<li>
+<p>Matching any attribute - You can match any attribute, and Cisco APIC follows default precedence among attributes in deciding which uSeg EPG that a VM will join.</p>
+</li>
+<li>
+<p>Matching all attributes - You can match all of the VM-based attributes defined for the uSeg EPG. You cannot match all for multiple network-based attributes.</p>
+</li>
+</ul>
+<p>Match-Any and Match-All operators are not supported for:</p>
+<ul>
+<li>MAC Attribute</li>
+<li>IP Attribute</li>
+</ul>
+<p>We will add a second filter to <strong>web_uSegEPG</strong> using 
+Match-Any (Matching any attribute defined for a uSeg EPG is the default): </p>
+<ul>
+<li><strong>Match-Any</strong></li>
+<li><strong>Type</strong>: choose <strong>VM Name</strong> from dropdown menu</li>
+<li><strong>Operator</strong>: choose <strong>Contains</strong> from dropdown menu</li>
+<li><strong>Value</strong>: <strong>2</strong></li>
+<li>Click on <strong>Submit</strong> to save the configuration</li>
+</ul>
+<p><img alt="lab1 useg diagram" src="../../img/lab1-web_uSegEPG-any.png" /></p>
+<p>Endpoints under <strong>web_uSegEPG</strong></p>
+<p><img alt="lab1 useg diagram" src="../../img/lab1-web_uSegEPG-any-ops.png" /></p>
+<p>In this case three VMs were moved to the <strong>web_uSegEPG</strong>: </p>
+<ul>
+<li>two VMs that matched the <strong>VM Name</strong> containing <strong>web</strong>: <strong>useg{TNUM}-vm-web1</strong> and <strong>useg{TNUM}-vm-web2</strong></li>
+<li>one VM that matched the <strong>VM Name</strong> containing <strong>2</strong>: <strong>useg{TNUM}-vm-app2</strong></li>
+</ul>
+<p>We will modify the filter associated to <strong>web_uSegEPG</strong> using Match-All:</p>
+<ul>
+<li><strong>Match-All</strong></li>
+<li><strong>Type</strong>: choose <strong>VM Name</strong> from dropdown menu</li>
+<li><strong>Operator</strong>: choose <strong>Contains</strong> from dropdown menu</li>
+<li><strong>Value</strong>: <strong>2</strong></li>
+<li>Click on <strong>Submit</strong> to save the configuration</li>
+</ul>
+<p><img alt="lab1 useg diagram" src="../../img/lab1-web_uSegEPG-all.png" /></p>
+<p>Endpoints under <strong>web_uSegEPG</strong></p>
+<p><img alt="lab1 useg diagram" src="../../img/lab1-web_uSegEPG-all-ops.png" /></p>
+<p>In this case only one VMs was moved to the <strong>web_uSegEPG</strong>: <strong>useg{TNUM}-vm-web2</strong></p>
+<ul>
+<li>one VM that matched the <strong>VM Name</strong> containing <strong>2</strong> and the <strong>VM Name</strong> containing <strong>web</strong>. </li>
+</ul>
+<p>Using Match-Any and Match-All you can create multiple statements to filter for multiple attributes, or you can create block, or nested, statements to create precise filtering rules.</p>
+<p>The uSeg EPG precedence value used as uSeg match tie-breaker with OR/AND VM attributes.</p>
+<p>This concludes the Hierarchal Matching of uSeg Attributes Using OR/AND Operator feature test.</p>
+<h2 id="9-dns-attribute-based-useg-epg">9. DNS Attribute Based uSeg EPG</h2>
+<p>DNS Attribute based uSeg carves uEPG based on Domain Name (DN) or FQDN. </p>
+<p>APIC polls DNS server zone and retrieves all IPs and caches them locally. </p>
+<p>The feature is still in beta at the time of this writing. </p>
+<p>In this session we will use DNS attribute based uSeg to create usegs EPGs for the DB server. </p>
+<p><strong>Step 1.</strong> Configure a DNS Server Group. Right click on the <strong>action</strong> button on the right hand side and select <strong>Create DNS Server Group</strong>  </p>
+<p><img alt="lab1 useg diagram" src="../../img/lab1-dns-1.png" /> </p>
+<ul>
+<li>
+<p>In the pop up window, use the following parameters: </p>
+<ul>
+<li>Accept the Agreeement </li>
+<li><strong>Name</strong>: <strong>dns-group</strong></li>
+<li><strong>DNS Servers</strong>: <strong>172.21.208.194</strong></li>
+<li>Click on <strong>Submit</strong> to save the configuration</li>
+</ul>
+</li>
+</ul>
+<p><img alt="lab1 useg diagram" src="../../img/lab1-dns-2.png" /></p>
+<p><strong>Step 2.</strong> Configure a Domain. Click on the newly created <strong>dns-group</strong> and then click on the plus sign on the right hand side pane.  </p>
+<p><img alt="lab1 useg diagram" src="../../img/lab1-dns-3.png" />  </p>
+<ul>
+<li>
+<p>In the window, use the following parameters: </p>
+<ul>
+<li><strong>Domain Name</strong>: <strong>aci.local</strong></li>
+<li>Click on <strong>Update</strong> to save the configuration</li>
+</ul>
+</li>
+</ul>
+<p><strong>Step 3.</strong> Create a DNS based uSeg EPG under <strong>Tenants -&gt; useg-user{TNUM} -&gt; Application Profiles -&gt; uSeg_AP -&gt; uSeg EPGs</strong> by clicking on <strong>Actions</strong> in Work pane and choose <strong>Create uSeg EPG</strong> </p>
+<p><img alt="lab1 useg diagram" src="../../img/lab1-uSeg-create-db.png" /></p>
+<ul>
+<li>Name it <strong>db_uSegEPG</strong></li>
+<li>Associate it with bridge domain <strong>useg-user{TNUM}/uSeg_BD</strong>, which is the same bridge domain that the base EPG <strong>base_EPG</strong> is associated with.</li>
+</ul>
+<p><img alt="lab1 useg diagram" src="../../img/lab1-uSeg-create2-new.png" /></p>
+<ul>
+<li>Click on <strong>NEXT</strong> to move to the Domains configuration window. Associate it with physical domain <strong>useg-baremetal-phys</strong>.</li>
+</ul>
+<p><img alt="lab1 useg diagram" src="../../img/lab1-db_uSegEPG-domain-new.png" /></p>
+<ul>
+<li>Click on <strong>UPDATE</strong> and then <strong>FINISH</strong> to complete the EPG configuration.</li>
+</ul>
+<p><strong>Step 2.</strong> Statically bind <strong>site1-leaf1</strong> and <strong>site1-leaf2</strong> to the <strong>db_uSegEPG</strong> clicking on <strong>Static Leaf</strong> under the <strong>db_uSegEPG</strong>. </p>
+<p><img alt="lab1 useg diagram" src="../../img/lab1-db_uSegEPG-bind12.png" /></p>
+<p><img alt="lab1 useg diagram" src="../../img/lab1-db_uSegEPG-bind22.png" /></p>
+<p><strong>Step 3.</strong> Click on <strong>uSeg Attributes</strong> under <strong>db_uSegEPG</strong>. Click on the <strong>Plus</strong> signal on the right hand side to create a new filter. </p>
+<ul>
+<li>
+<p>In the pop up window, use the following parameters: </p>
+<ul>
+<li><strong>Match Any</strong></li>
+<li><strong>Type</strong>: choose <strong>DNS</strong> from dropdown menu</li>
+</ul>
+</li>
+<li>
+<p>Click on the magnify glass icon and select the following parameters: </p>
+<ul>
+<li><strong>DNS Zone DB</strong>: <strong>aci.local</strong></li>
+<li><strong>DNS Zone Entry</strong>: <strong>useg-bm-db</strong></li>
+</ul>
+</li>
+</ul>
+<p><img alt="lab1 useg diagram" src="../../img/lab1-db_uSegEPG-attributes-dns-2.png" />   </p>
+<ul>
+<li>Click on <strong>Select</strong> and then <strong>Submit</strong> to save the configuration.</li>
+</ul>
+<p><strong>Step 4.</strong> Verify endpoints under <strong>db_uSegEPG</strong></p>
+<ul>
+<li>Click on <strong>db_uSegEPG</strong> in the Navagation pane, then click on <strong>Operational</strong> tab in the Work pane.</li>
+<li>Verify that  <strong>useg-bm-db</strong> appear as endpoints for the new DNS based EPG. </li>
+<li>Some IP traffic must be seen by fabric before an endpoint can be classified into an IP based EPG. You may need to perform a ping to their gateway.   </li>
+<li>Verify that the BM has the same VLAN encap. </li>
+</ul>
+<p>Endpoints under <strong>db_uSegEPG</strong></p>
+<p><img alt="lab1 useg diagram" src="../../img/lab1-db_uSegEPG-ops-new.png" /></p>
+<p>Endpoints under <strong>base_EPG</strong>.</p>
+<p><img alt="lab1 useg diagram" src="../../img/lab1-base_EPG-ops-aftdbuSeg-new.png" /></p>
+<p><strong>base_EPG</strong> still have the Endpoints but they are mac learn while <strong>db_uSegEPG</strong> learns the Endpoints through their IPs. </p>
+<p><strong>Step 5.</strong> Verify VM Connectivities</p>
+<p><strong>useg{TNUM}-vm-web1</strong> : <strong>{VM-WEB1-OOB}</strong></p>
+<pre><code>[useg-user@useg{TNUM}-vm-web1 ~]# ping 30.30.30.11 -c 2 -t 1
+</code></pre>
+
+<p><strong>useg{TNUM}-vm-web2</strong> : <strong>{VM-WEB2-OOB}</strong></p>
+<pre><code>[useg-user@useg{TNUM}-vm-web2 ~]# ping 30.30.30.11 -c 2 -t 1
+</code></pre>
+
+<ul>
+<li><strong>useg{TNUM}-vm-web1</strong> and <strong>useg{TNUM}-vm-web2</strong> can not ping <strong>useg-bm-db</strong> that are moved in <strong>db_uSegEPG</strong> as there is no contract configured between the two EPGs</li>
+</ul>
+<p><strong>useg{TNUM}-vm-app1</strong> : <strong>{VM-APP1-OOB}</strong></p>
+<pre><code>[useg-user@useg{TNUM}-vm-app1 ~]# ping 30.30.30.11 -c 2 -t 1
+</code></pre>
+
+<p><strong>useg{TNUM}-vm-app2</strong> : <strong>{VM-APP2-OOB}</strong></p>
+<pre><code>[useg-user@useg{TNUM}-vm-app2 ~]# ping 30.30.30.11 -c 2 -t 1
+</code></pre>
+
+<ul>
+<li><strong>useg{TNUM}-vm-app1</strong> and <strong>useg{TNUM}-vm-app2</strong> can not ping  <strong>useg-bm-db</strong> db server that are under <strong>db_uSegEPG</strong> as there is no contract configured between the two EPGs</li>
+</ul>
+<p><strong>Step 6.</strong> Apply a contract between <strong>app_uSegEPG</strong> and <strong>db_uSegEPG</strong>. Instead of creating a new contract and associating to <strong>app_uSegEPG</strong> and <strong>db_uSegEPG</strong> we will leverage a feature called contract inheritance to streamline associating contracts to new EPGs. The EPG inherits all the (provided and consumed) contracts associated directly to another EPG in the same tenant. Contract inheritance can be configured for application, microsegmented, L2Out, and L3Out EPGs.</p>
+<p>With Release 3.x, you can also configure contract inheritance for Inter-EPG contracts, both provided and consumed. Inter-EPG contracts are supported on Cisco Nexus 9000 Series switches with EX or FX at the end of their model name or later models.</p>
+<p>We want VMs belonging to <strong>app_uSegEPG</strong> to access <strong>useg-bm-db</strong> server but we dont want VMs from <strong>web_uSegEPG</strong> to have access to the database server. </p>
+<ul>
+<li>Click on <strong>db_uSegEPG</strong> in the Navagation pane, then click on <strong>Policy</strong> -&gt; <strong>General</strong> tab in the Work pane.</li>
+</ul>
+<p><img alt="lab1 useg diagram" src="../../img/contract-inheritance-example.png" /></p>
+<ul>
+<li>Scrown down to <strong>EPG Contract Master</strong> and click on the <strong>Add</strong> icon on the right top corner. </li>
+<li>From the drop down menu choose:<ul>
+<li><strong>Select AP</strong>: <strong>uSeg_AP</strong></li>
+<li><strong>Select EPG</strong>: <strong>web_uSegEPG</strong> </li>
+</ul>
+</li>
+</ul>
+<p><img alt="lab1 useg diagram" src="../../img/lab1-contract-inheritance.png" /></p>
+<p><strong>Step 7.</strong> Verify VM Connectivities</p>
+<p><strong>useg{TNUM}-vm-web1</strong> : <strong>{VM-WEB1-OOB}</strong></p>
+<pre><code>[useg-user@useg{TNUM}-vm-web1 ~]# ping 30.30.30.11 -c 2 -t 1
+</code></pre>
+
+<p><strong>useg{TNUM}-vm-web2</strong> : <strong>{VM-WEB2-OOB}</strong></p>
+<pre><code>[useg-user@useg{TNUM}-vm-web2 ~]# ping 30.30.30.11 -c 2 -t 1
+</code></pre>
+
+<ul>
+<li><strong>useg{TNUM}-vm-web1</strong> and <strong>useg{TNUM}-vm-web2</strong> can not ping <strong>useg-bm-db</strong> that are moved in <strong>db_uSegEPG</strong> as there is no contract configured between the two EPGs</li>
+</ul>
+<p><strong>useg{TNUM}-vm-app1</strong> : <strong>{VM-APP1-OOB}</strong></p>
+<pre><code>[useg-user@useg{TNUM}-vm-app1 ~]# ping 30.30.30.11 -c 2 -t 1
+</code></pre>
+
+<p><strong>useg{TNUM}-vm-app2</strong> : <strong>{VM-APP2-OOB}</strong></p>
+<pre><code>[useg-user@useg{TNUM}-vm-app2 ~]# ping 30.30.30.11 -c 2 -t 1
+</code></pre>
+
+<ul>
+<li><strong>useg{TNUM}-vm-app1</strong> and <strong>useg{TNUM}-vm-app2</strong> can ping  <strong>useg-bm-db</strong> db server that is under <em>db_uSegEPG</em> because it inherites the contract from <strong>web_uSegEPG</strong>. </li>
+</ul>
+<p>This concludes the test with DNS based uSeg and contract inheritance. </p>
+<p><strong>Congratulations!</strong> You have completed the MicrsoSegmentation WISP lab! Thank you for your time!</p>
+<p><a href="JAVASCRIPT:scroll(0,0)" style="color:blue">Back to Top</a></p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../lab2/" class="btn btn-neutral float-right" title="Lab 2 Tasks">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../access/" class="btn btn-neutral" title="Lab Access"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../access/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../lab2/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/require.js"></script>
+      <script src="../search/search.js"></script>
+
+</body>
+</html>
