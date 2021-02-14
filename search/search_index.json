@@ -1,27 +1,27 @@
 {
     "docs": [
         {
-            "location": "/intro/",
+            "location": "/",
             "text": "Introduction\n\n\nPreface\n\n\nThis document describes the Cisco SD-WAN Advanced Lab.\n\n\nAudience\n\n\nThis document is intended for use by attendees of the Cisco Live 2021 who are taking the SD-WAN Advanced Lab (HOLENT-2901).\n\n\nScope\n\n\nThe scope of this document is to guide attendees of Cisco Live SD-WAN Advanced LAB (HOLENT-2901). In the lab, attendees will configure:\n\n\n\n\nAdvanced Routing\n\n\nMigration\n\n\nPerformance & Optimization\n\n\n\n\nBack to Top",
             "title": "Home"
         },
         {
-            "location": "/intro/#introduction",
+            "location": "/#introduction",
             "text": "",
             "title": "Introduction"
         },
         {
-            "location": "/intro/#preface",
+            "location": "/#preface",
             "text": "This document describes the Cisco SD-WAN Advanced Lab.",
             "title": "Preface"
         },
         {
-            "location": "/intro/#audience",
+            "location": "/#audience",
             "text": "This document is intended for use by attendees of the Cisco Live 2021 who are taking the SD-WAN Advanced Lab (HOLENT-2901).",
             "title": "Audience"
         },
         {
-            "location": "/intro/#scope",
+            "location": "/#scope",
             "text": "The scope of this document is to guide attendees of Cisco Live SD-WAN Advanced LAB (HOLENT-2901). In the lab, attendees will configure:   Advanced Routing  Migration  Performance & Optimization   Back to Top",
             "title": "Scope"
         },
