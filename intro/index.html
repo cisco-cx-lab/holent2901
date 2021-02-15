@@ -8,7 +8,7 @@
   
   
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>Survey - HOLENT-2901_Advanced_SD-WAN_Lab</title>
+  <title>Lab Introduction - HOLENT-2901_Advanced_SD-WAN_Lab</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../css/theme.css" type="text/css" />
@@ -17,9 +17,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Survey";
-    var mkdocs_page_input_path = "survey.md";
-    var mkdocs_page_url = "/survey/";
+    var mkdocs_page_name = "Lab Introduction";
+    var mkdocs_page_input_path = "intro.md";
+    var mkdocs_page_url = "/intro/";
   </script>
   
   <script src="../js/jquery-2.1.1.min.js"></script>
@@ -60,9 +60,23 @@
                     
     <a class="" href="../access/">Lab Access</a>
                 </li>
-                <li class="">
+                <li class=" current">
                     
-    <a class="" href="../intro/">Lab Introduction</a>
+    <a class="current" href="./">Lab Introduction</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#lab-introduction">Lab Introduction</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#lab-design">Lab Design</a></li>
+        
+            <li><a class="toctree-l4" href="#lab-access">Lab Access</a></li>
+        
+        </ul>
+    
+
+    </ul>
                 </li>
                 <li class="">
                     
@@ -79,12 +93,9 @@
     </ul>
 	    </li>
           
-            <li class="toctree-l1 current">
+            <li class="toctree-l1">
 		
-    <a class="current" href="./">Survey</a>
-    <ul class="subnav">
-            
-    </ul>
+    <a class="" href="../survey/">Survey</a>
 	    </li>
           
         </ul>
@@ -108,8 +119,12 @@
     <li><a href="..">Docs</a> &raquo;</li>
     
       
+        
+          <li>Lab Guide &raquo;</li>
+        
+      
     
-    <li>Survey</li>
+    <li>Lab Introduction</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -119,7 +134,23 @@
           <div role="main">
             <div class="section">
               
-                
+                <h2 id="lab-introduction">Lab Introduction</h2>
+<hr />
+<p>Company ACME is a multi-international company where it has branches world wide which include two Data Centers in San Jose and RTP and few regional hubs in different continents as well as remote branches world wide.</p>
+<h4 id="lab-design">Lab Design</h4>
+<p>This lab is designed to help you understand various advanced routing features based upon a large multi-international company design. The lab is based on dcloud and simulating ACME's topolgy with 5 Wan Edges(wEdges). All the basic connectivities as well as feature templates/devices templates have been pre-configured for you. You should be able to go straight to those LAB tasks.</p>
+<p><img alt="lab1 diagram" src="../img/HOLENT-2901.png" /></p>
+<p>As shown in the above diagram:</p>
+<ul>
+<li>DC1 has two cEdges which connects to three transports</li>
+<li>DC2 has also two cEdges which connect to three transports as well</li>
+<li>RH(reginal hub) has one cEdge</li>
+<li>Both DC1-WEs and DC2-WEs are running eBGP with DC routers, BGP has been       preconfigured for you.</li>
+<li>Remote1 has one cEdge connecting to private1 and LTE</li>
+<li>Remote2 has one cEdge connecting to private2 and LTE</li>
+</ul>
+<h4 id="lab-access">Lab Access</h4>
+<p><strong>Please find your anyconnect login from your proctor.</strong></p>
               
             </div>
           </div>
@@ -127,8 +158,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
+        <a href="../lab1/" class="btn btn-neutral float-right" title="Lab 1 Tasks">Next <span class="icon icon-circle-arrow-right"></span></a>
       
-        <a href="../lab3/" class="btn btn-neutral" title="Lab 3 Tasks"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+        <a href="../access/" class="btn btn-neutral" title="Lab Access"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -154,8 +187,10 @@
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href="../lab3/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../access/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
+      
+        <span style="margin-left: 15px"><a href="../lab1/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

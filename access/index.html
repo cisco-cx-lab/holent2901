@@ -8,7 +8,7 @@
   
   
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>Lab Access - HOLENT-2901 Advanced SD-WAN Lab</title>
+  <title>Lab Access - HOLENT-2901_Advanced_SD-WAN_Lab</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../css/theme.css" type="text/css" />
@@ -35,7 +35,7 @@
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
       <div class="wy-side-nav-search">
-        <a href=".." class="icon icon-home"> HOLENT-2901 Advanced SD-WAN Lab</a>
+        <a href=".." class="icon icon-home"> HOLENT-2901_Advanced_SD-WAN_Lab</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -61,20 +61,23 @@
     <a class="current" href="./">Lab Access</a>
     <ul class="subnav">
             
-    <li class="toctree-l3"><a href="#getting-started">Getting Started</a></li>
+    <li class="toctree-l3"><a href="#about-this-lab">About this lab</a></li>
     
-        <ul>
-        
-            <li><a class="toctree-l4" href="#lab-topology-diagram">Lab Topology Diagram</a></li>
-        
-            <li><a class="toctree-l4" href="#lab-ip-addressing-and-access-information">Lab IP Addressing and Access Information</a></li>
-        
-            <li><a class="toctree-l4" href="#apic-gui-layout">APIC GUI Layout</a></li>
-        
-        </ul>
+
+    <li class="toctree-l3"><a href="#lab-flow">Lab Flow</a></li>
+    
+
+    <li class="toctree-l3"><a href="#lab-access">Lab Access</a></li>
+    
+
+    <li class="toctree-l3"><a href="#lab-topology">Lab Topology</a></li>
     
 
     </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../intro/">Lab Introduction</a>
                 </li>
                 <li class="">
                     
@@ -106,7 +109,7 @@
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="..">HOLENT-2901 Advanced SD-WAN Lab</a>
+        <a href="..">HOLENT-2901_Advanced_SD-WAN_Lab</a>
       </nav>
 
       
@@ -132,11 +135,102 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="getting-started">Getting Started</h1>
-<h2 id="lab-topology-diagram">Lab Topology Diagram</h2>
-<p><img alt="Lab Topology" src="../../img/labtopo-1.png" /></p>
-<h2 id="lab-ip-addressing-and-access-information">Lab IP Addressing and Access Information</h2>
-<p>APICs can be accessed from your desktop directly via below URLs.</p>
+                <h2 id="about-this-lab">About this lab</h2>
+<p>In this lab, you will be introduced with advanced SD-WAN topics including advanced routing, central control policy, QoS, per-tunnel QoS, Direct Internet Access, Cloud OnRamp for SaaS, Dynamic tunneling. The lab will be built with Network Function Virtualization for Viptela and IOS XE SD-WAN image. </p>
+<h2 id="lab-flow">Lab Flow</h2>
+<p>In this lab, you will follow the lab guide to configure:</p>
+<ol>
+<li>Advanced Routing</li>
+<li>Migration</li>
+<li>Performance &amp; Optimization</li>
+</ol>
+<h2 id="lab-access">Lab Access</h2>
+<p>Below table provides the IP addresses and credentials for the devices used in this lab:</p>
+<table>
+<thead>
+<tr>
+<th align="center">**Device</th>
+<th align="center">IP</th>
+<th align="center">Username</th>
+<th align="center">Password**</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">vManage</td>
+<td align="center">198.18.133.200:19001</td>
+<td align="center">admin</td>
+<td align="center">admin</td>
+</tr>
+<tr>
+<td align="center">vbond</td>
+<td align="center">198.18.133.200:19002</td>
+<td align="center">admin</td>
+<td align="center">admin</td>
+</tr>
+<tr>
+<td align="center">vSmart</td>
+<td align="center">198.18.133.200:19003</td>
+<td align="center">admin</td>
+<td align="center">admin</td>
+</tr>
+<tr>
+<td align="center">DC1-WE1</td>
+<td align="center">198.18.133.200:19010</td>
+<td align="center">admin</td>
+<td align="center">admin</td>
+</tr>
+<tr>
+<td align="center">DC1-WE2</td>
+<td align="center">198.18.133.200:19009</td>
+<td align="center">admin</td>
+<td align="center">admin</td>
+</tr>
+<tr>
+<td align="center">DC2-WE1</td>
+<td align="center">198.18.133.200:19014</td>
+<td align="center">admin</td>
+<td align="center">admin</td>
+</tr>
+<tr>
+<td align="center">DC2-WE2</td>
+<td align="center">198.18.133.200:19012</td>
+<td align="center">admin</td>
+<td align="center">admin</td>
+</tr>
+<tr>
+<td align="center">RH-WE1</td>
+<td align="center">198.18.133.200:19016</td>
+<td align="center">admin</td>
+<td align="center">admin</td>
+</tr>
+<tr>
+<td align="center">R1-WE1</td>
+<td align="center">198.18.133.200:19017</td>
+<td align="center">admin</td>
+<td align="center">admin</td>
+</tr>
+<tr>
+<td align="center">R2-WE1</td>
+<td align="center">198.18.133.200:19020</td>
+<td align="center">admin</td>
+<td align="center">admin</td>
+</tr>
+<tr>
+<td align="center">R1-VM1</td>
+<td align="center">198.18.133.200:19018</td>
+<td align="center">viptela</td>
+<td align="center">viptela</td>
+</tr>
+<tr>
+<td align="center">R2-VM1</td>
+<td align="center">198.18.133.200:19019</td>
+<td align="center">viptela</td>
+<td align="center">viptela</td>
+</tr>
+</tbody>
+</table>
+<p>You can also login the remote host via VNC.</p>
 <table>
 <thead>
 <tr>
@@ -148,102 +242,21 @@
 </thead>
 <tbody>
 <tr>
-<td align="center">APIC1</td>
-<td align="center"><strong><a href="https://173.36.211.6">https://173.36.211.6</a></strong></td>
-<td align="center">{TENANT}</td>
-<td align="center">ciscolive.2019</td>
+<td align="center">R1-VM1</td>
+<td align="center">198.18.133.200:30500</td>
+<td align="center">viptela</td>
+<td align="center">viptela</td>
 </tr>
 <tr>
-<td align="center">APIC2</td>
-<td align="center"><strong><a href="https://173.36.211.7">https://173.36.211.7</a></strong></td>
-<td align="center">{TENANT}</td>
-<td align="center">ciscolive.2019</td>
-</tr>
-<tr>
-<td align="center">APIC3</td>
-<td align="center"><strong><a href="https://173.36.211.8">https://173.36.211.8</a></strong></td>
-<td align="center">{TENANT}</td>
-<td align="center">ciscolive.2019</td>
+<td align="center">R1-VM1</td>
+<td align="center">198.18.133.200:30501</td>
+<td align="center">viptela</td>
+<td align="center">viptela</td>
 </tr>
 </tbody>
 </table>
-<p>Login to the RDP server @ IP address 173.36.211.5:443. Once you are logged into the RDP server, you can access any devices. <strong>Below addresses are only reachable inside RDP</strong></p>
-<table>
-<thead>
-<tr>
-<th align="center">Device</th>
-<th align="center">IP</th>
-<th align="center">Username</th>
-<th align="center">Password</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="center">Remote Desktop Server</td>
-<td align="center">173.36.211.5:443</td>
-<td align="center">useg-user{TNUM}@lab.test.local</td>
-<td align="center">ciscolive.2019</td>
-</tr>
-<tr>
-<td align="center">APIC1</td>
-<td align="center">172.21.208.173</td>
-<td align="center">{TENANT}</td>
-<td align="center">ciscolive.2019</td>
-</tr>
-<tr>
-<td align="center">APIC2</td>
-<td align="center">172.21.208.174</td>
-<td align="center">{TENANT}</td>
-<td align="center">ciscolive.2019</td>
-</tr>
-<tr>
-<td align="center">APIC3</td>
-<td align="center">172.21.208.175</td>
-<td align="center">{TENANT}</td>
-<td align="center">ciscolive.2019</td>
-</tr>
-<tr>
-<td align="center">Leaf1</td>
-<td align="center">172.21.208.196</td>
-<td align="center">{TENANT}</td>
-<td align="center">ciscolive.2019</td>
-</tr>
-<tr>
-<td align="center">Leaf2</td>
-<td align="center">172.21.208.197</td>
-<td align="center">{TENANT}</td>
-<td align="center">ciscolive.2019</td>
-</tr>
-<tr>
-<td align="center">u{TNUM}-vm-web1</td>
-<td align="center">{VM-WEB1-OOB}</td>
-<td align="center">useg-user</td>
-<td align="center">ciscolive.2019</td>
-</tr>
-<tr>
-<td align="center">u{TNUM}-vm-web2</td>
-<td align="center">{VM-WEB2-OOB}</td>
-<td align="center">useg-user</td>
-<td align="center">ciscolive.2019</td>
-</tr>
-<tr>
-<td align="center">u{TNUM}-vm-app1</td>
-<td align="center">{VM-APP1-OOB}</td>
-<td align="center">useg-user</td>
-<td align="center">ciscolive.2019</td>
-</tr>
-<tr>
-<td align="center">u{TNUM}-vm-app2</td>
-<td align="center">{VM-APP2-OOB}</td>
-<td align="center">useg-user</td>
-<td align="center">ciscolive.2019</td>
-</tr>
-</tbody>
-</table>
-<h2 id="apic-gui-layout">APIC GUI Layout</h2>
-<p><img alt="GUI Layout" src="../../img/apic_main.png" /></p>
-<p>The top of the GUI screen is referred to as the Menu bar tab, the middle of the GUI is referred to as the Submenu bar tab, the bottom left of the GUI screen is the Navigation Pane, and the middle-right of the GUI is referred to as the Work Pane.</p>
-<p><a href="JAVASCRIPT:scroll(0,0)" style="color:blue">Back to Top</a></p>
+<h2 id="lab-topology">Lab Topology</h2>
+<p><img alt="Lab Topology" src="../img/lab0_0_1.png" /></p>
               
             </div>
           </div>
@@ -251,7 +264,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../lab1/" class="btn btn-neutral float-right" title="Lab 1 Tasks">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../intro/" class="btn btn-neutral float-right" title="Lab Introduction">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
         <a href=".." class="btn btn-neutral" title="Home"><span class="icon icon-circle-arrow-left"></span> Previous</a>
@@ -283,7 +296,7 @@
         <span><a href=".." style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../lab1/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../intro/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
