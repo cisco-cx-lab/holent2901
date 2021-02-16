@@ -215,10 +215,10 @@
 <li>Click <strong>Add Route Policy</strong> to Create new</li>
 <li>Name: <strong>LAB_DCs_BGP_RP</strong>  (write down this name, it will be used later)</li>
 <li>Description: <strong>LAB_DCs_BGP_RP</strong></li>
-<li>
-<p>Click <strong>+Sequence Type</strong> on the left then click <strong>+Sequence Rule</strong>, click Match, select Address, select <strong>default</strong>. </n>
-<img src="https://leitian123.github.io/holent2901/img/lab_task1_new_lp_1.png" width="600"/></p>
-</li>
+<li>Click <strong>+Sequence Type</strong> on the left then click <strong>+Sequence Rule</strong>, click Match, select <strong>Address</strong>, select <strong>default</strong>.</li>
+</ul>
+<p><img src="https://leitian123.github.io/holent2901/img/lab_task1_new_lp_1.png" width="600"/></p>
+<ul>
 <li>
 <p>Click <strong>Action</strong>, change to <strong>Accept</strong>, then select OMP tag, key in <strong>100</strong>, then save Match and Actions.
 <img src="https://leitian123.github.io/holent2901/img/lab_task1_new_lp_2.png" width="600"/></p>
@@ -281,7 +281,7 @@
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task1_bgp_ft_4.png" width="600"/></p>
 <h4 id="step-16-verify-omp-tags"><strong>Step 1.6</strong> Verify OMP Tags</h4>
 <ul>
-<li>SSH to DC wEdge routers(<strong>DC1-WE1,DC1-WE2,DC2-WE1,DC2-WE2</strong>) and run <code>show ip bgp vpnv4 vrf 1 &lt;prefix&gt;</code> (10.100.100.0/24,10.200.200.0/24), you should see proper OMP tags are set</li>
+<li>SSH to DC wEdge routers(<strong>DC1-WE1,DC1-WE2,DC2-WE1,DC2-WE2</strong>) and run <strong><code>show ip bgp vpnv4 vrf 1 &lt;prefix&gt;</code></strong> (10.100.100.0/24,10.200.200.0/24), you should see proper OMP tags are set</li>
 </ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task1_bgp_ft_5.png" width="600"/></p>
 <h2 id="task-2-hub-spoke-topologies">Task 2: Hub &amp; Spoke Topologies</h2>
