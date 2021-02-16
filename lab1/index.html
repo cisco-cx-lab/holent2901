@@ -101,10 +101,28 @@
         
             <li><a class="toctree-l4" href="#step-23-apply-the-topology-policy-to-centralized-policy">Step 2.3. Apply the topology policy to Centralized Policy</a></li>
         
+            <li><a class="toctree-l4" href="#step-24-activate-the-first-centralized-policy">Step 2.4. Activate the first Centralized Policy</a></li>
+        
+            <li><a class="toctree-l4" href="#step-25-verify-the-hub-spoke-topology">Step 2.5. Verify the hub &amp; spoke topology</a></li>
+        
         </ul>
     
 
-    <li class="toctree-l3"><a href="#33-lab-instructions-for-task-lab_task-3-default-route-handling">3.3 Lab instructions for task Lab_Task 3 (Default Route handling)</a></li>
+    <li class="toctree-l3"><a href="#task-3-default-route-handling">Task 3: Default Route handling</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#step-31-new-central-policy">Step 3.1.  New Central Policy</a></li>
+        
+            <li><a class="toctree-l4" href="#step-32-edit-the-new-topology-policy">Step 3.2. Edit the new topology policy.</a></li>
+        
+            <li><a class="toctree-l4" href="#step-33-apply-the-policy">Step 3.3. Apply the policy</a></li>
+        
+            <li><a class="toctree-l4" href="#step-34-verify-change-of-default-route">Step 3.4. Verify change of default route</a></li>
+        
+            <li><a class="toctree-l4" href="#step-35-create-new-topology-for-inbound">Step 3.5. Create new topology for inbound</a></li>
+        
+        </ul>
     
 
     <li class="toctree-l3"><a href="#34-lab-instructions-for-task-lab_task-4-specific-routes-handling">3.4 Lab instructions for task Lab_Task 4 (Specific Routes handling)</a></li>
@@ -378,45 +396,99 @@
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task2_topo_6.png" width="600"/></p>
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task2_topo_7.png" width="600"/></p>
 <ul>
-<li>Click Next and Next, you will see Apply Policies to Sites and VPNs,</li>
+<li>Click <strong>Next</strong> proceed to the last step for Applying Policies to Sites and VPNs<ul>
+<li>Policy Name: <strong>LAB_Central_v01</strong></li>
+<li>Description: <strong>Task2 Topo only</strong></li>
+<li>Click New Site List Under <strong>LAB_Topo_RS1</strong>, under <strong>Outbound Site List</strong>, select <strong>RS1</strong>,then click on Add</li>
+<li>Click New Site List Under <strong>LAB_Topo_RS2</strong>, under <strong>Outbound Site List</strong>, select <strong>RS2</strong>,then click on Add
+then click Save Policy</li>
 </ul>
-<p>Policy Name: LAB_Central_v01
-Description: Task2 Topo only
-Click New Site List Under LAB_Topo_RS1, under Outbound Site List, select RS1,then click on Add
-Click New Site List Under LAB_Topo_RS2, under Outbound Site List, select RS2,then click on Add
-then click Save Policy</p>
+</li>
+</ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task2_topo_8.png" width="600"/></p>
-<p><strong>Step 4.</strong> Activate the first Centralized Policy</p>
-<p>Go to Configuration Centralized Policy, click ...(three dots) of our LAB_Centeral_v01, then click on Activate, and Activate. Policy will be pushed to the vSmart.</p>
+<h4 id="step-24-activate-the-first-centralized-policy"><strong>Step 2.4.</strong> Activate the first Centralized Policy</h4>
+<ul>
+<li>login vManage <strong>198.18.133.200</strong> and access policy configuration from <strong>Configuration - Policies - Centralized Policy</strong></li>
+<li>locate policy <strong>LAB_Centeral_v01</strong> you have created in previous step. Click <strong>...</strong> for more option and select <strong>Activate</strong>. The policy will be pushed to vSmarts.</li>
+</ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task2_topo_9.png" width="600"/></p>
-<p><strong>Step 5.</strong> Verify the hub &amp; spoke topology where R1-WE1 and R2-WE1 should not have tunnel between them but everyone else.</p>
-<p>SSH to R1-WE1 &amp; R2-WE1 do show sdwan bfd sessions, you can see no bfd session between R1-WE1 and R2-WE1</p>
+<h4 id="step-25-verify-the-hub-spoke-topology"><strong>Step 2.5.</strong> Verify the hub &amp; spoke topology</h4>
+<ul>
+<li>SSH to R1-WE1 &amp; R2-WE1 do <code>show sdwan bfd sessions</code>, verify no bfd session between R1-WE1 and R2-WE1</li>
+</ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task2_topo_10.png" width="600"/>
 <img src="https://leitian123.github.io/holent2901/img/lab_task2_topo_11.png" width="600"/></p>
-<h2 id="33-lab-instructions-for-task-lab_task-3-default-route-handling">3.3 Lab instructions for task Lab_Task 3 (Default Route handling)</h2>
-<p><strong>Step 1.</strong> Default Route Handling. The requirement is to prefer the default route learned from DC over RH. We need to modify our Centralized policy so that the default from DC has higher OMP perference over RH. First, let's make a new version of the topology policy, that way, when you update your policy in a production network you can also fall back to the previous version.</p>
-<p>Go to Configurations-&gt;Policies-&gt;Centralized Policy, click three dots of LAB_Topo_RS1 and then click Copy.</p>
-<p><img src="https://leitian123.github.io/holent2901/img/lab_task3_routes_1.png" width="600"/></p>
-<p>Name: LAB_Topo_RS1_V02</p>
-<p>Description: +Default Route handling</p>
+<h2 id="task-3-default-route-handling">Task 3: Default Route handling</h2>
+<p>In this task. you will configure the central policy to prefer default route learned from DC over RH. You need to modify the Centralized policy so that the default route from DC has higher OMP preference over RH.</p>
+<h4 id="step-31-new-central-policy"><strong>Step 3.1.</strong>  New Central Policy</h4>
+<ul>
+<li>
+<p>Make a new version of the topology policy.
+<strong>Note: In production network, it is always recommended to create a new version when you update your policy. So you can also change to the previous version as fallback plan.</strong></p>
+</li>
+<li>
+<p>login vManage <strong>198.18.133.200</strong> and access policy configuration from <strong>Configuration - Policies</strong></p>
+</li>
+<li>Click <strong>Custom Options</strong> drop down on the top right and select <strong>Topology</strong> under <strong>Centralized Policy</strong></li>
+<li>Locate policy <strong>LAB_Topo_RS1</strong>, click <strong>...</strong> and select <strong>Copy</strong>.</li>
+</ul>
+<p><img src="https://leitian123.github.io/holent2901/img/lab_task3_routes_1.png" width="600"/>
+- Give a name and description for the new policy
+    - Name: <strong>LAB_Topo_RS1_V02</strong>
+    - Description: <strong>+Default Route handling</strong></p>
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task3_routes_2.png" width="600"/></p>
-<p><strong>Step 2.</strong> Let's edit the new topology. click Edit under three dots of LAB_Topo_RS1_V02.We're going to add two new rules, rule1: match default &amp; originator of 1.1.10.1(DC1-WE1) then accept and set preference of 100; rule2: match default &amp; originator of 1.1.20.1(DC2-WE1) then accept and set preference of 100; and we need to make sure the sequence of these two new rules are ahead of previous accept all rule as the order on vSmart policy does matter, it will do the lookup based upon the order, if it finds the match, it will use that rule and it won't look for subsequent rule any more. Then click Save policy.</p>
+<h4 id="step-32-edit-the-new-topology-policy"><strong>Step 3.2.</strong> Edit the new topology policy.</h4>
+<ul>
+<li>locate <strong>LAB_Topo_RS1_V02</strong> and click <strong>...</strong> select <strong>Edit</strong></li>
+<li>you are going to add two new rules<ul>
+<li>rule1: match default &amp; originator of 1.1.10.1(DC1-WE1) then accept and set preference of 100</li>
+<li>rule2: match default &amp; originator of 1.1.20.1(DC2-WE1) then accept and set preference of 100</li>
+</ul>
+</li>
+<li>Drag &amp; drop the newly created rules to move it ahead of previous accept all rule.
+<strong>Note: vSmart does the lookup based on the order, if it finds the match, it will use that rule and it won't look for subsequent rule any more.</strong></li>
+<li>click Save policy.</li>
+</ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task3_routes_3.png" width="600"/></p>
-<p><strong>Step 3.</strong> Let's apply the policy and verify.</p>
-<p>Go to Configuration-&gt;Policies-&gt;Centralized Policy, edit(three dots) the current policy(In production deployment, you always want to use the same practice of copying the current policy then apply it. Just demonstrate how to update the current policy works.)</p>
-<p>Select Topology, edit LAB_Topo_RS1 then click Detach which will remove this topology.</p>
+<h4 id="step-33-apply-the-policy"><strong>Step 3.3.</strong> Apply the policy</h4>
+<ul>
+<li>
+<p>login vManage <strong>198.18.133.200</strong> and access policy configuration from <strong>Configuration - Policies</strong> </p>
+</li>
+<li>
+<p>locate centralized policy <strong>LAB_Central_v01</strong>, click <strong>...</strong> and select <strong>Edit</strong></p>
+</li>
+</ul>
+<p><strong>Note: In production deployment, you always want to use the same practice of copying the current policy then apply it.</strong></p>
+<ul>
+<li>Under <strong>Topology</strong> tab, select <strong>LAB_Topo_RS1</strong>. Click <strong>...</strong> and select <strong>Detach</strong> to remove this topology.</li>
+</ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task3_routes_4.png" width="600"/></p>
-<p>Add the new topology we're just created. Click Add Topology,select Import Existing Topology then select LAB_Topo_RS1_V02, then click Import.</p>
+<ul>
+<li>Click <strong>Add Topology</strong>, select <strong>Import Existing Topology</strong> then select <strong>LAB_Topo_RS1_V02</strong>, then click Import.</li>
+</ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task3_routes_5.png" width="600"/></p>
-<p>Click on Policy Application-&gt;New Site List-&gt;Outbound Site List, select RS1,then click on ADD, Save Policy Changes, then Activate.
-Note: Outbound and Inbound are from vSmart perspective where outbound policy means how the routes are sent out from vSmart; inbound policy means how the routes are sent to the vSmart.</p>
+<ul>
+<li>Click on <strong>Policy Application</strong></li>
+<li>Under <strong>LAB_Topo_RS1_V02 - Outbound Site List</strong>, click <strong>New Site List</strong> and select <strong>RS1</strong>.</li>
+<li>click <strong>ADD</strong>, Save Policy Changes to Activate.</li>
+</ul>
+<p><strong>Note: Outbound and Inbound are from vSmart perspective where outbound policy means how the routes are sent out from vSmart; inbound policy means how the routes are sent to the vSmart.</strong></p>
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task3_routes_6.png" width="600"/></p>
-<p><strong>Step 4.</strong> Once the policy is activated, let's do some verifications.
-SSH to R1-WE1 and do show sdwan omp route and see the learned TLOC for default  route as well as preference. We're expecting the routes are learned from DC1-WE1 and DC2-WE1 with preference of 100. Oh, no the routes are not changed at all, the three installed routes still learned from RH and no preference set either.Why is that?</p>
+<h4 id="step-34-verify-change-of-default-route"><strong>Step 3.4.</strong> Verify change of default route</h4>
+<ul>
+<li>SSH to <strong>R1-WE1</strong> and do <code>show sdwan omp route</code> and check the learned TLOC for default route as well as preference.
+</n></li>
+</ul>
+<p>We're expecting the routes which are learned from DC1-WE1 and DC2-WE1 with preference of 100. However, the output shows the routes are not changed at all, the three installed routes still learned from RH and no preference set either. Why is that?</p>
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task3_routes_7.png" width="600"/></p>
-<p>Let's check omp route table on the vSmart, SSH to vSmart and do show omp route | t. As you recall, the OMP routes don't have any changes either where 3 paths learned from RH marked with C,R due to routes originated from Static which are preferred over originated from iBGP. But why the outbound policy setting the routes originated from DC1-WE1 and DC2-WE1 doesn't work, this is because outbound policy will only look for the chosen routes with C.R by default, other routes without learned from DCs as they are not chosen without C,R, so those routes are not even going through the outbound policies. There are multiple way of changing this behavior such as using inbound policy or configure send-backup path, or make every route with C.R. We're not going over all the solutions. Let's configure an vSmart inbound policy to make the default routes from DCs have higher OMP preference than RH's. Note: vSmart inbound policy may not be an ideal solution for the senarios. It is recommended to use outbound policy only if an outbound policy can meet the requirements without additional inbound policy for its simplicity and full visibility of vSmart.</p>
+<p>Let's check omp route table on the vSmart, SSH to vSmart and do <code>show omp route | t</code>. As you recall, the OMP routes don't have any changes either where 3 paths learned from RH marked with C,R due to routes originated from Static which are preferred over originated from iBGP. But why the outbound policy setting the routes originated from DC1-WE1 and DC2-WE1 doesn't work, <strong>this is because outbound policy will only look for the chosen routes with C.R by default, other routes without learned from DCs as they are not chosen without C,R</strong>, so those routes are not even going through the outbound policies. There are multiple way of changing this behavior such as using inbound policy or configure send-backup path, or make every route with C.R. We're not going over all the solutions.</p>
+<p>Let's configure an vSmart <strong>inbound policy</strong> to make the default routes from DCs have higher OMP preference than RH's.</p>
+<p><strong>Note: vSmart inbound policy may not be an ideal solution for the scenarios. It is recommended to use outbound policy only if an outbound policy can meet the requirements without additional inbound policy for its simplicity and full visibility of vSmart.</strong></p>
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task3_routes_8.png" width="600"/></p>
-<p><strong>Step 5.</strong> Let's configure an inbound policy by creating a new topology first, go to Configuration-&gt;Policies-&gt; Custom Options-&gt;Centralized Policy-&gt;Topology, then Add Topology-&gt;Custom Control with the following settings:</p>
+<h4 id="step-35-create-new-topology-for-inbound"><strong>Step 3.5.</strong> Create new topology for inbound</h4>
+<p>-
+go to Configuration-&gt;Policies-&gt; Custom Options-&gt;Centralized Policy-&gt;Topology, then Add Topology-&gt;Custom Control with the following settings:</p>
 <p>Name: default_route_from_DC
 Description: default_route_from_DC
 +Sequence Type: Route
