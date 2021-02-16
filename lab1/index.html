@@ -219,20 +219,20 @@
 </ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task1_new_lp_1.png" width="600"/></p>
 <ul>
-<li>
-<p>Click <strong>Action</strong>, change to <strong>Accept</strong>, then select OMP tag, key in <strong>100</strong>, then save Match and Actions.
-<img src="https://leitian123.github.io/holent2901/img/lab_task1_new_lp_2.png" width="600"/></p>
-</li>
+<li>Click <strong>Action</strong>, change to <strong>Accept</strong>, then select OMP tag, key in <strong>100</strong>, then save Match and Actions.</li>
+</ul>
+<p><img src="https://leitian123.github.io/holent2901/img/lab_task1_new_lp_2.png" width="600"/></p>
+<ul>
 <li>
 <p>click <strong>Sequence Rule</strong> to create following two rules:</p>
 <ul>
 <li>Match <strong>community-list DC1_Routes</strong>, <strong>Accept</strong> and Set <strong>Tag 1000</strong></li>
 <li>Match <strong>community-list DC2_Routes</strong>, <strong>Accept</strong> and Set <strong>Tag 2000</strong>  </li>
-<li>Then click on Save Route Policy
-<img src="https://leitian123.github.io/holent2901/img/lab_task1_new_lp_3.png" width="600"/></li>
+<li>Then click on Save Route Policy</li>
 </ul>
 </li>
 </ul>
+<p><img src="https://leitian123.github.io/holent2901/img/lab_task1_new_lp_3.png" width="600"/></p>
 <h4 id="step-14-creating-a-local-policy"><strong>Step 1.4</strong> Creating a Local Policy</h4>
 <ul>
 <li>login vManage <strong>198.18.133.200</strong> and access policy configuration from <strong>Configuration - Policies</strong></li>
@@ -325,16 +325,20 @@
 <li>Description: <strong>LAB topology for Remote Site 1</strong></li>
 <li>Click <strong>+Sequence Type</strong> and select <strong>Route</strong></li>
 <li>Click <strong>+Sequence Rule</strong>, leave unchanged under Match(means match all)</li>
-<li>Click <strong>Actions</strong> and change to <strong>Accept</strong> (we'll come back and do the routes policy later).
-<img src="https://leitian123.github.io/holent2901/img/lab_task2_topo_2.png" width="600"/></li>
+<li>Click <strong>Actions</strong> and change to <strong>Accept</strong> (we'll come back and do the routes policy later).</li>
+</ul>
+<p><img src="https://leitian123.github.io/holent2901/img/lab_task2_topo_2.png" width="600"/></p>
+<ul>
 <li>click <strong>+Sequence Type</strong> then select <strong>TLOC</strong></li>
-<li>click <strong>+Sequence Rule</strong>, select <strong>TLOC</strong>.</li>
+<li>
+<p>click <strong>+Sequence Rule</strong>, select <strong>TLOC</strong>.</p>
+<ul>
 <li>Under <strong>Match Conditions</strong>, selects <strong>DCs-BU1-TLOCs</strong> for <strong>TLOC List</strong> (this TLOC list has been pre-defined for you which includes all the TLOCs of DC1-WE1 and DC2-WE1</li>
 <li>Click <strong>Actions</strong>, change Actions to <strong>Accept</strong></li>
 <li>Click <strong>+Sequence Rule</strong>, select <strong>TLOC</strong></li>
 <li>under <strong>Match Conditions</strong>, selects <strong>RH</strong> for <strong>TLOC List</strong> (this TLOC list has been pre-defined for you which includes all the TLOCs of RH)</li>
-<li>
-<p>Click <strong>Actions</strong>, change Actions to <strong>Accept</strong></p>
+<li>Click <strong>Actions</strong>, change Actions to <strong>Accept</strong></li>
+</ul>
 </li>
 <li>
 <p>Then click save Control Policy.</p>
@@ -348,15 +352,19 @@
 <li>Description: <strong>LAB topology for Remote Site 2</strong></li>
 <li>Click <strong>+Sequence Type</strong> then select <strong>Route</strong></li>
 <li>Click <strong>+Sequence Rule</strong>, leave unchanged under Match(means match all),</li>
-<li>Click <strong>Actions</strong> change Actions to <strong>Accept</strong> (we'll come back and do the routes policy later).
-<img src="https://leitian123.github.io/holent2901/img/lab_task2_topo_4.png" width="600"/></li>
+<li>Click <strong>Actions</strong> change Actions to <strong>Accept</strong> (we'll come back and do the routes policy later).</li>
+</ul>
+<p><img src="https://leitian123.github.io/holent2901/img/lab_task2_topo_4.png" width="600"/></p>
+<ul>
 <li>Click <strong>+Sequence Type</strong> then select <strong>TLOC</strong></li>
-<li>click <strong>+Sequence Rule</strong>, select <strong>TLOC</strong>.</li>
+<li>click <strong>+Sequence Rule</strong>, select <strong>TLOC</strong>.<ul>
 <li>Under <strong>Match Conditions</strong>, selects <strong>DCs-BU2-TLOCss</strong> for <strong>TLOC List</strong> (this TLOC list has been pre-defined for you which includes all the TLOCs of DC1-WE2 and DC2-WE2)</li>
 <li>Click <strong>Actions</strong>, change Actions to <strong>Accept</strong></li>
 <li>Click <strong>+Sequence Rule</strong>, select <strong>TLOC</strong></li>
 <li>under <strong>Match Conditions</strong>, selects <strong>RH</strong> for <strong>TLOC List</strong> (this TLOC list has been pre-defined for you which includes all the TLOCs of RH)</li>
 <li>Click <strong>Actions</strong>, change Actions to <strong>Accept</strong></li>
+</ul>
+</li>
 <li>Then click save Control Policy.</li>
 </ul>
 <p>This policy effectively allows R2-WE1 to build tunnels to all the DCs-BU1 devices (DC1-WE2 and DC2-WE2) as well as RH, nothing else as the default action is reject.</p>
