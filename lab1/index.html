@@ -99,16 +99,13 @@
         
             <li><a class="toctree-l4" href="#step-22-create-a-topology-for-centralized-policy">Step 2.2. Create a topology for centralized policy</a></li>
         
+            <li><a class="toctree-l4" href="#step-23-apply-the-topology-policy-to-centralized-policy">Step 2.3. Apply the topology policy to Centralized Policy</a></li>
+        
+            <li><a class="toctree-l4" href="#step-24-activate-the-first-centralized-policy">Step 2.4. Activate the first Centralized Policy</a></li>
+        
+            <li><a class="toctree-l4" href="#step-25-verify-the-hub-spoke-topology">Step 2.5. Verify the hub &amp; spoke topology</a></li>
+        
         </ul>
-    
-
-    <li class="toctree-l3"><a href="#step-23-apply-the-topology-policy-to-centralized-policy">Step 2.3. Apply the topology policy to Centralized Policy</a></li>
-    
-
-    <li class="toctree-l3"><a href="#step-24-activate-the-first-centralized-policy">Step 2.4. Activate the first Centralized Policy</a></li>
-    
-
-    <li class="toctree-l3"><a href="#step-25-verify-the-hub-spoke-topology">Step 2.5. Verify the hub &amp; spoke topology</a></li>
     
 
     <li class="toctree-l3"><a href="#task-3-default-route-handling">Task 3: Default Route handling</a></li>
@@ -354,7 +351,9 @@
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task2_topo_1.png" width="800"/></p>
 <p>You are going to create two topologies, one for each remote site.</p>
 <ul>
-<li>Create topology policy for Remote1<ul>
+<li>
+<p>Create topology policy for Remote1</p>
+<ul>
 <li>Name: <strong>LAB_Topo_RS1</strong></li>
 <li>Description: <strong>LAB topology for Remote Site 1</strong></li>
 <li>Click <strong>+Sequence Type</strong> and select <strong>Route</strong></li>
@@ -362,13 +361,14 @@
 <li>Click <strong>Actions</strong> and change to <strong>Accept</strong> (we'll come back and do the routes policy later).</li>
 </ul>
 </li>
-</ul>
-<h2 id="_1"><img src="https://leitian123.github.io/holent2901/img/lab_task2_topo_2.png" width="800"/></h2>
-<pre><code>- click **+Sequence Type** then select **TLOC**
-- click **+Sequence Rule**, select **TLOC**.
-- Under **Match Conditions**, selects **DCs-BU1-TLOCs** for **TLOC List** (this TLOC list has been pre-defined for you which includes all the TLOCs of DC1-WE1 and DC2-WE1
-</code></pre>
+<li>
+<p><img src="https://leitian123.github.io/holent2901/img/lab_task2_topo_2.png" width="800"/></p>
 <ul>
+<li>click <strong>+Sequence Type</strong> then select <strong>TLOC</strong></li>
+<li>click <strong>+Sequence Rule</strong>, select <strong>TLOC</strong>.</li>
+<li>Under <strong>Match Conditions</strong>, selects <strong>DCs-BU1-TLOCs</strong> for <strong>TLOC List</strong> (this TLOC list has been pre-defined for you which includes all the TLOCs of DC1-WE1 and DC2-WE1</li>
+</ul>
+</li>
 <li>Click <strong>Actions</strong>, change Actions to <strong>Accept</strong></li>
 <li>Click <strong>+Sequence Rule</strong>, select <strong>TLOC</strong></li>
 <li>under <strong>Match Conditions</strong>, selects <strong>RH</strong> for <strong>TLOC List</strong> (this TLOC list has been pre-defined for you which includes all the TLOCs of RH)</li>
