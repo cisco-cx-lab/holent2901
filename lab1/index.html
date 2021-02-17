@@ -120,12 +120,22 @@
         
             <li><a class="toctree-l4" href="#step-34-verify-change-of-default-route">Step 3.4. Verify change of default route</a></li>
         
-            <li><a class="toctree-l4" href="#step-35-create-new-topology-for-inbound">Step 3.5. Create new topology for inbound</a></li>
+            <li><a class="toctree-l4" href="#step-35-create-new-topology">Step 3.5. Create new topology</a></li>
+        
+            <li><a class="toctree-l4" href="#step-36-verify">Step 3.6. verify</a></li>
+        
+            <li><a class="toctree-l4" href="#step-37-create-topology-policy-for-remote2">Step 3.7. Create topology policy for Remote2</a></li>
         
         </ul>
     
 
-    <li class="toctree-l3"><a href="#34-lab-instructions-for-task-lab_task-4-specific-routes-handling">3.4 Lab instructions for task Lab_Task 4 (Specific Routes handling)</a></li>
+    <li class="toctree-l3"><a href="#task-4-specific-routes-handling">Task 4: Specific Routes handling</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#step41-modify-topology-policy-for-remotes">Step4.1: Modify Topology policy for remotes</a></li>
+        
+        </ul>
     
 
     <li class="toctree-l3"><a href="#35-lab-instructions-for-task-lab_task-5-application-aware-routing">3.5 Lab instructions for task Lab_Task 5 (Application Aware Routing)</a></li>
@@ -486,54 +496,134 @@ then click Save Policy</li>
 <p>Let's configure an vSmart <strong>inbound policy</strong> to make the default routes from DCs have higher OMP preference than RH's.</p>
 <p><strong>Note: vSmart inbound policy may not be an ideal solution for the scenarios. It is recommended to use outbound policy only if an outbound policy can meet the requirements without additional inbound policy for its simplicity and full visibility of vSmart.</strong></p>
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task3_routes_8.png" width="800"/></p>
-<h4 id="step-35-create-new-topology-for-inbound"><strong>Step 3.5.</strong> Create new topology for inbound</h4>
-<p>-
-go to Configuration-&gt;Policies-&gt; Custom Options-&gt;Centralized Policy-&gt;Topology, then Add Topology-&gt;Custom Control with the following settings:</p>
-<p>Name: default_route_from_DC
-Description: default_route_from_DC
-+Sequence Type: Route
-+Sequence Rule
-Match-&gt;Prefix List: default
-Site List: DCs
-Actions-&gt;Accept preference:50
-Default Action: Accept</p>
-<p>Then Save Control Policy</p>
+<h4 id="step-35-create-new-topology"><strong>Step 3.5.</strong> Create new topology</h4>
+<ul>
+<li>login vManage <strong>198.18.133.200</strong> and access policy configuration from <strong>Configuration - Policies</strong></li>
+<li>Click <strong>Custom Options</strong> on the upper right corner and select <strong>Topology</strong> under <strong>Centralized Policy</strong>.</li>
+<li>Click <strong>Add Topology</strong> and select <strong>Custom Control(Route&amp;TLOC)</strong></li>
+<li>Configure the new policy with following setting<ul>
+<li>Name: <strong>default_route_from_DC</strong></li>
+<li>Description: <strong>default_route_from_DC</strong></li>
+<li>click <strong>+Sequence Type</strong> and select <strong>Route</strong></li>
+<li>click <strong>+Sequence Rule</strong></li>
+<li>click <strong>Prefix List</strong> and <strong>Site</strong> under <strong>Match</strong>  </li>
+<li>Under <strong>Match Conditions</strong>, select <strong>default</strong> from <strong>Prefix List</strong> dropdown</li>
+<li>Under <strong>Match Conditions</strong>, select <strong>DCs</strong> from <strong>Site List</strong> dropdown</li>
+<li>Click <strong>Actions</strong> select <strong>Accept</strong>; add <strong>Preference</strong> with value <strong>50</strong></li>
+<li>Click <strong>Default Action</strong> and change action to <strong>Accept</strong></li>
+<li>Click <strong>Save Control Policy</strong></li>
+</ul>
+</li>
+</ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task3_routes_9.png" width="800"/></p>
-<p>Apply this new topology to the current policy.</p>
-<p>Go to Configuration-&gt;Policies-&gt;Centralized Policy, Edit(three Dots)the LAB_Central_v01, Click Add Topology,select Import Existing Topology then select default_route_from_DC, then click Import.</p>
+<ul>
+<li>Apply this new topology to the current policy.</li>
+<li>login vManage <strong>198.18.133.200</strong> and access policy configuration from <strong>Configuration - Policies</strong></li>
+<li>locate <strong>LAB_Central_v01</strong> and select <strong>Edit</strong></li>
+<li>Click Topology tab and click <strong>Add Topology</strong></li>
+<li>Select <strong>Import Existing Topology</strong> and select <strong>Custom Control( Route and TLOC)</strong> Policy Type then select <strong>default_route_from_DC</strong> from drop down; click Import.</li>
+</ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task3_routes_10.png" width="800"/></p>
-<p>Click on Policy Application-&gt;New Site List-&gt;Iutbound Site List, select DCs,then click on ADD, Save Policy Changes, then Activate.
-Note:This time is an inbound policy wehre inbound policy controls how the vSmart are seeing the routes.</p>
+<ul>
+<li>Click on <strong>Policy Application</strong>, click on <strong>New Site List</strong> under <strong>Inbound Site List</strong>, select <strong>DCs</strong>.</li>
+<li>Click on Add and <strong>Save Policy Changes</strong> to Activate.</li>
+</ul>
+<p><strong>Note: This time is an inbound policy where inbound policy controls how the vSmart are seeing the routes.</strong></p>
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task3_routes_11.png" width="800"/></p>
-<p><strong>Step 6.</strong> SSH to vSmart and do show omp route vpn 1 | t, we can see the routes from DCs are C,R with preference 50 now which is expected.</p>
+<h4 id="step-36-verify"><strong>Step 3.6.</strong> verify</h4>
+<ul>
+<li>SSH to vSmart and run <code>show omp route vpn 1 | t</code>, you will see the routes from DCs are C,R with preference 50 now which is expected.</li>
+</ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task3_routes_12.png" width="800"/></p>
-<p>SSH to R1-WE1 and do show sdwan omp route vpn 1 , we can see 4 paths from DCs with preference 100. Remember the vSmart outbound policy we assign preference of 100 where the inbound policy we assign preference of 50 so that we can differentiate which policy is taking effect.</p>
+<ul>
+<li>SSH to <strong>R1-WE1</strong> and do <code>show sdwan omp route vpn 1</code>. You will see 4 paths from DCs with preference 100. Remember the vSmart outbound policy we assign preference of 100 where the inbound policy we assign preference of 50 so that we can differentiate which policy is taking effect.</li>
+</ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task3_routes_13.png" width="800"/></p>
-<p>Well done! You have finished the default route handling task for R1-WE1.Let's do the same policy for R2-WE1.</p>
-<p><strong>Step 1.</strong> Go to Configurations-&gt;Policies-&gt;Centralized Policy, click three dots of LAB_Topo_RS1v02 and change Name and Description to LAB_Topo_RS2v02 then click Copy.</p>
+<p><strong>Well done! :+1 You have finished the default route handling task for R1-WE1.Let's do the same policy for R2-WE1.</strong></p>
+<h4 id="step-37-create-topology-policy-for-remote2"><strong>Step 3.7.</strong> Create topology policy for Remote2</h4>
+<ul>
+<li>login vManage <strong>198.18.133.200</strong> and access policy configuration from <strong>Configuration - Policies</strong></li>
+<li>Click <strong>Custom Options</strong> on the upper right corner and select <strong>Topology</strong> under <strong>Centralized Policy</strong>.</li>
+<li>Locate <strong>LAB_Topo_RS1v02</strong> click <strong>...</strong> select copy and change Name and Description to <strong>LAB_Topo_RS2_v02</strong> then click Copy.</li>
+</ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task3_routes_14.png" width="800"/></p>
-<p><strong>Step 2.</strong> Modify the topology for R2-WE2.
-select TLOC as the Sequence Type, edit Rule1, we need to change the TLOC List from BU1 to BU2 as we'd like to use the BU2's functional hub which are DC1-WE2 and DC2-WE2 as the entry point for remote site 2(Remember remote site 2 represents the remote sites for BU2, where remote site 1 represents the remote sites for BU1). Remove the DCs-BU1-TLOCs by clicking the x, then select DCs-BU2-TLOCs instead, then click Save Match and Actions.</p>
+<ul>
+<li>locate newly created <strong>LAB_Topo_RS2_v02</strong>. click <strong>...</strong> select Edit</li>
+<li>Select <strong>TLOC</strong> as the Sequence Type, edit Rule1.</li>
+</ul>
+<p><strong>Note: We need to change the TLOC List from BU1 to BU2 as we'd like to use the BU2's functional hub which are DC1-WE2 and DC2-WE2 as the entry point for remote site 2(Remember remote site 2 represents the remote sites for BU2, where remote site 1 represents the remote sites for BU1).</strong>
+- Remove <strong>DCs-BU1-TLOCs</strong> by clicking the <strong>x</strong>, then select <strong>DCs-BU2-TLOCs</strong> and click <strong>Save Match and Actions</strong>.</p>
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task3_TLOC_15.png" width="800"/></p>
-<p>Select Route as the Sequence Type, we need to change the originator from 1.1.10.1 and 1.1.20.2 to 1.1.10.2 and 1.1.20.2 respectively . By doing this, default route from DC1-WE2 and DC2-WE2 will have OMP preference of 100 sent to R2-WE2 site.</p>
+<ul>
+<li>Select <strong>Route</strong> as the <strong>Sequence Type</strong>, you need to change the <strong>originator</strong> from 1.1.10.1 and 1.1.20.2 to 1.1.10.2 and 1.1.20.2 respectively . By doing this, default route from DC1-WE2 and DC2-WE2 will have OMP preference of 100 sent to R2-WE2 site.</li>
+</ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task3_routes_15.png" width="800"/></p>
-<p><strong>Step 3.</strong> Apply this topology to the Centralized Policy.
-Go to Configurations-&gt;Policies-&gt;Centralized Policy, Edit LAB_Central_v01.</p>
+<ul>
+<li>After <strong>Save Control Policy</strong>, access the <strong>Centralized Policy</strong> from <strong>Configuration - Policies</strong></li>
+<li>locate <strong>LAB_Central_v01</strong> and select <strong>Edit</strong>  </li>
+</ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task3_routes_16.png" width="800"/></p>
-<p>Go to Topology-&gt;Add Topology-&gt;Import Existing Topology-&gt;Custom Control, then select LAB_Topo_RS2_V02, Import.</p>
+<ul>
+<li>Under <strong>Topology</strong> tab, click <strong>Add Topology</strong> and select <strong>Import Existing Topology</strong></li>
+<li>change Policy Type to <strong>Custom Control( Route and TLOC )</strong>; select <strong>LAB_Topo_RS2_V02</strong> and Import.</li>
+</ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task3_routes_17.png" width="800"/></p>
-<p>Remove the previous RS2 topology by selecting the topology of LAB_Topo_RS2, click detach.</p>
+<ul>
+<li>Select existing topology <strong>LAB_Topo_RS2</strong>, click <strong>detach</strong> to remove it from Centralized Policy.</li>
+</ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task3_routes_18.png" width="800"/></p>
-<p>Click Policy Application-&gt;Select New Site List under LAB_Topo_RS2_V02, select RS2 as outbound site list, click Add, then save Policy Change, click Activate.</p>
+<ul>
+<li>Click <strong>Policy Application</strong>; under <strong>LAB_Topo_RS2_V02</strong> click <strong>New Site List</strong> and select <strong>RS2</strong> as outbound site list.</li>
+<li>click Add, and <strong>Save Policy Changes</strong> to Activate.</li>
+</ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task3_routes_19.png" width="800"/></p>
-<p>Once the policy has been pushed to vSmart, let's verify by SSH to R2-WE1 and do show ip route vrf 1. Now, default route has two ECMP paths, one path for each DC.</p>
+<ul>
+<li>Once the policy has been pushed to vSmart, let's verify by SSH to <strong>R2-WE1</strong> and run <code>show ip route vrf 1</code>. Now, default route has two ECMP paths, one path for each DC.</li>
+</ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task3_routes_20.png" width="800"/>
-Let's do show sdwan omp route vpn 1.You will see that there are 4 paths in the OMP route table, however none of them are valid</p>
+- do <code>show sdwan omp route vpn 1</code>.You will see that there are 4 paths in the OMP route table, however none of them is valid.</p>
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task3_routes_21.png" width="800"/></p>
-<h2 id="34-lab-instructions-for-task-lab_task-4-specific-routes-handling">3.4 Lab instructions for task Lab_Task 4 (Specific Routes handling)</h2>
-<p><strong>Step 1.</strong> Now, we're going to control the more specific routes, the goal is to prefer the more specific routes originated from its DC on the remote sites. In the meanwhile, for BU1 (R1-WE1), it only needs to learn the routes from BU1's Headend devices (DC1-WE1, DC2-WE1); for BU2(R2-WE1), it only needs to learn the routes from BU2's Headend devices.
-Remember the specific routes from DC1 already tagged with 1000, from DC2 already tagged with 2000. The idea is to create different policies for BU1 and BU2 sites such that give different OMP preference for different OMP tag.</p>
-<p>Go to Configuration-&gt;Policies-&gt;Custom Options-&gt;Centralized Policy-&gt; Topology. Let's edit the current topologies (LAB_Topo_RS1_V02 and LAB_Topo_RS2_V02). click Edit under three dots of LAB_Topo_RS1_V02.Select Route as the sequence type,we're going to add four more rules, match OMP Tag 1000 and TLOC of DC1-BU1-TLOCs accept and set preference of 100 ; match OMP Tag 1000 and TLOC of DC2-BU1-TLOCs accept and set preference of 50;  match OMP Tag 2000 and TLOC of DC2-BU1-TLOCs accept and set preference of 100 ; match OMP Tag 2000 and TLOC of DC1-BU1-TLOCs accept and set preference of 50;and we need to make sure the sequence of these rules are ahead of previous accept all rule as the order on vSmart policy does matter, it will do the lookup based upon the order, if it finds the match, it will use that rule and it won't look for subsequent rule any more. Dragging the new rule up and drop the rule in front of the accept all rule (if you follow the lab previously, the new rules should be No. 5, 6,7 and 8, match all rule should be rule No. 9), Then click Save policy and Activate. This will make the vSmart to push the policy immediately after you confirm configuring devices (this is expected as illuted earlier, creating a new policy is a best practice otherwise upating the existing policy will cause the immediate policy push. )</p>
+<h2 id="task-4-specific-routes-handling">Task 4: Specific Routes handling</h2>
+<p>ACME wants to prefer more specific routes originated from its DC and use the other DC as backup. In the meanwhile, for BU1 (R1-WE1), it only needs to learn the routes from BU1's Headend devices (DC1-WE1, DC2-WE1); for BU2(R2-WE1), it only needs to learn the routes from BU2's Headend devices.(DC1-WE2, DC2-WE2)
+The specific routes from DC1 are tagged with 1000, from DC2 already tagged with 2000 in previous task. In this section, you are going to create different policies for BU1 and BU2 sites and set different OMP preference based on OMP tag.</p>
+<h4 id="step41-modify-topology-policy-for-remotes">Step4.1: Modify Topology policy for remotes</h4>
+<ul>
+<li>login vManage <strong>198.18.133.200</strong> and access policy configuration from <strong>Configuration - Policies</strong></li>
+<li>Click <strong>Custom Options</strong> on the upper right corner and select <strong>Topology</strong> under <strong>Centralized Policy</strong>.</li>
+<li>locate topology <strong>LAB_Topo_RS1_V02</strong>. click <strong>...</strong> and select <strong>Edit</strong></li>
+<li>Select <strong>Route</strong> under <strong>Sequence Type</strong>, you are going to add four more rules.</li>
+<li>rule1<ul>
+<li>Click <strong>Sequence Rule</strong>, select <strong>OMP Tag</strong> and <strong>TLOC</strong> for match condition</li>
+<li>Under <strong>Match Conditions</strong>, type <strong>1000</strong> in <strong>OMP Tag</strong>; <strong>DC1-BU1-TLOCs</strong> in <strong>TLOC List</strong></li>
+<li>Click <strong>Actions</strong>, change to <strong>Accept</strong> and set <strong>Preference</strong> of 100.</li>
+<li>Click <strong>Save Match And Actions</strong></li>
+</ul>
+</li>
+<li>rule2<ul>
+<li>Click <strong>Sequence Rule</strong>, select <strong>OMP Tag</strong> and <strong>TLOC</strong> for match condition</li>
+<li>Under <strong>Match Conditions</strong>, type <strong>1000</strong> in <strong>OMP Tag</strong>; <strong>DC2-BU1-TLOCs</strong> in <strong>TLOC List</strong></li>
+<li>Click <strong>Actions</strong>, change to <strong>Accept</strong> and set <strong>Preference</strong> of 50</li>
+<li>Click <strong>Save Match And Actions</strong></li>
+</ul>
+</li>
+<li>rule3<ul>
+<li>Click <strong>Sequence Rule</strong>, select <strong>OMP Tag</strong> and <strong>TLOC</strong> for match condition</li>
+<li>Under <strong>Match Conditions</strong>, type <strong>2000</strong> in <strong>OMP Tag</strong>; <strong>DC2-BU1-TLOCs</strong> in <strong>TLOC List</strong></li>
+<li>Click <strong>Actions</strong>, change to <strong>Accept</strong> and set <strong>Preference</strong> of 100.</li>
+<li>Click <strong>Save Match And Actions</strong>  </li>
+</ul>
+</li>
+<li>rule4<ul>
+<li>Click <strong>Sequence Rule</strong>, select <strong>OMP Tag</strong> and <strong>TLOC</strong> for match condition</li>
+<li>Under <strong>Match Conditions</strong>, type <strong>2000</strong> in <strong>OMP Tag</strong>; <strong>DC1-BU1-TLOCs</strong> in <strong>TLOC List</strong></li>
+<li>Click <strong>Actions</strong>, change to <strong>Accept</strong> and set <strong>Preference</strong> of 50</li>
+<li>Click <strong>Save Match And Actions</strong></li>
+</ul>
+</li>
+<li>Move the newly created rules        <br />
+Let's edit the current topologies (LAB_Topo_RS1_V02 and LAB_Topo_RS2_V02). click Edit under three dots of LAB_Topo_RS1_V02.Select Route as the sequence type, we're going to add four more rules, match OMP Tag 1000 and TLOC of DC1-BU1-TLOCs accept and set preference of 100 ; match OMP Tag 1000 and TLOC of DC2-BU1-TLOCs accept and set preference of 50;  match OMP Tag 2000 and TLOC of DC2-BU1-TLOCs accept and set preference of 100 ; match OMP Tag 2000 and TLOC of DC1-BU1-TLOCs accept and set preference of 50;
+and we need to make sure the sequence of these rules are ahead of previous accept all rule as the order on vSmart policy does matter, it will do the lookup based upon the order, if it finds the match, it will use that rule and it won't look for subsequent rule any more. Dragging the new rule up and drop the rule in front of the accept all rule (if you follow the lab previously, the new rules should be No. 5, 6,7 and 8, match all rule should be rule No. 9), Then click Save policy and Activate. This will make the vSmart to push the policy immediately after you confirm configuring devices (this is expected as illuted earlier, creating a new policy is a best practice otherwise upating the existing policy will cause the immediate policy push. )</li>
+</ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task4_routes_1.png" width="800"/></p>
 <p>Let's verify. SSH to R1-WE1 and do show sdwan omp route vpn 1, you can see 4 paths for 10.100.100.0/24, however we see 3 paths with preference of 100, 1 path doesn't have preference; and for 10.200.200.0/24, there are 4 paths however 3 paths with preference of 50, 1 path doesn't have preference. If you look at it closely you will notice that the paths picked are from the lowest system-ip.</p>
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task4_routes_2.png" width="800"/></p>
