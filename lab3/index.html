@@ -295,11 +295,13 @@
 <ul>
 <li>After queuing policy is created, we create localized policy that includes the queueing policy.</li>
 </ul>
-<p><strong>Note: To save time, We will only create local policy for remote sites in this lab.</strong>
-- Click <strong>Localized Policy</strong> tab and <strong>Add Policy</strong>
-- Click <strong>Next</strong> move to <strong>configure Forwarding Classes/QoS</strong>
-- Click <strong>Add QoS Map</strong> drop down and select import existing. Search <strong>Lab_QoS_Map_v01</strong> and Import.
-- Click next to pass ACL and route policy config. On Policy Overview, give a nme for the local policy and check <strong>Application</strong> at the bottom from Policy Settings.</p>
+<p><strong>Note: To save time, We will only create local policy for remote sites in this lab.</strong></p>
+<ul>
+<li>Click <strong>Localized Policy</strong> tab and <strong>Add Policy</strong></li>
+<li>Click <strong>Next</strong> move to <strong>configure Forwarding Classes/QoS</strong></li>
+<li>Click <strong>Add QoS Map</strong> drop down and select import existing. Search <strong>Lab_QoS_Map_v01</strong> and Import.</li>
+<li>Click next to pass ACL and route policy config. On Policy Overview, give a nme for the local policy and check <strong>Application</strong> at the bottom from Policy Settings.</li>
+</ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab3_1_3_5.PNG" width="800"/></p>
 <h4 id="step14-apply-qos-queuing-policy">Step1.4: Apply QoS queuing policy</h4>
 <p>Applying QoS queuing policy is two step process, first you need to associate the localized policy to the device template, and next you need reference the queueing policy-map on transport interface.</p>
