@@ -1048,7 +1048,9 @@ This setting will make LTE last-resort which means the interface will go down, a
 you should see traffic is taking private1</li>
 </ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task6_DP_6.png" width="800"/></p>
-<p>Change the Protocol to 6 (TCP) and simulate again</p>
+<ul>
+<li>Change the Protocol to 6 (TCP) and simulate again</li>
+</ul>
 <p>You should not see any changes as private1 is only available circuit.</p>
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task6_DP_7.png" width="800"/></p>
 <ul>
@@ -1099,8 +1101,8 @@ you can see the traffic is blockholed.</li>
 <li>Click <strong>Simulate</strong></li>
 </ul>
 <p>you should see traffic is taking both private1 &amp; private2.</p>
-<p><strong>Question: In the previous AAR lab says private1 should be preferred, and we have verified that behavior earlier. Why this is taking both private1 and private2 now?</strong>
-This is because our Data Policy says TCP traffic can use all the colors, when you have both AAR and Data Policy configured, Data Policy will take the final decision. You have to be careful with that when designing your AAR and DP. Avoid having both configured for the same application on same sites.</p>
+<p><strong>Question: In the previous AAR lab says private1 should be preferred, and we have verified that behavior earlier. Why this is taking both private1 and private2 now?</strong></p>
+<p>This is because our Data Policy says TCP traffic can use all the colors, when you have both AAR and Data Policy configured, Data Policy will take the final decision. You have to be careful with that when designing your AAR and DP. Avoid having both configured for the same application on same sites.</p>
 <p><a href="JAVASCRIPT:scroll(0,0)" style="color:blue">Back to Top</a></p>
               
             </div>
