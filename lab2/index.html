@@ -161,54 +161,72 @@
 <p>The requirement for remote2 is to use DC as transit site and use transport <strong>private2</strong>. To achieve that, you can modify the central policy created in <strong>lab1</strong> to set higher OMP preference for prefix <strong>10.11.1.0/24</strong> from color <strong>private2</strong>.
 - login vManage <strong>198.18.133.200</strong> and access policy configuration from <strong>Configuration - Policies</strong>
 - Click <strong>Custom Options</strong> on the upper right corner and select <strong>Lists</strong> under <strong>Centralized Policy</strong> as show below.</p>
-<p><img src="https://leitian123.github.io/holent2901/img/lab2_2_1.PNG" width="400">
-- select <strong>Prefix</strong> and click <strong>New Prefix List</strong> to add prefix <strong>10.11.1.0/24</strong> for legacy site as show below. Click <strong>Add</strong> to save new prefix list <strong>Legacy_prefix</strong> .
- <img src="https://leitian123.github.io/holent2901/img/lab2_2_2.PNG" width="400"></p>
+<p><img src="https://leitian123.github.io/holent2901/img/lab2_2_1.PNG" width="400"></p>
+<ul>
+<li>select <strong>Prefix</strong> and click <strong>New Prefix List</strong> to add prefix <strong>10.11.1.0/24</strong> for legacy site as show below. Click <strong>Add</strong> to save new prefix list <strong>Legacy_prefix</strong> .</li>
+</ul>
+<p><img src="https://leitian123.github.io/holent2901/img/lab2_2_2.PNG" width="400"></p>
 <ul>
 <li>Click <strong>Custom Options</strong> on the upper right corner and select <strong>Topology</strong> under <strong>Centralized Policy</strong>.</li>
 <li>Select Topology policy <strong>LAB_Topo_RS2</strong> created in lab1, and click the <strong>"..."</strong> to Edit.</li>
-<li>Select <strong>Route</strong> under <strong>Sequence Type</strong> from the left.
- <img src="https://leitian123.github.io/holent2901/img/lab2_2_3.PNG" width="400"></li>
-<li>Click <strong>Sequence Rule</strong> to add new rule. For omp route that matches <strong>Legacy_prefix</strong> and <strong>private2</strong> color, set <strong>Preference</strong> 200.
- <img src="https://leitian123.github.io/holent2901/img/lab2_2_4.PNG" width="400">
- ##### <span style="background-color:yellow"> <strong>Note</strong>: After save, move the new created rule to the top by drag and drop the sequence number left to the rule. </span></li>
-<li>Run <code>traceroute 10.11.1.1</code> again from Remote2 host and compare the path from previous output.
- <img src="https://leitian123.github.io/holent2901/img/lab2_2_5.PNG" width="400"></li>
+<li>Select <strong>Route</strong> under <strong>Sequence Type</strong> from the left.</li>
 </ul>
+<p><img src="https://leitian123.github.io/holent2901/img/lab2_2_3.PNG" width="400"></p>
+<ul>
+<li>Click <strong>Sequence Rule</strong> to add new rule. For omp route that matches <strong>Legacy_prefix</strong> and <strong>private2</strong> color, set <strong>Preference</strong> 200.</li>
+</ul>
+<p><img src="https://leitian123.github.io/holent2901/img/lab2_2_4.PNG" width="400"></p>
+<p>##### <span style="background-color:yellow"> <strong>Note: After save, move the new created rule to the top by drag and drop the sequence number left to the rule</strong>. </span>
+- Run <code>traceroute 10.11.1.1</code> again from Remote2 host and compare the path from previous output.</p>
+<p><img src="https://leitian123.github.io/holent2901/img/lab2_2_5.PNG" width="400"></p>
 <p>#### Step3: Route policy for Remote1</p>
 <p>The requirement for remote1 is to use <strong>private1</strong> route directly to legacy site. To achieve that, you can leak prefix <strong>10.11.1.0/24</strong> from VPN0 into service VPN.</p>
 <p>SP <strong>private1</strong> uses OSPF as PE-CE routing protocol; create OSPF feature template and attach to R1-WE1 VPN0.
 - login vManage <strong>198.18.133.200</strong> and access feature template from <strong>Configuration - Template</strong> then click <strong>Feature</strong>
-- Click <strong>Add Template</strong> and select OSPF template as show below.
- <img src="https://leitian123.github.io/holent2901/img/lab2_3_1.PNG" width="400">
- - Name the template: <strong>Lab_OSPF_VPN0_V01</strong>
- - Assign Router ID: <strong>1.1.100.1</strong>
- <img src="https://leitian123.github.io/holent2901/img/lab2_3_2.PNG" width="400">
- - Add <strong>connected</strong> as protocol under <strong>REDISTRIBUTE</strong> section
- <img src="https://leitian123.github.io/holent2901/img/lab2_3_2b.PNG" width="400">
- - enable OSPF Area 0 on interface GigabitEthernet1
- <img src="https://leitian123.github.io/holent2901/img/lab2_3_3.PNG" width="400"><br />
+- Click <strong>Add Template</strong> and select OSPF template as show below.</p>
+<p><img src="https://leitian123.github.io/holent2901/img/lab2_3_1.PNG" width="400"></p>
+<ul>
+<li>Name the template: <strong>Lab_OSPF_VPN0_V01</strong></li>
+<li>Assign Router ID: <strong>1.1.100.1</strong></li>
+</ul>
+<p><img src="https://leitian123.github.io/holent2901/img/lab2_3_2.PNG" width="400"></p>
+<ul>
+<li>Add <strong>connected</strong> as protocol under <strong>REDISTRIBUTE</strong> section</li>
+</ul>
+<p><img src="https://leitian123.github.io/holent2901/img/lab2_3_2b.PNG" width="400"></p>
+<ul>
+<li>enable OSPF Area 0 on interface GigabitEthernet1</li>
+</ul>
+<p><img src="https://leitian123.github.io/holent2901/img/lab2_3_3.PNG" width="400"><br />
 - Access device template from <strong>Configuration - Template</strong> then locate template <strong>Lab_R1_V01</strong>. Click <strong>"..."</strong> for more option and select Edit.
- - Move to <strong>Transport &amp; Management VPN</strong> section, Add <strong>Cisco OSPF</strong> template and select <strong>Lab_OSPF_VPN0_V01</strong> from dropdown list.
- <img src="https://leitian123.github.io/holent2901/img/lab2_3_4.PNG" width="400"> <br />
-- Update the device template and trigger vManage to update R1-VE1 configuration.
-- After vManage complete the push, SSH into <strong>R1-WE1</strong> to verify new OSPF neighbor and routes learned OSPF routes.
- <img src="https://leitian123.github.io/holent2901/img/lab2_3_5.PNG" width="400">
- <img src="https://leitian123.github.io/holent2901/img/lab2_3_6.PNG" width="400">
-Configure route leaking between VPN0 and service VPN, so R1-WE1 will use the OSPF route learned from OSPF in VPN0 for prefix <strong>10.11.1.0/24</strong>
+ - Move to <strong>Transport &amp; Management VPN</strong> section, Add <strong>Cisco OSPF</strong> template and select <strong>Lab_OSPF_VPN0_V01</strong> from dropdown list.</p>
+<p><img src="https://leitian123.github.io/holent2901/img/lab2_3_4.PNG" width="400">   </p>
+<ul>
+<li>Update the device template and trigger vManage to update R1-VE1 configuration.</li>
+<li>After vManage complete the push, SSH into <strong>R1-WE1</strong> to verify new OSPF neighbor and routes learned OSPF routes.</li>
+</ul>
+<p><img src="https://leitian123.github.io/holent2901/img/lab2_3_5.PNG" width="400"></p>
+<p><img src="https://leitian123.github.io/holent2901/img/lab2_3_6.PNG" width="400"></p>
+<p>Configure route leaking between VPN0 and service VPN, so R1-WE1 will use the OSPF route learned from OSPF in VPN0 for prefix <strong>10.11.1.0/24</strong>
 - login vManage <strong>198.18.133.200</strong> and access feature template from <strong>Configuration - Template</strong> then click <strong>Feature</strong>
 - Locate existing template <strong>"Lab_Remote_VPN1_V01"</strong>. Click <strong>"..."</strong> for more option and select Edit.
  - Move to <strong>Global Route Leak</strong> section. Add OSPF under <strong>Add New Route Leak from Global VPN to Service VPN</strong> </n>
- - Add connected under <strong>Add New Route Leak from Service VPN to Global VPN</strong> </n>
- <img src="https://leitian123.github.io/holent2901/img/lab2_3_7.PNG" width="400"> <br />
- - Update the template to trigger configuration push from vManage to R1-WE1</p>
+ - Add connected under <strong>Add New Route Leak from Service VPN to Global VPN</strong> </n></p>
+<p><img src="https://leitian123.github.io/holent2901/img/lab2_3_7.PNG" width="400">   </p>
+<ul>
+<li>Update the template to trigger configuration push from vManage to R1-WE1</li>
+</ul>
 <p><strong>Note: As optional task, you can add route policy to limit the routes being leaked between Global and service VPN</strong>
-- SSH into R1-WE1 to verify route <strong>10.10.101.0/24</strong>being added in global route table
- <img src="https://leitian123.github.io/holent2901/img/lab2_3_8.PNG" width="400"><br />
-- SSH into R1-WE1 to verify route <strong>10.11.1.0/24</strong> being added in VRF 1 route table. The SP prefixes <strong>172.1.x.0</strong> are also leaked into service VPN which can be limited from additional route policy in previous step.
- <img src="https://leitian123.github.io/holent2901/img/lab2_3_9.PNG" width="400"><br />
-- Now let's verify the new route path from remote1 Ubuntu host. Run <code>traceroute 10.11.1.1</code> again from Remote1 host and compare the result from previous output.
- <img src="https://leitian123.github.io/holent2901/img/lab2_3_10.PNG" width="400">  </p>
+- SSH into R1-WE1 to verify route <strong>10.10.101.0/24</strong>being added in global route table</p>
+<p><img src="https://leitian123.github.io/holent2901/img/lab2_3_8.PNG" width="400">  </p>
+<ul>
+<li>SSH into R1-WE1 to verify route <strong>10.11.1.0/24</strong> being added in VRF 1 route table. The SP prefixes <strong>172.1.x.0</strong> are also leaked into service VPN which can be limited from additional route policy in previous step.</li>
+</ul>
+<p><img src="https://leitian123.github.io/holent2901/img/lab2_3_9.PNG" width="400">  </p>
+<ul>
+<li>Now let's verify the new route path from remote1 Ubuntu host. Run <code>traceroute 10.11.1.1</code> again from Remote1 host and compare the result from previous output.</li>
+</ul>
+<p><img src="https://leitian123.github.io/holent2901/img/lab2_3_10.PNG" width="400">  </p>
 <p><a href="JAVASCRIPT:scroll(0,0)" style="color:blue">Back to Top</a></p>
               
             </div>
