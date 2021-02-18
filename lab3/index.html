@@ -478,9 +478,11 @@ src-addr                 dst-addr                 sport   dport   proto remote-t
 <p>Hub and Spoke topology can reduce the CPU and memory usage on WAN Edge, but sometime a spoke to spoke tunnel is needed. Dynamic on-demand tunnel offers the benefits of having direct spoke to spoke tunnel while keep the low CPU and memory usage on WAN Edge.</p>
 <p>To improve latency of traffic between remotes, configure dynamic on-demand tunnel between remote1 and remote2.</p>
 <h4 id="step31-modify-central-control-policy">Step3.1: Modify central control policy</h4>
-<p>In Lab1 you have created hub and spoke topology for both remote sites. In order to create dynamic on-demand tunnel between remotes, first you need modify the topology policy to include a <strong>tloc-action backup</strong> action.
-- login vManage <strong>198.18.133.200</strong> and access policy configuration from <strong>Configuration - Policies</strong></p>
+<p>In Lab1 you have created hub and spoke topology for both remote sites. In order to create dynamic on-demand tunnel between remotes, first you need modify the topology policy to include a <strong>tloc-action backup</strong> action.</p>
 <ul>
+<li>
+<p>login vManage <strong>198.18.133.200</strong> and access policy configuration from <strong>Configuration - Policies</strong></p>
+</li>
 <li>
 <p>Click <strong>Custom Options</strong> drop down on the top right and select <strong>Topology</strong> under <strong>Centralized Policy</strong></p>
 </li>
@@ -509,52 +511,55 @@ src-addr                 dst-addr                 sport   dport   proto remote-t
 <li>Follow the same steps to modify topology policy <strong>LAB_Topo_RS2</strong>.</li>
 </ul>
 <h4 id="step32-configure-on-demand-tunnel">Step3.2: Configure On-demand Tunnel</h4>
-<p>Enable Traffic Engineering service on RH to allow RH becomes backup path.
-- Access template configuration from <strong>Configuration - Templates</strong>
-- Under <strong>Feature</strong> template tab, locate template <strong>Lab_RH_VPN0_v01</strong> and select <strong>Edit</strong>
-- In <strong>SERVICE</strong> section, add <strong>TE</strong> from service type drop down, and add it to this feature template.</p>
+<p>Enable Traffic Engineering service on RH to allow RH becomes backup path.</p>
+<ul>
+<li>Access template configuration from <strong>Configuration - Templates</strong></li>
+<li>Under <strong>Feature</strong> template tab, locate template <strong>Lab_RH_VPN0_v01</strong> and select <strong>Edit</strong></li>
+<li>In <strong>SERVICE</strong> section, add <strong>TE</strong> from service type drop down, and add it to this feature template.</li>
+</ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab3_3_2_1.PNG" width="800"/></p>
 <ul>
 <li>Update and push configure change.</li>
 </ul>
-<p>On remote sites, R1-WE1 and R2-WE2, enable on-demand on system template.
--  Under <strong>Feature</strong> template tab, locate template <strong>Lab_System_V01</strong> and select <strong>Copy</strong>
-- Name new system template <strong>Lab_Remote_System_V01</strong>
-- Edit <strong>Lab_Remote_System_V01</strong> to enable <strong>On-demand Tunnel</strong></p>
+<p>On remote sites, R1-WE1 and R2-WE2, enable on-demand on system template.</p>
+<ul>
+<li>Under <strong>Feature</strong> template tab, locate template <strong>Lab_System_V01</strong> and select <strong>Copy</strong></li>
+<li>Name new system template <strong>Lab_Remote_System_V01</strong></li>
+<li>Edit <strong>Lab_Remote_System_V01</strong> to enable <strong>On-demand Tunnel</strong></li>
+</ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab3_3_2_2.PNG" width="800"/></p>
 <ul>
 <li>
 <p>locate device template <strong>Lab_R1_V01</strong> and change system template to <strong>Lab_Remote_System_V01</strong></p>
 <p><img src="https://leitian123.github.io/holent2901/img/lab3_3_2_3.PNG" width="800"/></p>
-<p>update and push configuration change.
-- locate device template <strong>Lab_R2_V01</strong> and change system template to <strong>Lab_Remote_System_V01</strong>. update and push configuration change.</p>
+<p>update and push configuration change.</p>
+</li>
+<li>
+<p>locate device template <strong>Lab_R2_V01</strong> and change system template to <strong>Lab_Remote_System_V01</strong>. update and push configuration change.</p>
 </li>
 </ul>
 <h4 id="step33-verify-on-demand-tunnel-between-remotes">Step3.3: Verify On-demand Tunnel between remotes</h4>
-<p>You can verify the dynamic tunnel between remotes from vManage.
-- login vManage <strong>198.18.133.200</strong> and access <strong>Monitor - Network</strong>
-- select WAN-Edge <strong>R1-WE1</strong></p>
-<pre><code>&lt;img src="https://leitian123.github.io/holent2901/img/lab3_3_3_1.PNG" width="800"/&gt;
-</code></pre>
+<p>You can verify the dynamic tunnel between remotes from vManage.</p>
 <ul>
-<li>
-<p>Click <strong>Real Time</strong> and type in <strong>on demand local</strong> in <strong>Device Options</strong> filed</p>
+<li>login vManage <strong>198.18.133.200</strong> and access <strong>Monitor - Network</strong></li>
+<li>select WAN-Edge <strong>R1-WE1</strong></li>
+</ul>
+<p><img src="https://leitian123.github.io/holent2901/img/lab3_3_3_1.PNG" width="800"/></p>
+<ul>
+<li>Click <strong>Real Time</strong> and type in <strong>on demand local</strong> in <strong>Device Options</strong> filed</li>
+</ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab3_3_3_2.PNG" width="800"/></p>
-</li>
-<li>
-<p>The output shows local on demand tunnel is enabled and status is active.</p>
+<ul>
+<li>The output shows local on demand tunnel is enabled and status is active.</li>
+</ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab3_3_3_3.PNG" width="800"/></p>
-</li>
-<li>
-<p>type in <strong>on demand remote</strong> in <strong>Device Options</strong> filed    </p>
-</li>
-<li>
-<p>the output shows remote on demand tunnel to remote2 <strong>1.1.102.1</strong> is enabled and tunnel status is <strong>inactive</strong></p>
+<ul>
+<li>type in <strong>on demand remote</strong> in <strong>Device Options</strong> filed    </li>
+<li>the output shows remote on demand tunnel to remote2 <strong>1.1.102.1</strong> is enabled and tunnel status is <strong>inactive</strong></li>
+</ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab3_3_3_4.PNG" width="800"/></p>
-</li>
-<li>
-<p>Dynamic on demand tunnel is triggered by traffic between the local and remote sites. That's why you see status of on demand remote is inactive. Let's generate bi-directional traffic between remote1 and remote2 to trigger on demand tunnel.</p>
-</li>
+<ul>
+<li>Dynamic on demand tunnel is triggered by traffic between the local and remote sites. That's why you see status of on demand remote is inactive. Let's generate bi-directional traffic between remote1 and remote2 to trigger on demand tunnel.</li>
 <li>ssh into <strong>R1-VM1</strong>, and type <code>ssh 10.10.102.10</code> to login <strong>R2-VM2</strong> with credential <strong>viptela/viptela</strong></li>
 </ul>
 <pre><code>Welcome to Ubuntu 16.04.2 LTS (GNU/Linux 4.8.0-36-generic x86_64)
@@ -744,17 +749,23 @@ R1-WE1#
 </ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab3_4_2_2.PNG" width="800"/></p>
 <h3 id="task-5-dia">Task 5: DIA</h3>
-<p>There are two options to enable DIA.
-- option 1: NAT DIA Route
-</n></p>
-<p>In this option, a NAT route is configured under service VPN. You can direct local internet traffic from service VPN to transport VPN.
-- option 2: Centralized data policy
-  </n></p>
-<p>In this option, a centralized policy is applied to service side traffic based on ip prefixes, a match will redirect to transport VPN. Traffic that doesnt match the policy will stay in service VPN and route over IPSec tunnel.</p>
+<p>There are two options to enable DIA.</p>
+<ul>
+<li>
+<p>option 1: NAT DIA Route
+</n>
+  In this option, a NAT route is configured under service VPN. You can direct local internet traffic from service VPN to transport VPN.</p>
+</li>
+<li>
+<p>option 2: Centralized data policy
+  </n>
+  In this option, a centralized policy is applied to service side traffic based on ip prefixes, a match will redirect to transport VPN. Traffic that doesnt match the policy will stay in service VPN and route over IPSec tunnel.</p>
+</li>
+</ul>
 <p>In this task, you are going to configure DIA on remote sites using option 2.       </p>
 <h3 id="task-6-cor-for-saas">Task 6: CoR for SaaS</h3>
 <p>Instead of using the DIA exit point as configured in previous task, for SaaS application box and salesforce, ACME wants to use the most optimal path. Configure the remote sites to dynamically chose local DIA or regional hub as exit point for box and salesforce based on application performance.</p>
-<p><img src="https://leitian123.github.io/holent2901/img/lab3_6_0_0.PNG" width="800"/></p>
+<p><img src="https://leitian123.github.io/holent2901/img/lab3_6_0_0.png" width="800"/></p>
 <h4 id="step61-enable-cloud-onramp-for-saas">Step6.1 Enable Cloud OnRamp for SaaS</h4>
 <ul>
 <li>login vManage <strong>198.18.133.200</strong> and access <strong>Administration - Settings</strong></li>
@@ -776,9 +787,11 @@ R1-WE1#
 </ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab3_6_2_3.PNG" width="800"/></p>
 <h4 id="step63-add-sites">Step6.3 Add sites</h4>
-<p>You are going to configure remote sites as DIA site, and Regional hub as gateway site. Remote sites will monitor the QoE score for local DIA via LTE transport, and also the QoE score for gateway site.
-- Access CoR SaaS configuration via <strong>Configuration - Cloud onRamp for SaaS</strong><br />
-- Click <strong>Manage Cloud OnRamp for SaaS</strong> dropdown list on the upper left, and select <strong>Gateway</strong></p>
+<p>You are going to configure remote sites as DIA site, and Regional hub as gateway site. Remote sites will monitor the QoE score for local DIA via LTE transport, and also the QoE score for gateway site.</p>
+<ul>
+<li>Access CoR SaaS configuration via <strong>Configuration - Cloud onRamp for SaaS</strong>  </li>
+<li>Click <strong>Manage Cloud OnRamp for SaaS</strong> dropdown list on the upper left, and select <strong>Gateway</strong></li>
+</ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab3_6_3_1.PNG" width="800"/></p>
 <ul>
 <li>Click <strong>Attach Gateways</strong>,  select <strong>RH-WE1</strong> and move it to <strong>selected Sites</strong>. Click <strong>Add interfaces to selected sites</strong>.</li>
@@ -799,9 +812,15 @@ R1-WE1#
 <h4 id="step64-verify-cor-saas">Step6.4 Verify CoR SaaS</h4>
 <p>Click <strong>Manage Cloud OnRamp for SaaS</strong> to verify QoE status, DIA status, exit interface on each WAN Edge for SaaS application.    </p>
 <p><img src="https://leitian123.github.io/holent2901/img/lab3_6_4_1.PNG" width="800"/></p>
-<p><strong>Note: Your output may not match the screenshot on the vQoE score and DIA Status. This is expected.</strong><br />
-- screenshot above shows both remote sites are using local DIA as exit point for box and Salesfoce SaaS application.
-- This lab doesn't have traffic impairment tool, we can't increase remote transport's latency or drop to trigger SaaS changes exit point. But if you keep checking the SaaS status, you will notice the vQoE score changes and exit interface changes.</p>
+<p><strong>Note: Your output may not match the screenshot on the vQoE score and DIA Status. This is expected.</strong>  </p>
+<ul>
+<li>
+<p>screenshot above shows both remote sites are using local DIA as exit point for box and Salesfoce SaaS application.</p>
+</li>
+<li>
+<p>This lab doesn't have traffic impairment tool, we can't increase remote transport's latency or drop to trigger SaaS changes exit point. But if you keep checking the SaaS status, you will notice the vQoE score changes and exit interface changes.</p>
+</li>
+</ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab3_6_4_2.PNG" width="800"/></p>
 <hr />
 <h2 id="congratulation-you-have-completed-the-whole-lab">Congratulation! You have completed the whole lab.</h2>
