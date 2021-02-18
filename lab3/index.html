@@ -79,19 +79,75 @@
             
     <li class="toctree-l3"><a href="#lab-3-performance-optimization">Lab 3: Performance Optimization</a></li>
     
+
+    <li class="toctree-l3"><a href="#task-1-qos">Task 1: QoS</a></li>
+    
         <ul>
         
-            <li><a class="toctree-l4" href="#task-1-qos">Task 1: QoS</a></li>
+            <li><a class="toctree-l4" href="#step11-class-map-and-applications">Step1.1: class map and applications</a></li>
         
-            <li><a class="toctree-l4" href="#task-2-per-tunnel-qos">Task 2: per-tunnel QoS</a></li>
+            <li><a class="toctree-l4" href="#step12-central-data-policy-for-classification">Step1.2: Central Data Policy for classification</a></li>
         
-            <li><a class="toctree-l4" href="#task-3-on-demand-tunnel">Task 3: On-demand Tunnel</a></li>
+            <li><a class="toctree-l4" href="#step13-local-qos-queuing-policy">Step1.3: Local QoS queuing policy</a></li>
         
-            <li><a class="toctree-l4" href="#task-4-ipsec-tunnel-to-sig">Task 4: IPsec tunnel to SIG</a></li>
+            <li><a class="toctree-l4" href="#step14-apply-qos-queuing-policy">Step1.4: Apply QoS queuing policy</a></li>
         
-            <li><a class="toctree-l4" href="#task-5-dia">Task 5: DIA</a></li>
+        </ul>
+    
+
+    <li class="toctree-l3"><a href="#task-2-per-tunnel-qos">Task 2: per-tunnel QoS</a></li>
+    
+        <ul>
         
-            <li><a class="toctree-l4" href="#task-6-cor-for-saas">Task 6: CoR for SaaS</a></li>
+            <li><a class="toctree-l4" href="#step21-configure-qos-policy-on-rh">Step2.1: Configure QoS policy on RH</a></li>
+        
+            <li><a class="toctree-l4" href="#step22-configure-hub-role-on-rh">Step2.2: Configure Hub role on RH</a></li>
+        
+            <li><a class="toctree-l4" href="#step23-configure-spoke-role-on-remotes">Step2.3: Configure Spoke role on Remotes</a></li>
+        
+            <li><a class="toctree-l4" href="#step24-verify-per-tunnel-qos">Step2.4: Verify per-tunnel QOS</a></li>
+        
+        </ul>
+    
+
+    <li class="toctree-l3"><a href="#task-3-on-demand-tunnel">Task 3: On-demand Tunnel</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#step31-modify-central-control-policy">Step3.1: Modify central control policy</a></li>
+        
+            <li><a class="toctree-l4" href="#step32-configure-on-demand-tunnel">Step3.2: Configure On-demand Tunnel</a></li>
+        
+            <li><a class="toctree-l4" href="#step33-verify-on-demand-tunnel-between-remotes">Step3.3: Verify On-demand Tunnel between remotes</a></li>
+        
+        </ul>
+    
+
+    <li class="toctree-l3"><a href="#task-4-ipsec-tunnel-to-sig">Task 4: IPsec tunnel to SIG</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#step41-manual-ipsec-tunnel-to-sig">Step4.1 : Manual IPSec tunnel to SIG</a></li>
+        
+            <li><a class="toctree-l4" href="#step42-verify-sig-tunnel">Step4.2 : verify SIG tunnel</a></li>
+        
+        </ul>
+    
+
+    <li class="toctree-l3"><a href="#task-5-dia">Task 5: DIA</a></li>
+    
+
+    <li class="toctree-l3"><a href="#task-6-cor-for-saas">Task 6: CoR for SaaS</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#step61-enable-cloud-onramp-for-saas">Step6.1 Enable Cloud OnRamp for SaaS</a></li>
+        
+            <li><a class="toctree-l4" href="#step62-add-saas-application">Step6.2 Add SaaS application</a></li>
+        
+            <li><a class="toctree-l4" href="#step63-add-sites">Step6.3 Add sites</a></li>
+        
+            <li><a class="toctree-l4" href="#step64-verify-cor-saas">Step6.4 Verify CoR SaaS</a></li>
         
         </ul>
     
@@ -157,7 +213,7 @@
 <li>For SaaS application, configure the sd-wan fabric to use either local DIA or RH based on application performance.</li>
 </ul>
 <hr />
-<h3 id="task-1-qos">Task 1: QoS</h3>
+<h2 id="task-1-qos">Task 1: QoS</h2>
 <p>Enabling QoS has three main steps: classification, marking and queueing. Queueing policy is configured as Localized policy and applied on interface level. classification and marking can be enabled over Localized policy or over centralized data policy. ACME requires consistent QoS policies across sd-wan fabric, you will use centralized data policy to achieve that.</p>
 <p>ACME uses 4-class QoS model with the following policy requirements.</p>
 <table>
@@ -399,7 +455,7 @@
         7               0/0               0/0              0/0                487           520  1/10
 </code></pre>
 
-<h3 id="task-2-per-tunnel-qos">Task 2: per-tunnel QoS</h3>
+<h2 id="task-2-per-tunnel-qos">Task 2: per-tunnel QoS</h2>
 <p>In this section, you will configure the RH WAN edge router (<strong>RH-WE1</strong>) to shape tunnel traffic to each remote. This per-tunnel QoS will make sure RH cannot send excessive traffic to remotes and overrun it.</p>
 <h4 id="step21-configure-qos-policy-on-rh">Step2.1: Configure QoS policy on RH</h4>
 <ul>
@@ -476,7 +532,7 @@ src-addr                 dst-addr                 sport   dport   proto remote-t
 172.2.6.2                172.2.7.2                12346   12346   IPSEC 1.1.102.1       SDWANSession4210705   Tunnel2        SDWANPolicy4210705    20000
 </code></pre>
 
-<h3 id="task-3-on-demand-tunnel">Task 3: On-demand Tunnel</h3>
+<h2 id="task-3-on-demand-tunnel">Task 3: On-demand Tunnel</h2>
 <p>Hub and Spoke topology can reduce the CPU and memory usage on WAN Edge, but sometime a spoke to spoke tunnel is needed. Dynamic on-demand tunnel offers the benefits of having direct spoke to spoke tunnel while keep the low CPU and memory usage on WAN Edge.</p>
 <p>To improve latency of traffic between remotes, configure dynamic on-demand tunnel between remote1 and remote2.</p>
 <h4 id="step31-modify-central-control-policy">Step3.1: Modify central control policy</h4>
@@ -592,7 +648,7 @@ viptela@remote2_ubuntu:~$
 <p><img src="https://leitian123.github.io/holent2901/img/lab3_3_3_5.PNG" width="800"/></p>
 </li>
 </ul>
-<h3 id="task-4-ipsec-tunnel-to-sig">Task 4: IPsec tunnel to SIG</h3>
+<h2 id="task-4-ipsec-tunnel-to-sig">Task 4: IPsec tunnel to SIG</h2>
 <p>Inspection service is required for traffic to cloud application with IP <strong>16.16.16.16</strong>. Configure remote1 and remote2 to build an IPSec tunnel to SIG provider. Route all traffic to <strong>16.16.16.16</strong> for inspection.</p>
 <h4 id="step41-manual-ipsec-tunnel-to-sig">Step4.1 : Manual IPSec tunnel to SIG</h4>
 <p>Before configuring the IPSec tunnel, verify the connectivity to Cloud application at <strong>16.16.16.16</strong> from remote ubuntu hosts. It is expected to see the application is not reachable.</p>
@@ -750,7 +806,7 @@ R1-WE1#
 <li>now try access <strong>16.16.16.16</strong> from browser. You should see this login page</li>
 </ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab3_4_2_2.PNG" width="800"/></p>
-<h3 id="task-5-dia">Task 5: DIA</h3>
+<h2 id="task-5-dia">Task 5: DIA</h2>
 <p>There are two options to enable DIA.</p>
 <ul>
 <li>
@@ -765,7 +821,7 @@ R1-WE1#
 </li>
 </ul>
 <p>In this task, you are going to configure DIA on remote sites using option 2.       </p>
-<h3 id="task-6-cor-for-saas">Task 6: CoR for SaaS</h3>
+<h2 id="task-6-cor-for-saas">Task 6: CoR for SaaS</h2>
 <p>Instead of using the DIA exit point as configured in previous task, for SaaS application box and salesforce, ACME wants to use the most optimal path. Configure the remote sites to dynamically chose local DIA or regional hub as exit point for box and salesforce based on application performance.</p>
 <p><img src="https://leitian123.github.io/holent2901/img/lab3_6_0_0.png" width="800"/></p>
 <h4 id="step61-enable-cloud-onramp-for-saas">Step6.1 Enable Cloud OnRamp for SaaS</h4>

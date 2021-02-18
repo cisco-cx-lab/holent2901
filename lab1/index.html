@@ -244,11 +244,8 @@
 <p>ACME has categorized their branches into multiple Business Units(BUs). In the Data Center (DC) sites, the headend WAN Edges(WEs) are also categorized into multiple BUs for horizontal scaling purpose in terms of throughputs, therefore remote site only needs to build tunnels to its respective DC hub WEs. <strong>Remote Site1 only needs to build tunnels to DC1-WE1 and DC2-WE2</strong>; on the contrary, <strong>Remote Site 2 only needs to build tunnels to DC1-WE2 and DC2-WE2</strong>.(Lab_Task 2)</p>
 </li>
 <li>
-<p>Remote sites receive default route from both RH and DC, <strong>DCs will be preferred and load shared</strong>. If RH goes down, DCs are load shared for default(Lab_Task 3)</p>
+<p>Remote sites receive default route from both RH and DC, **DCs will be preferred and load shared. RH's default will be used as backup for DCs. (Lab_Task 3)</p>
 </li>
-</ul>
-<p><font color='red'>change to <strong>- Remote sites receive default route from both RH and DC, </strong>DCs will be preferred and load shared. RH's default will be used as backup for DCs. (Lab_Task 3)**</font></p>
-<ul>
 <li>
 <p>Remotes sites receive more specific routes from both DCs, <strong>routes originated from local DC are preferred</strong>, if one DC goes down, it will use the routes from another DC as backup. In another words, from remote sites perspective, previously routes tagged with 1000 will prefer DC1; routes tagged with 2000 will prefer DC2.(Lab_Task 4)</p>
 </li>
