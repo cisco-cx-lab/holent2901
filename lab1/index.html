@@ -165,6 +165,16 @@
 
     <li class="toctree-l3"><a href="#task-6-application-pinning">Task 6: Application Pinning</a></li>
     
+        <ul>
+        
+            <li><a class="toctree-l4" href="#step61-configure-data-policy">Step6.1: Configure Data Policy</a></li>
+        
+            <li><a class="toctree-l4" href="#step62-apply-data-policy">Step6.2: Apply Data Policy</a></li>
+        
+            <li><a class="toctree-l4" href="#step63-verify-application-pining-policy">Step6.3: verify application pining policy</a></li>
+        
+        </ul>
+    
 
     </ul>
                 </li>
@@ -961,79 +971,136 @@ This setting will make LTE last-resort which means the interface will go down, a
 <h2 id="task-6-application-pinning">Task 6: Application Pinning</h2>
 <p>ACME wants to only run its business critical applications over LTE when all other links go down due to limited available bandwidth on the LTE link. Non-business critical application (such as ICMP) will need to be dropped when LTE comes up.</p>
 <p>SDWAN Data Policy is a means to pin certain applications on the certain links.</p>
-<p><strong>Step 1.</strong> Configure Data Policy.
-Go to Configurations-&gt;Policies-&gt;Centralized Policy-&gt;Custom Options-&gt;Traffic Policy-&gt;Add Policy</p>
-<p>Name: LAB1_DP_V01
-Description: LAB1_DP_V01
-+Sequence Type: Custom
-+Sequence Rule
-Match Conditions:
-    protocol: 6 (TCP)
-Actions: Accept
-    Local TLOC (color): private1, private2, LTE
-    save Match and Actions</p>
-<p><img src="https://leitian123.github.io/holent2901/img/lab_task6_DP_1.png" width="800"/>  </p>
-<p>+Sequence Rule
-Match Conditions:
-    protocol: 1 (ICMP)
-Actions: Accept
-    Local TLOC (color): private1, private2
-    check Restrict (this means traffic will be dropped when configured TLOC unreable)
-    save Match and Actions</p>
-<p><img src="https://leitian123.github.io/holent2901/img/lab_task6_DP_2.png" width="800"/></p>
-<p>Change Default Action to Accept.
-Click Default Action, then click Pencil to edit, click Actions then Accept.
-Save Match and Actions, then click Save Data Policy</p>
+<h4 id="step61-configure-data-policy">Step6.1: Configure Data Policy</h4>
+<ul>
+<li>login vManage <strong>198.18.133.200</strong> and access policy configuration from <strong>Configuration - Policies</strong></li>
+<li>Click <strong>Custom Options</strong> drop down on the top right and select <strong>Traffic Policy</strong> under <strong>Centralized Policy</strong></li>
+<li>click <strong>Traffic Data</strong> and click <strong>Add Policy</strong> to create new data policy</li>
+<li><strong>Create New</strong> policy with following setting<ul>
+<li>Name: <strong>LAB1_DP_V01</strong></li>
+<li>Description: <strong>LAB1_DP_V01</strong></li>
+<li>click <strong>+Sequence Type</strong> and select <strong>Custom</strong></li>
+<li>click <strong>+Sequence Rule</strong> and select <strong>protocol</strong> for Match condition</li>
+<li>under Match Conditions:<ul>
+<li>protocol: 6 (TCP)</li>
+</ul>
+</li>
+<li>click Actions and change to <strong>Accept</strong>, and click <strong>Local TLOC</strong> for action<ul>
+<li>Local TLOC (color): private1, private2, LTE</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>save <strong>Match and Actions</strong>
+<img src="https://leitian123.github.io/holent2901/img/lab_task6_DP_1.png" width="800"/>  <ul>
+<li>click <strong>+Sequence Rule</strong> and select <strong>protocol</strong> for Match condition</li>
+<li>under Match Conditions:<ul>
+<li>protocol: 1 (ICMP)</li>
+</ul>
+</li>
+<li>click Actions and change to <strong>Accept</strong>, and click <strong>Local TLOC</strong> for action<ul>
+<li>Local TLOC (color): private1, private2</li>
+<li>check <strong>Restrict</strong> (this means traffic will be dropped when configured TLOC is unreachable)</li>
+</ul>
+</li>
+<li>save Match and Actions</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://leitian123.github.io/holent2901/img/lab_task6_DP_2.png" width="800"/>
+ - Click <strong>Default Action</strong>, and change action to <strong>Accept</strong>
+ - click <strong>Save Match and Actions</strong> then click Save Data Policy</p>
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task6_DP_3.png" width="800"/></p>
-<p><strong>Step 2.</strong> Apply Data Policy.</p>
-<p>Go to Configuration-&gt;Policies-&gt;Centralized Policy, select LAB_Central_V02 and Edit.</p>
-<p>Click Traffic Rules-&gt;Traffic Data, Click Add Policy-&gt;Import Existing,select LAB1_DP_V01, then Import</p>
+<h4 id="step62-apply-data-policy">Step6.2: Apply Data Policy</h4>
+<ul>
+<li>Access policy configuration from <strong>Configuration - Policies</strong></li>
+<li>Locate <strong>LAB_Central_v02</strong> click <strong>...</strong> for more option and select <strong>Edit</strong></li>
+<li>Click <strong>Traffic Rules</strong> and select <strong>Traffic Data</strong></li>
+<li>Click <strong>Add Policy</strong> and select <strong>Import Existing</strong>; select <strong>LAB1_DP_V01</strong> from Policy dropdown and <strong>Import</strong></li>
+</ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task6_DP_4.png" width="800"/></p>
-<p>Click Policy Application-&gt;Traffic Data
-+ New Site List and VPN list
-From Service
-    select site list: RH and ALL-Remotes
-    Select VPN list: VPN1
-Click Add then Save Policy Changes, click Activate</p>
+<ul>
+<li>Click <strong>Policy Application</strong> and select <strong>Traffic Data</strong></li>
+<li>click <strong>+ New Site List and VPN list</strong> and configure as following<ul>
+<li>check <strong>From Service</strong> checkbox</li>
+<li>select site list: <strong>RH</strong> and <strong>ALL-Remotes</strong></li>
+<li>Select VPN list: <strong>VPN1</strong></li>
+</ul>
+</li>
+<li>Click Add then <strong>Save Policy Changes</strong> to Activate</li>
+</ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task6_DP_5.png" width="800"/></p>
-<p><strong>Step 3.</strong> Lab Verification.</p>
-<p>Go to Monitor, then select RH-WE1, then select Troubleshooting-&gt;Simulate Flows
-VPN:VPN-1
-Source/Interface for VPN-1:Gigabiethernet4
-Source IP: 10.10.30.2
-Destination IP: 10.10.101.1 (this is remote site1's VPN1 interface IP)
-Click on Advanced Options:
-Protocol: 1 (ICMP)
-All Paths: Checked
-Click Simulate
-you should see traffic is taking private1</p>
+<h4 id="step63-verify-application-pining-policy">Step6.3: verify application pining policy</h4>
+<ul>
+<li>login vManage <strong>198.18.133.200</strong> and select <strong>Monitor - Network</strong></li>
+<li>click <strong>RH-WE1</strong> to bring up device monitor page, and select <strong>Troubleshooting</strong> from the panel on the left</li>
+<li>select <strong>Simulate Flows</strong> tool under <strong>Traffic</strong> and use the following value for simulated flow<ul>
+<li>VPN: <strong>VPN-1</strong></li>
+<li>Source/Interface for VPN-1: <strong>Gigabiethernet4 - ipv4 - 10.10.30.2</strong></li>
+<li>Source IP: <strong>10.10.30.2</strong></li>
+<li>Destination IP: <strong>10.100.101.1</strong> (this is remote site1's VPN1 interface IP)</li>
+<li>Click on <strong>Advanced Options</strong>:</li>
+<li>Protocol: 1 (ICMP)</li>
+<li>All Paths: Checked</li>
+</ul>
+</li>
+<li>Click <strong>Simulate</strong>
+you should see traffic is taking private1</li>
+</ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task6_DP_6.png" width="800"/></p>
 <p>Change the Protocol to 6 (TCP) and simulate again</p>
 <p>You should not see any changes as private1 is only available circuit.</p>
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task6_DP_7.png" width="800"/></p>
-<p>Shutdown private1 and private2 interface on RH-WE1. Go to Configuration-&gt;Device Template, Select Lab_RH_V01, edit-&gt;change Device Values.</p>
-<p>Interface GigabitEthernet 1-&gt;Shutdown
-Interface GigabitEthernet 2-&gt;Shutdown
-Update-&gt;Next-&gt;Configure Devices</p>
+<ul>
+<li>Let's shutdown both private1 and private2 interface and verify again</li>
+<li>Access template configuration from <strong>Configuration - Templates</strong></li>
+<li>Locate deice template <strong>Lab-RH-V01</strong>, click <strong>...</strong> and select <strong>Change Device Values</strong></li>
+<li>click <strong>...</strong> to select <strong>Edit Device Template</strong></li>
+<li>select the <strong>Shutdown(vpn_if_interface)</strong> checkbox under <strong>GigabitEthernet1</strong></li>
+<li>select the <strong>Shutdown(vpn_if_interface)</strong> checkbox under <strong>GigabitEthernet2</strong></li>
+<li>click Update -&gt; next to trigger the configure change.</li>
+</ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task6_DP_8.png" width="800"/></p>
-<p>send simulate flows again with ICMP to 10.10.102.1 (remote site 2),
-you can see the traffic is blockholed.</p>
+<ul>
+<li>click <strong>RH-WE1</strong> to bring up device monitor page, and select <strong>Troubleshooting</strong> from the panel on the left</li>
+<li>select <strong>Simulate Flows</strong> tool under <strong>Traffic</strong> and use the following value for simulated flow<ul>
+<li>VPN: <strong>VPN-1</strong></li>
+<li>Source/Interface for VPN-1: <strong>Gigabiethernet4 - ipv4 - 10.10.30.2</strong></li>
+<li>Source IP: <strong>10.10.30.2</strong></li>
+<li>Destination IP: <strong>10.100.102.1</strong> (this is remote site2's VPN1 interface IP)</li>
+<li>Click on <strong>Advanced Options</strong>:</li>
+<li>Protocol: 1 (ICMP)</li>
+<li>All Paths: Checked</li>
+</ul>
+</li>
+<li>Click <strong>Simulate</strong>
+you can see the traffic is blockholed.</li>
+</ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task6_DP_9.png" width="800"/></p>
-<p>Let's restore private1 and private2 link by changing the device values of RH-WE1 device template, uncheck the shutdown box of GigabitEthernet1 and 2.Update-&gt;Next-&gt;Configure Devices</p>
+<ul>
+<li>Let's restore private1 and private2 link by changing the device values of RH-WE1 device template, uncheck the shutdown box of GigabitEthernet1 and 2.Update-&gt;Next-&gt;Configure Devices</li>
+</ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task6_DP_10.png" width="800"/></p>
 <p>Before we proceed to the next lab, let's do one more simulation test.</p>
-<p>Go to Monitor, then select RH-WE1, then select Troubleshooting-&gt;Simulate Flows
-VPN:VPN-1
-Source/Interface for VPN-1:Gigabiethernet4
-Source IP: 10.10.30.2
-Destination IP: 10.100.100.100 (this is DC1-WE)
-Click on Advanced Options:
-Protocol: 6 (TCP)
-Destination Port: 22
-All Paths: Checked
-Click Simulate
-you should see traffic is taking both private1 &amp; private2.</p>
-<p>Wait a second, our AAR poicy in the previous lab says private1 should be preferred, and we have verified that behavior earlier, why this is taking both private1 and private2 now? This is because our DP says TCP traffic can use all the colors, when you have both AAR and DP configured, DP will take the final decision. You have to be careful with that when designing your AAR and DP and not to have them configured for the same applicaiton on the same sites.</p>
+<ul>
+<li>login vManage <strong>198.18.133.200</strong> and select <strong>Monitor - Network</strong></li>
+<li>click <strong>RH-WE1</strong> to bring up device monitor page, and select <strong>Troubleshooting</strong> from the panel on the left</li>
+<li>select <strong>Simulate Flows</strong> tool under <strong>Traffic</strong> and use the following value for simulated flow<ul>
+<li>VPN: <strong>VPN-1</strong></li>
+<li>Source/Interface for VPN-1: <strong>Gigabiethernet4 - ipv4 - 10.10.30.2</strong></li>
+<li>Source IP: <strong>10.10.30.2</strong></li>
+<li>Destination IP: <strong>10.100.100.100</strong> (this is DC1-WE)</li>
+<li>Click on <strong>Advanced Options</strong>:</li>
+<li>Protocol: 6 (TCP)</li>
+<li>Destination Port: 22</li>
+<li>All Paths: Checked</li>
+</ul>
+</li>
+<li>Click <strong>Simulate</strong></li>
+</ul>
+<p>you should see traffic is taking both private1 &amp; private2.</p>
+<p><strong>Question: In the previous AAR lab says private1 should be preferred, and we have verified that behavior earlier. Why this is taking both private1 and private2 now?</strong>
+This is because our Data Policy says TCP traffic can use all the colors, when you have both AAR and Data Policy configured, Data Policy will take the final decision. You have to be careful with that when designing your AAR and DP. Avoid having both configured for the same application on same sites.</p>
 <p><a href="JAVASCRIPT:scroll(0,0)" style="color:blue">Back to Top</a></p>
               
             </div>
