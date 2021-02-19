@@ -1,38 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-    <url>
-     <loc>/</loc>
-     <lastmod>2021-02-18</lastmod>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url>
+     <loc>None</loc>
+     <lastmod>2021-02-19</lastmod>
      <changefreq>daily</changefreq>
-    </url>
-    <url>
-     <loc>/access/</loc>
-     <lastmod>2021-02-18</lastmod>
+    </url><url>
+     <loc>None</loc>
+     <lastmod>2021-02-19</lastmod>
      <changefreq>daily</changefreq>
-    </url>
-    <url>
-     <loc>/intro/</loc>
-     <lastmod>2021-02-18</lastmod>
+    </url><url>
+     <loc>None</loc>
+     <lastmod>2021-02-19</lastmod>
      <changefreq>daily</changefreq>
-    </url>
-    <url>
-     <loc>/lab1/</loc>
-     <lastmod>2021-02-18</lastmod>
+    </url><url>
+     <loc>None</loc>
+     <lastmod>2021-02-19</lastmod>
      <changefreq>daily</changefreq>
-    </url>
-    <url>
-     <loc>/lab2/</loc>
-     <lastmod>2021-02-18</lastmod>
+    </url><url>
+     <loc>None</loc>
+     <lastmod>2021-02-19</lastmod>
      <changefreq>daily</changefreq>
-    </url>
-    <url>
-     <loc>/lab3/</loc>
-     <lastmod>2021-02-18</lastmod>
+    </url><url>
+     <loc>None</loc>
+     <lastmod>2021-02-19</lastmod>
      <changefreq>daily</changefreq>
-    </url>
-    <url>
-     <loc>/survey/</loc>
-     <lastmod>2021-02-18</lastmod>
+    </url><url>
+     <loc>None</loc>
+     <lastmod>2021-02-19</lastmod>
      <changefreq>daily</changefreq>
     </url>
 </urlset>

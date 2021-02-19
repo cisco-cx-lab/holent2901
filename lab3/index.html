@@ -7,24 +7,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   
+  
   <link rel="shortcut icon" href="../img/favicon.ico">
   <title>Lab 3 Tasks - HOLENT-2901 Advanced SD-WAN Lab</title>
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
-  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
-  <link rel="stylesheet" href="../css/highlight.css">
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
   
   <script>
     // Current page data
     var mkdocs_page_name = "Lab 3 Tasks";
     var mkdocs_page_input_path = "lab3.md";
-    var mkdocs_page_url = "/lab3/";
+    var mkdocs_page_url = null;
   </script>
   
-  <script src="../js/jquery-2.1.1.min.js"></script>
-  <script src="../js/modernizr-2.8.3.min.js"></script>
-  <script type="text/javascript" src="../js/highlight.pack.js"></script> 
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
   
 </head>
 
@@ -34,140 +36,100 @@
 
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
         <a href=".." class="icon icon-home"> HOLENT-2901 Advanced SD-WAN Lab</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
   </form>
 </div>
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-	<ul class="current">
-	  
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="..">Home</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <span class="caption-text">Lab Guide</span>
-    <ul class="subnav">
-                <li class="">
-                    
-    <a class="" href="../access/">Lab Access</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../intro/">Getting Started</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../lab1/">Lab 1 Tasks</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../lab2/">Lab 2 Tasks</a>
-                </li>
-                <li class=" current">
-                    
-    <a class="current" href="./">Lab 3 Tasks</a>
-    <ul class="subnav">
-            
-    <li class="toctree-l3"><a href="#lab-3-performance-optimization">Lab 3: Performance Optimization</a></li>
-    
-
-    <li class="toctree-l3"><a href="#task-1-qos">Task 1: QoS</a></li>
-    
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Lab Guide</span></p>
+                <ul class="current">
+                    <li class="toctree-l1"><a class="reference internal" href="../access/">Lab Access</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../intro/">Getting Started</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../lab1/">Lab 1 Tasks</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../lab2/">Lab 2 Tasks</a>
+                    </li>
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Lab 3 Tasks</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#task-1-qos">Task 1: QoS</a>
         <ul>
-        
-            <li><a class="toctree-l4" href="#step11-class-map-and-applications">Step1.1: class map and applications</a></li>
-        
-            <li><a class="toctree-l4" href="#step12-central-data-policy-for-classification">Step1.2: Central Data Policy for classification</a></li>
-        
-            <li><a class="toctree-l4" href="#step13-local-qos-queuing-policy">Step1.3: Local QoS queuing policy</a></li>
-        
-            <li><a class="toctree-l4" href="#step14-apply-qos-queuing-policy">Step1.4: Apply QoS queuing policy</a></li>
-        
+    <li class="toctree-l3"><a class="reference internal" href="#step11-class-map-and-applications">Step1.1: class map and applications</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#step12-central-data-policy-for-classification">Step1.2: Central Data Policy for classification</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#step13-local-qos-queuing-policy">Step1.3: Local QoS queuing policy</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#step14-apply-qos-queuing-policy">Step1.4: Apply QoS queuing policy</a>
+    </li>
         </ul>
-    
-
-    <li class="toctree-l3"><a href="#task-2-per-tunnel-qos">Task 2: per-tunnel QoS</a></li>
-    
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#task-2-per-tunnel-qos">Task 2: per-tunnel QoS</a>
         <ul>
-        
-            <li><a class="toctree-l4" href="#step21-configure-qos-policy-on-rh">Step2.1: Configure QoS policy on RH</a></li>
-        
-            <li><a class="toctree-l4" href="#step22-configure-hub-role-on-rh">Step2.2: Configure Hub role on RH</a></li>
-        
-            <li><a class="toctree-l4" href="#step23-configure-spoke-role-on-remotes">Step2.3: Configure Spoke role on Remotes</a></li>
-        
-            <li><a class="toctree-l4" href="#step24-verify-per-tunnel-qos">Step2.4: Verify per-tunnel QOS</a></li>
-        
+    <li class="toctree-l3"><a class="reference internal" href="#step21-configure-qos-policy-on-rh">Step2.1: Configure QoS policy on RH</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#step22-configure-hub-role-on-rh">Step2.2: Configure Hub role on RH</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#step23-configure-spoke-role-on-remotes">Step2.3: Configure Spoke role on Remotes</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#step24-verify-per-tunnel-qos">Step2.4: Verify per-tunnel QOS</a>
+    </li>
         </ul>
-    
-
-    <li class="toctree-l3"><a href="#task-3-on-demand-tunnel">Task 3: On-demand Tunnel</a></li>
-    
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#task-3-on-demand-tunnel">Task 3: On-demand Tunnel</a>
         <ul>
-        
-            <li><a class="toctree-l4" href="#step31-modify-central-control-policy">Step3.1: Modify central control policy</a></li>
-        
-            <li><a class="toctree-l4" href="#step32-configure-on-demand-tunnel">Step3.2: Configure On-demand Tunnel</a></li>
-        
-            <li><a class="toctree-l4" href="#step33-verify-on-demand-tunnel-between-remotes">Step3.3: Verify On-demand Tunnel between remotes</a></li>
-        
+    <li class="toctree-l3"><a class="reference internal" href="#step31-modify-central-control-policy">Step3.1: Modify central control policy</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#step32-configure-on-demand-tunnel">Step3.2: Configure On-demand Tunnel</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#step33-verify-on-demand-tunnel-between-remotes">Step3.3: Verify On-demand Tunnel between remotes</a>
+    </li>
         </ul>
-    
-
-    <li class="toctree-l3"><a href="#task-4-ipsec-tunnel-to-sig">Task 4: IPsec tunnel to SIG</a></li>
-    
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#task-4-ipsec-tunnel-to-sig">Task 4: IPsec tunnel to SIG</a>
         <ul>
-        
-            <li><a class="toctree-l4" href="#step41-manual-ipsec-tunnel-to-sig">Step4.1 : Manual IPSec tunnel to SIG</a></li>
-        
-            <li><a class="toctree-l4" href="#step42-verify-sig-tunnel">Step4.2 : verify SIG tunnel</a></li>
-        
+    <li class="toctree-l3"><a class="reference internal" href="#step41-manual-ipsec-tunnel-to-sig">Step4.1 : Manual IPSec tunnel to SIG</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#step42-verify-sig-tunnel">Step4.2 : verify SIG tunnel</a>
+    </li>
         </ul>
-    
-
-    <li class="toctree-l3"><a href="#task-5-dia">Task 5: DIA</a></li>
-    
-
-    <li class="toctree-l3"><a href="#task-6-cor-for-saas">Task 6: CoR for SaaS</a></li>
-    
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#task-5-dia">Task 5: DIA</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#task-6-cor-for-saas">Task 6: CoR for SaaS</a>
         <ul>
-        
-            <li><a class="toctree-l4" href="#step61-enable-cloud-onramp-for-saas">Step6.1 Enable Cloud OnRamp for SaaS</a></li>
-        
-            <li><a class="toctree-l4" href="#step62-add-saas-application">Step6.2 Add SaaS application</a></li>
-        
-            <li><a class="toctree-l4" href="#step63-add-sites">Step6.3 Add sites</a></li>
-        
-            <li><a class="toctree-l4" href="#step64-verify-cor-saas">Step6.4 Verify CoR SaaS</a></li>
-        
+    <li class="toctree-l3"><a class="reference internal" href="#step61-enable-cloud-onramp-for-saas">Step6.1 Enable Cloud OnRamp for SaaS</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#step62-add-saas-application">Step6.2 Add SaaS application</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#step63-add-sites">Step6.3 Add sites</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#step64-verify-cor-saas">Step6.4 Verify CoR SaaS</a>
+    </li>
         </ul>
-    
-
-    <li class="toctree-l3"><a href="#congratulation-you-have-completed-the-whole-lab">Congratulation! You have completed the whole lab.</a></li>
-    
-
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#congratulation-you-have-completed-the-whole-lab">Congratulation! You have completed the whole lab.</a>
+    </li>
     </ul>
-                </li>
-    </ul>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../survey/">Survey</a>
-	    </li>
-          
-        </ul>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../survey/">Survey</a>
+                    </li>
+                </ul>
       </div>
-      &nbsp;
+    </div>
     </nav>
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
@@ -196,12 +158,13 @@
       
     </li>
   </ul>
+  
   <hr/>
 </div>
           <div role="main">
             <div class="section">
               
-                <h2 id="lab-3-performance-optimization">Lab 3: Performance Optimization</h2>
+                <h1 id="lab-3-performance-optimization">Lab 3: Performance Optimization</h1>
 <hr />
 <p>In this section, you will help ACME to optimize their SD-WAN fabric. You will perform the following tasks in this lab.</p>
 <ul>
@@ -905,7 +868,7 @@ R1-WE1#
     
   </div>
 
-  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 </footer>
       
         </div>
@@ -915,7 +878,7 @@ R1-WE1#
 
   </div>
 
-  <div class="rst-versions" role="note" style="cursor: pointer">
+  <div class="rst-versions" role="note" aria-label="versions">
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
@@ -927,9 +890,13 @@ R1-WE1#
     </span>
 </div>
     <script>var base_url = '..';</script>
-    <script src="../js/theme.js"></script>
-      <script src="../search/require.js"></script>
-      <script src="../search/search.js"></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
 
 </body>
 </html>
