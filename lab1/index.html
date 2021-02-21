@@ -309,7 +309,7 @@
 <p>For remote sites to any other regional routes are forced to go through DC’s functional hub. For <strong>remote site1, it goes through WE1 in DC1 and DC2</strong>; for <strong>remote site 2, it goes through WE2 in DC1 and DC2</strong>.(Lab_Task 4)</p>
 </li>
 </ul>
-<p><span style="background-color:lightblue"> <strong>Note: In these lab exercises, it's possible that there are multiple ways to achieve the requirements. The lab guide provides a detailed step by step instruction for each taks. However you're welcomed to solve it with your own solution. Just be mindful with the time.</strong> </span></p>
+<p><span style="background-color:lightblue"> <span style="background-color:lightblue"> <strong>Note: In these lab exercises, it's possible that there are multiple ways to achieve the requirements. The lab guide provides a detailed step by step instruction for each taks. However you're welcomed to solve it with your own solution. Just be mindful with the time.</strong> </span></p>
 <h2 id="task-1-local-route-policy">Task 1: Local Route Policy</h2>
 <h4 id="step-11-verification-of-the-routes-received-on-dc-wes"><strong>Step 1.1</strong> Verification of the routes received on DC WEs.</h4>
 <ul>
@@ -425,14 +425,14 @@
 <p>To answer this question, we will check the route table at vSmart as all the routes are advertised by vSmart. SSH to vSmart and do <code>show omp route vpn 1 0.0.0.0/0 detail | t</code></p>
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task2_Routes_2.png" width="800"/></p>
 <p>OMP is very much like BGP when it comes down to route preference. In the order of preference, there is a origin-protocol, in this case the default route learned on RH is from Static (by design, in real deployment, probably it's going to be BGP as well); whereas the default learned from DCs is from iBGP. Origin protocol static is more preferred than iBGP.</p>
-<p>Now, let's look at the specific routes learned from DC. Do <code>show sdwan omp route vpn 1 10.100.100.0/24</code> on vSmart.</p>
-<p><img src="https://leitian123.github.io/holent2901/img/lab_task2_Routes_3.png" width="800"/></p>
+<p>Now, let's look at the specific routes learned from DC. Do <code>show sdwan omp route vpn 1 10.100.100.0/24</code> on <strong>R1-WE1</strong>.</p>
+<p><img src="https://leitian123.github.io/holent2901/img/lab_task2_Routes_3.PNG" width="800"/></p>
 <p><strong>Question: you will see 4 paths and one of the paths shows Inv,U. Hopefully you can answer why it's that. But why there are 4 paths?</strong></p>
-<p>Let's SSH to vSmart and do <code>show omp route vpn 1 10.100.100.0/24 | t</code>.</p>
+<p>Let's SSH to <strong>vSmart</strong> and do <code>show omp route vpn 1 10.100.100.0/24 | t</code>.</p>
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task2_Routes_4.png" width="800"/></p>
 <p>You will see 12 ECMP routes marked as <strong>C,R</strong> (Chosen,Resolved). Why 12? Because we have 4 DC wEdges each with 3 transports, so total 12 paths. </n></p>
 <p>The next question will be why there are only 4 paths on the remote wEdges? This is because the ECMP settings on the wEdge by default is set to 4. If you change it to 16 (currently 16, it will be increased to 128 in the future release), you will see all 12 paths. </n></p>
-<p><strong>Note: vSmart randomly selects 4 paths (or whatever the max ECMP value is set) and install on the device. In a  large deployment where multiple paths is more than 16 (before 128 paths is supported), this may pose problem.</strong></p>
+<p><span style="background-color:lightblue"> <strong>Note: vSmart randomly selects 4 paths (or whatever the max ECMP value is set) and install on the device. In a  large deployment where multiple paths is more than 16 (before 128 paths is supported), this may pose problem.</strong></p>
 <p>In this exercise we purposely keep the default ECMP setting and learn how to solve this issue with centralized policy.</p>
 <h4 id="step-22-create-a-topology-for-centralized-policy"><strong>Step 2.2.</strong> Create a topology for centralized policy</h4>
 <ul>
@@ -461,14 +461,14 @@
 <li>Under <strong>Match Conditions</strong>, selects <strong>DCs-BU1-TLOCs</strong> for <strong>TLOC List</strong> (this TLOC list has been pre-defined for you which includes all the TLOCs of DC1-WE1 and DC2-WE1</li>
 <li>Click <strong>Actions</strong>, change Actions to <strong>Accept</strong></li>
 <li>Click <strong>+Sequence Rule</strong>, select <strong>TLOC</strong></li>
-<li>under <strong>Match Conditions</strong>, selects <strong>RH</strong> for <strong>TLOC List</strong> (this TLOC list has been pre-defined for you which includes all the TLOCs of RH)</li>
+<li>under <strong>Match Conditions</strong>, selects <strong>RH-TLOCs</strong> for <strong>TLOC List</strong> (this TLOC list has been pre-defined for you which includes all the TLOCs of RH)</li>
 <li>Click <strong>Actions</strong>, change Actions to <strong>Accept</strong></li>
 </ul>
 </li>
 <li>Then click save Control Policy.</li>
 </ul>
 <p>This policy effectively allows R1-WE1 to build tunnels to all the DCs-BU1 devices (DC1-WE1 and DC2-WE1) as well as RH, nothing else as the default action is reject.</p>
-<p><img src="https://leitian123.github.io/holent2901/img/lab_task2_topo_3.png" width="800"/></p>
+<p><img src="https://leitian123.github.io/holent2901/img/lab_task2_topo_3.PNG" width="800"/></p>
 <ul>
 <li>Follow the above steps and create another topology for Remote2 with the following settings:<ul>
 <li>Name: <strong>LAB_Topo_RS2</strong></li>
@@ -482,14 +482,14 @@
 <li>Under <strong>Match Conditions</strong>, selects <strong>DCs-BU2-TLOCss</strong> for <strong>TLOC List</strong> (this TLOC list has been pre-defined for you which includes all the TLOCs of DC1-WE2 and DC2-WE2)</li>
 <li>Click <strong>Actions</strong>, change Actions to <strong>Accept</strong></li>
 <li>Click <strong>+Sequence Rule</strong>, select <strong>TLOC</strong></li>
-<li>under <strong>Match Conditions</strong>, selects <strong>RH</strong> for <strong>TLOC List</strong> (this TLOC list has been pre-defined for you which includes all the TLOCs of RH)</li>
+<li>under <strong>Match Conditions</strong>, selects <strong>RH-TLOCs</strong> for <strong>TLOC List</strong> (this TLOC list has been pre-defined for you which includes all the TLOCs of RH)</li>
 <li>Click <strong>Actions</strong>, change Actions to <strong>Accept</strong></li>
 </ul>
 </li>
 <li>Then click save Control Policy.</li>
 </ul>
 <p>This policy effectively allows R2-WE1 to build tunnels to all the DCs-BU1 devices (DC1-WE2 and DC2-WE2) as well as RH, nothing else as the default action is reject.</p>
-<p><img src="https://leitian123.github.io/holent2901/img/lab_task2_topo_5.png" width="800"/></p>
+<p><img src="https://leitian123.github.io/holent2901/img/lab_task2_topo_5.PNG" width="800"/></p>
 <h4 id="step-23-apply-the-topology-policy-to-centralized-policy"><strong>Step 2.3.</strong> Apply the topology policy to Centralized Policy</h4>
 <ul>
 <li>login vManage <strong>198.18.133.200</strong> and access policy configuration from <strong>Configuration - Policies</strong></li>
@@ -530,7 +530,7 @@ then click Save Policy</li>
 <ul>
 <li>
 <p>Make a new version of the topology policy.
-<strong>Note: In production network, it is always recommended to create a new version when you update your policy. So you can also change to the previous version as fallback plan.</strong></p>
+<span style="background-color:lightblue"> <strong>Note: In production network, it is always recommended to create a new version when you update your policy. So you can also change to the previous version as fallback plan.</strong></p>
 </li>
 <li>
 <p>login vManage <strong>198.18.133.200</strong> and access policy configuration from <strong>Configuration - Policies</strong></p>
@@ -552,7 +552,7 @@ then click Save Policy</li>
 </ul>
 </li>
 <li>Drag &amp; drop the newly created rules to move it ahead of previous accept all rule.
-<strong>Note: vSmart does the lookup based on the order, if it finds the match, it will use that rule and it won't look for subsequent rule any more.</strong></li>
+<span style="background-color:lightblue"> <strong>Note: vSmart does the lookup based on the order, if it finds the match, it will use that rule and it won't look for subsequent rule any more.</strong></li>
 <li>click Save policy.</li>
 </ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task3_routes_3.png" width="800"/></p>
@@ -565,7 +565,7 @@ then click Save Policy</li>
 <p>locate centralized policy <strong>LAB_Central_v01</strong>, click <strong>...</strong> and select <strong>Edit</strong></p>
 </li>
 </ul>
-<p><strong>Note: In production deployment, you always want to use the same practice of copying the current policy then apply it.</strong></p>
+<p><span style="background-color:lightblue"> <strong>Note: In production deployment, you always want to use the same practice of copying the current policy then apply it.</strong></p>
 <ul>
 <li>Under <strong>Topology</strong> tab, select <strong>LAB_Topo_RS1</strong>. Click <strong>...</strong> and select <strong>Detach</strong> to remove this topology.</li>
 </ul>
@@ -579,7 +579,7 @@ then click Save Policy</li>
 <li>Under <strong>LAB_Topo_RS1_V02 - Outbound Site List</strong>, click <strong>New Site List</strong> and select <strong>RS1</strong>.</li>
 <li>click <strong>ADD</strong>, Save Policy Changes to Activate.</li>
 </ul>
-<p><strong>Note: Outbound and Inbound are from vSmart perspective where outbound policy means how the routes are sent out from vSmart; inbound policy means how the routes are sent to the vSmart.</strong></p>
+<p><span style="background-color:lightblue"> <strong>Note: Outbound and Inbound are from vSmart perspective where outbound policy means how the routes are sent out from vSmart; inbound policy means how the routes are sent to the vSmart.</strong></p>
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task3_routes_6.png" width="800"/></p>
 <h4 id="step-34-verify-change-of-default-route"><strong>Step 3.4.</strong> Verify change of default route</h4>
 <ul>
@@ -590,7 +590,7 @@ then click Save Policy</li>
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task3_routes_7.png" width="800"/></p>
 <p>Let's check omp route table on the vSmart, SSH to vSmart and do <code>show omp route | t</code>. As you recall, the OMP routes don't have any changes either where 3 paths learned from RH marked with C,R due to routes originated from Static which are preferred over originated from iBGP. But why the outbound policy setting the routes originated from DC1-WE1 and DC2-WE1 doesn't work, <strong>this is because outbound policy will only look for the chosen routes with C.R by default, other routes without learned from DCs as they are not chosen without C,R</strong>, so those routes are not even going through the outbound policies. There are multiple way of changing this behavior such as using inbound policy or configure send-backup path, or make every route with C.R. We're not going over all the solutions.</p>
 <p>Let's configure an vSmart <strong>inbound policy</strong> to make the default routes from DCs have higher OMP preference than RH's.</p>
-<p><strong>Note: vSmart inbound policy may not be an ideal solution for the scenarios. It is recommended to use outbound policy only if an outbound policy can meet the requirements without additional inbound policy for its simplicity and full visibility of vSmart.</strong></p>
+<p><span style="background-color:lightblue"> <strong>Note: vSmart inbound policy may not be an ideal solution for the scenarios. It is recommended to use outbound policy only if an outbound policy can meet the requirements without additional inbound policy for its simplicity and full visibility of vSmart.</strong></p>
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task3_routes_8.png" width="800"/></p>
 <h4 id="step-35-create-new-topology"><strong>Step 3.5.</strong> Create new topology</h4>
 <ul>
@@ -624,7 +624,7 @@ then click Save Policy</li>
 <li>Click on <strong>Policy Application</strong>, click on <strong>New Site List</strong> under <strong>Inbound Site List</strong>, select <strong>DCs</strong>.</li>
 <li>Click on Add and <strong>Save Policy Changes</strong> to Activate.</li>
 </ul>
-<p><strong>Note: This time is an inbound policy where inbound policy controls how the vSmart are seeing the routes.</strong></p>
+<p><span style="background-color:lightblue"> <strong>Note: This time is an inbound policy where inbound policy controls how the vSmart are seeing the routes.</strong></p>
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task3_routes_11.png" width="800"/></p>
 <h4 id="step-36-verify"><strong>Step 3.6.</strong> verify</h4>
 <ul>
@@ -647,7 +647,7 @@ then click Save Policy</li>
 <li>locate newly created <strong>LAB_Topo_RS2_v02</strong>. click <strong>...</strong> select Edit</li>
 <li>Select <strong>TLOC</strong> as the Sequence Type, edit Rule1.</li>
 </ul>
-<p><strong>Note: We need to change the TLOC List from BU1 to BU2 as we'd like to use the BU2's functional hub which are DC1-WE2 and DC2-WE2 as the entry point for remote site 2(Remember remote site 2 represents the remote sites for BU2, where remote site 1 represents the remote sites for BU1).</strong></p>
+<p><span style="background-color:lightblue"> <strong>Note: We need to change the TLOC List from BU1 to BU2 as we'd like to use the BU2's functional hub which are DC1-WE2 and DC2-WE2 as the entry point for remote site 2(Remember remote site 2 represents the remote sites for BU2, where remote site 1 represents the remote sites for BU1).</strong></p>
 <ul>
 <li>Remove <strong>DCs-BU1-TLOCs</strong> by clicking the <strong>x</strong>, then select <strong>DCs-BU2-TLOCs</strong> and click <strong>Save Match and Actions</strong>.</li>
 </ul>
@@ -719,7 +719,7 @@ The specific routes from DC1 are tagged with 1000, from DC2 already tagged with 
 </ul>
 </li>
 <li>Dragging and Drop to move up the newly created rules ahead of the <strong>accept all</strong> rule. (if you follow the lab previously, the new rules should be No. 5, 6,7 and 8, match all rule should be rule No. 9)
-<strong>Note: vSmart does the lookup based upon the order, if it finds the match, it will use that rule and it won't look for subsequent rule.</strong></li>
+<span style="background-color:lightblue"> <strong>Note: vSmart does the lookup based upon the order, if it finds the match, it will use that rule and it won't look for subsequent rule.</strong></li>
 <li>click <strong>Save policy</strong> to Activate. This will make the vSmart to push the policy immediately after you confirm configuring devices
 <strong>This is expected, creating a new policy is a best practice otherwise updating the existing active policy will cause the immediate policy push.</strong></li>
 </ul>
@@ -796,7 +796,7 @@ You will see 10.100.100.0/0 is learned from 1.1.10.1; 10.200.200.0/24 is learned
 </ul>
 </li>
 <li>Dragging and Drop to move up the newly created rules ahead of the <strong>accept all</strong> rule. (if you follow the lab previously, the new rules should be No. 5, 6,7 and 8, match all rule should be rule No. 9)
-<strong>Note: vSmart does the lookup based upon the order, if it finds the match, it will use that rule and it won't look for subsequent rule.</strong></li>
+<span style="background-color:lightblue"> <strong>Note: vSmart does the lookup based upon the order, if it finds the match, it will use that rule and it won't look for subsequent rule.</strong></li>
 <li>click <strong>Save policy</strong> to Activate. This will make the vSmart to push the policy immediately after you confirm configuring devices
 <strong>This is expected, creating a new policy is a best practice otherwise updating the existing active policy will cause the immediate policy push.</strong></li>
 </ul>
