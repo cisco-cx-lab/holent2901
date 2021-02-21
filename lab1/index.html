@@ -426,7 +426,7 @@
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task2_Routes_2.png" width="800"/></p>
 <p>OMP is very much like BGP when it comes down to route preference. In the order of preference, there is a origin-protocol, in this case the default route learned on RH is from Static (by design, in real deployment, probably it's going to be BGP as well); whereas the default learned from DCs is from iBGP. Origin protocol static is more preferred than iBGP.</p>
 <p>Now, let's look at the specific routes learned from DC. Do <code>show sdwan omp route vpn 1 10.100.100.0/24</code> on <strong>R1-WE1</strong>.</p>
-<p><img src="https://leitian123.github.io/holent2901/img/lab_task2_Routes_3.PNG" width="800"/></p>
+<p><img src="https://leitian123.github.io/holent2901/img/lab_task2_Routes_3.png" width="800"/></p>
 <p><strong>Question: you will see 4 paths and one of the paths shows Inv,U. Hopefully you can answer why it's that. But why there are 4 paths?</strong></p>
 <p>Let's SSH to <strong>vSmart</strong> and do <code>show omp route vpn 1 10.100.100.0/24 | t</code>.</p>
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task2_Routes_4.png" width="800"/></p>
@@ -468,7 +468,7 @@
 <li>Then click save Control Policy.</li>
 </ul>
 <p>This policy effectively allows R1-WE1 to build tunnels to all the DCs-BU1 devices (DC1-WE1 and DC2-WE1) as well as RH, nothing else as the default action is reject.</p>
-<p><img src="https://leitian123.github.io/holent2901/img/lab_task2_topo_3.PNG" width="800"/></p>
+<p><img src="https://leitian123.github.io/holent2901/img/lab_task2_topo_3.png" width="800"/></p>
 <ul>
 <li>Follow the above steps and create another topology for Remote2 with the following settings:<ul>
 <li>Name: <strong>LAB_Topo_RS2</strong></li>
@@ -489,7 +489,7 @@
 <li>Then click save Control Policy.</li>
 </ul>
 <p>This policy effectively allows R2-WE1 to build tunnels to all the DCs-BU1 devices (DC1-WE2 and DC2-WE2) as well as RH, nothing else as the default action is reject.</p>
-<p><img src="https://leitian123.github.io/holent2901/img/lab_task2_topo_5.PNG" width="800"/></p>
+<p><img src="https://leitian123.github.io/holent2901/img/lab_task2_topo_5.png" width="800"/></p>
 <h4 id="step-23-apply-the-topology-policy-to-centralized-policy"><strong>Step 2.3.</strong> Apply the topology policy to Centralized Policy</h4>
 <ul>
 <li>login vManage <strong>198.18.133.200</strong> and access policy configuration from <strong>Configuration - Policies</strong></li>
@@ -640,12 +640,12 @@ then click Save Policy</li>
 <ul>
 <li>login vManage <strong>198.18.133.200</strong> and access policy configuration from <strong>Configuration - Policies</strong></li>
 <li>Click <strong>Custom Options</strong> on the upper right corner and select <strong>Topology</strong> under <strong>Centralized Policy</strong>.</li>
-<li>Locate <strong>LAB_Topo_RS1v02</strong> click <strong>...</strong> select copy and change Name and Description to <strong>LAB_Topo_RS2_v02</strong> then click Copy.</li>
+<li>Locate <strong>LAB_Topo_RS1_v02</strong> click <strong>...</strong> select copy and change Name and Description to <strong>LAB_Topo_RS2_v02</strong> then click Copy.</li>
 </ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task3_routes_14.png" width="800"/></p>
 <ul>
 <li>locate newly created <strong>LAB_Topo_RS2_v02</strong>. click <strong>...</strong> select Edit</li>
-<li>Select <strong>TLOC</strong> as the Sequence Type, edit Rule1.</li>
+<li>Select <strong>TLOC</strong> as the Sequence Type; select <strong>Rule1</strong> and click the pencil to <strong>Edit</strong>.</li>
 </ul>
 <p><span style="background-color:lightblue"> <strong>Note: We need to change the TLOC List from BU1 to BU2 as we'd like to use the BU2's functional hub which are DC1-WE2 and DC2-WE2 as the entry point for remote site 2(Remember remote site 2 represents the remote sites for BU2, where remote site 1 represents the remote sites for BU1).</strong></p>
 <ul>
@@ -653,7 +653,7 @@ then click Save Policy</li>
 </ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task3_TLOC_15.png" width="800"/></p>
 <ul>
-<li>Select <strong>Route</strong> as the <strong>Sequence Type</strong>, you need to change the <strong>originator</strong> from 1.1.10.1 and 1.1.20.2 to 1.1.10.2 and 1.1.20.2 respectively . By doing this, default route from DC1-WE2 and DC2-WE2 will have OMP preference of 100 sent to R2-WE2 site.</li>
+<li>Select <strong>Route</strong> as the <strong>Sequence Type</strong>, you need to change the <strong>originator</strong> from <strong>1.1.10.1</strong> to <strong>1.1.10.2</strong> and <strong>1.1.20.1</strong> to <strong>1.1.20.2</strong>. By doing this, default route from DC1-WE2 and DC2-WE2 will have OMP preference of 100 sent to R2-WE2 site.</li>
 </ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task3_routes_15.png" width="800"/></p>
 <ul>
