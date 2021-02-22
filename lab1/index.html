@@ -344,10 +344,16 @@
 <p>click <strong>Sequence Rule</strong> to create following two rules:</p>
 <ul>
 <li>Match <strong>community-list DC1_Routes</strong>, <strong>Accept</strong> and Set <strong>OMP Tag 1000</strong></li>
-<li>Match <strong>community-list DC2_Routes</strong>, <strong>Accept</strong> and Set <strong>OMP Tag 2000</strong>  </li>
-<li>Then click on <strong>Save Route Policy</strong></li>
+<li>Match <strong>community-list DC2_Routes</strong>, <strong>Accept</strong> and Set <strong>OMP Tag 2000</strong></li>
 </ul>
 </li>
+<li>
+<p>Click <strong>Default Action</strong> on the left panel, and change default <strong>Reject</strong> action to <strong>Accept</strong></p>
+</li>
+</ul>
+<p><img src="https://leitian123.github.io/holent2901/img/lab1_1_3_3.png" width="800"/></p>
+<ul>
+<li>Then click on <strong>Save Route Policy</strong></li>
 </ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task1_new_lp_3.png" width="800"/></p>
 <h4 id="step-14-creating-a-local-policy"><strong>Step 1.4</strong> Creating a Local Policy</h4>
@@ -544,15 +550,17 @@ then click Save Policy</li>
 <h4 id="step-32-edit-the-new-topology-policy"><strong>Step 3.2.</strong> Edit the new topology policy.</h4>
 <ul>
 <li>locate <strong>LAB_Topo_RS1_V02</strong> and click <strong>...</strong> select <strong>Edit</strong></li>
-<li>you are going to add two new rules<ul>
+<li>you are going to add four new rules<ul>
 <li>rule1: match default &amp; originator of 1.1.10.1(DC1-WE1) then accept and set preference of 100</li>
 <li>rule2: match default &amp; originator of 1.1.20.1(DC2-WE1) then accept and set preference of 100</li>
+<li>rule3: match default &amp; site-list RH then accept</li>
+<li>rule4: match default then reject</li>
 </ul>
 </li>
 <li>Drag &amp; drop the newly created rules to move it ahead of previous accept all rule.</li>
 </ul>
 <p><span style="background-color:lightblue"> <strong>Note: vSmart does the lookup based on the order, if it finds the match, it will use that rule and it won't look for subsequent rule any more.</strong>
-- click Save policy.</p>
+- click <strong>Save Control policy</strong>.</p>
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task3_routes_3.png" width="800"/></p>
 <h4 id="step-33-apply-the-policy"><strong>Step 3.3.</strong> Apply the policy</h4>
 <ul>
@@ -1144,7 +1152,7 @@ you should see traffic is taking private1</li>
 <li>Click <strong>Simulate</strong>
 you can see the traffic is dropped (in the lab, it will follow service side default route).</li>
 </ul>
-<p><img src="https://leitian123.github.io/holent2901/img/lab_task6_DP_9.PNG" width="800"/></p>
+<p><img src="https://leitian123.github.io/holent2901/img/lab_task6_DP_9.png" width="800"/></p>
 <ul>
 <li>Let's restore private1 and private2 link by changing the device values of RH-WE1 device template, uncheck the shutdown box of GigabitEthernet1 and 2.Update-&gt;Next-&gt;Configure Devices</li>
 </ul>

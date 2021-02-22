@@ -331,12 +331,14 @@
 <p><img src="https://leitian123.github.io/holent2901/img/lab2_2_2.PNG" width="800"/></p>
 <ul>
 <li>Click <strong>Custom Options</strong> on the upper right corner and select <strong>Topology</strong> under <strong>Centralized Policy</strong>.</li>
-<li>Select Topology policy <strong>LAB_Topo_RS2</strong> created in lab1, and click the <strong>"..."</strong> to Edit.</li>
+<li>Select Topology policy <strong>LAB_Topo_RS2_v02</strong> created in lab1, and click the <strong>"..."</strong> to Edit.</li>
 <li>Select <strong>Route</strong> under <strong>Sequence Type</strong> from the left.</li>
 </ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab2_2_3.PNG" width="800"/></p>
 <ul>
-<li>Click <strong>Sequence Rule</strong> to add new rule. For omp route that matches <strong>Legacy_prefix</strong> and <strong>private2</strong> color, set <strong>Preference</strong> 200.</li>
+<li>Click <strong>Sequence Rule</strong> to add new rule. Add <strong>Prefix List</strong> and <strong>Color List</strong> in Match conditions</li>
+<li>Under Match Conditions, select <strong>Legacy_prefix</strong> for <strong>Prefix List</strong> and <strong>private2</strong> for color list</li>
+<li>Click <strong>Actions</strong> to select <strong>Accept</strong>. click <strong>Preference</strong> set <strong>Preference</strong> 200.</li>
 </ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab2_2_4.PNG" width="800"/></p>
 <p><span style="background-color:Khaki"> <span style="background-color:lightblue"> <strong>Note: After save, move the new created rule to the top by drag and drop the sequence number left to the rule</strong>. </span></p>
