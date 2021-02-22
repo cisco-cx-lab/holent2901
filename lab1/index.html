@@ -528,13 +528,11 @@ then click Save Policy</li>
 <p>In this task. you will configure the central policy to prefer default route learned from DC over RH. You need to modify the Centralized policy so that the default route from DC has higher OMP preference over RH.</p>
 <h4 id="step-31-new-central-policy"><strong>Step 3.1.</strong>  New Central Policy</h4>
 <ul>
-<li>
-<p>Make a new version of the topology policy.
-<span style="background-color:lightblue"> <strong>Note: In production network, it is always recommended to create a new version when you update your policy. So you can also change to the previous version as fallback plan.</strong></p>
-</li>
-<li>
-<p>login vManage <strong>198.18.133.200</strong> and access policy configuration from <strong>Configuration - Policies</strong></p>
-</li>
+<li>Make a new version of the topology policy.</li>
+</ul>
+<p><span style="background-color:lightblue"> <strong>Note: In production network, it is always recommended to create a new version when you update your policy. So you can also change to the previous version as fallback plan.</strong></p>
+<ul>
+<li>login vManage <strong>198.18.133.200</strong> and access policy configuration from <strong>Configuration - Policies</strong></li>
 <li>Click <strong>Custom Options</strong> drop down on the top right and select <strong>Topology</strong> under <strong>Centralized Policy</strong></li>
 <li>Locate policy <strong>LAB_Topo_RS1</strong>, click <strong>...</strong> and select <strong>Copy</strong>.</li>
 </ul>
@@ -551,10 +549,10 @@ then click Save Policy</li>
 <li>rule2: match default &amp; originator of 1.1.20.1(DC2-WE1) then accept and set preference of 100</li>
 </ul>
 </li>
-<li>Drag &amp; drop the newly created rules to move it ahead of previous accept all rule.
-<span style="background-color:lightblue"> <strong>Note: vSmart does the lookup based on the order, if it finds the match, it will use that rule and it won't look for subsequent rule any more.</strong></li>
-<li>click Save policy.</li>
+<li>Drag &amp; drop the newly created rules to move it ahead of previous accept all rule.</li>
 </ul>
+<p><span style="background-color:lightblue"> <strong>Note: vSmart does the lookup based on the order, if it finds the match, it will use that rule and it won't look for subsequent rule any more.</strong>
+- click Save policy.</p>
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task3_routes_3.png" width="800"/></p>
 <h4 id="step-33-apply-the-policy"><strong>Step 3.3.</strong> Apply the policy</h4>
 <ul>
@@ -718,11 +716,13 @@ The specific routes from DC1 are tagged with 1000, from DC2 already tagged with 
 <li>Click <strong>Save Match And Actions</strong></li>
 </ul>
 </li>
-<li>Dragging and Drop to move up the newly created rules ahead of the <strong>accept all</strong> rule. (if you follow the lab previously, the new rules should be No. 5, 6,7 and 8, match all rule should be rule No. 9)
-<span style="background-color:lightblue"> <strong>Note: vSmart does the lookup based upon the order, if it finds the match, it will use that rule and it won't look for subsequent rule.</strong></li>
-<li>click <strong>Save policy</strong> to Activate. This will make the vSmart to push the policy immediately after you confirm configuring devices
-<strong>This is expected, creating a new policy is a best practice otherwise updating the existing active policy will cause the immediate policy push.</strong></li>
+<li>Dragging and Drop to move up the newly created rules ahead of the <strong>accept all</strong> rule. (if you follow the lab previously, the new rules should be No. 5, 6,7 and 8, match all rule should be rule No. 9)</li>
 </ul>
+<p><span style="background-color:lightblue"> <strong>Note: vSmart does the lookup based upon the order, if it finds the match, it will use that rule and it won't look for subsequent rule.</strong></p>
+<ul>
+<li>click <strong>Save policy</strong> to Activate. This will make the vSmart to push the policy immediately after you confirm configuring devices</li>
+</ul>
+<p><strong>This is expected, creating a new policy is a best practice otherwise updating the existing active policy will cause the immediate policy push.</strong></p>
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task4_routes_1.png" width="800"/></p>
 <ul>
 <li>To verify, SSH to <strong>R1-WE1</strong> and run <code>show sdwan omp route vpn 1</code></li>
@@ -965,14 +965,14 @@ This setting will make LTE last-resort which means the interface will go down, a
 <li>Click <strong>Simulate</strong></li>
 </ul>
 <p>You should see the traffic is only taking the private1 path which means it's using private1 as the preferred transport.</p>
-<p><img src="https://leitian123.github.io/holent2901/img/lab_task5_AAR_10.png" width="800"/></p>
+<p><img src="https://leitian123.github.io/holent2901/img/lab_task5_AAR_10.PNG" width="800"/></p>
 <p>Do another simulation, this time change the destination port to 23, everything else remains the same.</p>
 <p>You should see the traffic will use both <strong>private1</strong> and <strong>private2</strong> which means it uses all available circuits for all other traffic.
-<img src="https://leitian123.github.io/holent2901/img/lab_task5_AAR_11.png" width="800"/></p>
+<img src="https://leitian123.github.io/holent2901/img/lab_task5_AAR_11.PNG" width="800"/></p>
 <ul>
 <li>Now let's shutdown the private1 interface of the RH-WE1 and verify again.</li>
 <li>Access template configuration from <strong>Configuration - Templates</strong></li>
-<li>Locate deice template <strong>Lab-RH-V01</strong>, click <strong>...</strong> and select <strong>Change Device Values</strong></li>
+<li>Locate deice template <strong>Lab_RH_V01</strong>, click <strong>...</strong> and select <strong>Change Device Values</strong></li>
 <li>click <strong>...</strong> to select <strong>Edit Device Template</strong></li>
 <li>select the <strong>Shutdown(vpn_if_interface)</strong> checkbox under <strong>GigabitEthernet1</strong></li>
 <li>click Update -&gt; next to trigger the configure change.</li>
@@ -1002,9 +1002,9 @@ This setting will make LTE last-resort which means the interface will go down, a
 <p>You should see the traffic is only taking the private2 path now as private2 is the only one available.</p>
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task5_AAR_13.png" width="800"/></p>
 <ul>
-<li>Let's shutdown private2 interface and erify again</li>
+<li>Let's shutdown private2 interface and verify again</li>
 <li>Access template configuration from <strong>Configuration - Templates</strong></li>
-<li>Locate deice template <strong>Lab-RH-V01</strong>, click <strong>...</strong> and select <strong>Change Device Values</strong></li>
+<li>Locate deice template <strong>Lab_RH_V01</strong>, click <strong>...</strong> and select <strong>Change Device Values</strong></li>
 <li>click <strong>...</strong> to select <strong>Edit Device Template</strong></li>
 <li>select the <strong>Shutdown(vpn_if_interface)</strong> checkbox under <strong>GigabitEthernet2</strong></li>
 <li>
@@ -1104,7 +1104,7 @@ This setting will make LTE last-resort which means the interface will go down, a
 <li>VPN: <strong>VPN-1</strong></li>
 <li>Source/Interface for VPN-1: <strong>Gigabiethernet4 - ipv4 - 10.10.30.2</strong></li>
 <li>Source IP: <strong>10.10.30.2</strong></li>
-<li>Destination IP: <strong>10.100.101.1</strong> (this is remote site1's VPN1 interface IP)</li>
+<li>Destination IP: <strong>10.10.101.1</strong> (this is remote site1's VPN1 interface IP)</li>
 <li>Click on <strong>Advanced Options</strong>:</li>
 <li>Protocol: 1 (ICMP)</li>
 <li>All Paths: Checked</li>
@@ -1122,7 +1122,7 @@ you should see traffic is taking private1</li>
 <ul>
 <li>Let's shutdown both private1 and private2 interface and verify again</li>
 <li>Access template configuration from <strong>Configuration - Templates</strong></li>
-<li>Locate deice template <strong>Lab-RH-V01</strong>, click <strong>...</strong> and select <strong>Change Device Values</strong></li>
+<li>Locate deice template <strong>Lab_RH_V01</strong>, click <strong>...</strong> and select <strong>Change Device Values</strong></li>
 <li>click <strong>...</strong> to select <strong>Edit Device Template</strong></li>
 <li>select the <strong>Shutdown(vpn_if_interface)</strong> checkbox under <strong>GigabitEthernet1</strong></li>
 <li>select the <strong>Shutdown(vpn_if_interface)</strong> checkbox under <strong>GigabitEthernet2</strong></li>
@@ -1142,9 +1142,9 @@ you should see traffic is taking private1</li>
 </ul>
 </li>
 <li>Click <strong>Simulate</strong>
-you can see the traffic is blockholed.</li>
+you can see the traffic is dropped (in the lab, it will follow service side default route).</li>
 </ul>
-<p><img src="https://leitian123.github.io/holent2901/img/lab_task6_DP_9.png" width="800"/></p>
+<p><img src="https://leitian123.github.io/holent2901/img/lab_task6_DP_9.PNG" width="800"/></p>
 <ul>
 <li>Let's restore private1 and private2 link by changing the device values of RH-WE1 device template, uncheck the shutdown box of GigabitEthernet1 and 2.Update-&gt;Next-&gt;Configure Devices</li>
 </ul>
@@ -1169,6 +1169,18 @@ you can see the traffic is blockholed.</li>
 <p>you should see traffic is taking both private1 &amp; private2.</p>
 <p><strong>Question: In the previous AAR lab says private1 should be preferred, and we have verified that behavior earlier. Why this is taking both private1 and private2 now?</strong></p>
 <p>This is because our Data Policy says TCP traffic can use all the colors, when you have both AAR and Data Policy configured, Data Policy will take the final decision. You have to be careful with that when designing your AAR and DP. Avoid having both configured for the same application on same sites.</p>
+<p><span style="background-color:lightblue"> <strong>Note: In later sections of the lab, you will need to use LTE interface and central data policy. Please disable last-resort on LTE of RH-WE1. Also detach data policy LAB1_DP_V01</strong></p>
+<ul>
+<li>Access policy configuration from <strong>Configuration - Policies</strong></li>
+<li>Locate <strong>LAB_Central_v02</strong> click <strong>...</strong> for more option and select <strong>Edit</strong></li>
+<li>Click <strong>Traffic Rules</strong> and select <strong>Traffic Data</strong></li>
+<li>select <strong>LAB1_DP_V01</strong> click <strong>...</strong> for more option and select <strong>Detach</strong></li>
+<li>click <strong>Save Policy Changes</strong> to Activate</li>
+<li>Access template configuration from <strong>Configuration - Templates</strong></li>
+<li>Under <strong>Feature</strong> template tab, locate template <strong>Lab_RH_VPN0_LTE_V01</strong> and select <strong>Edit</strong></li>
+<li>Under <strong>Tunnel</strong> section, expand <strong>Advanced Options</strong>; change <strong>Last-Resort Circuit</strong> settings to <strong>Off</strong></li>
+<li>Click <strong>Update</strong> to push configure change</li>
+</ul>
 <p><a href="JAVASCRIPT:scroll(0,0)" style="color:blue">Back to Top</a></p>
               
             </div>
