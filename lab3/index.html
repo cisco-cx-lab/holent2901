@@ -386,17 +386,19 @@
 </ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab3_1_2_1.PNG" width="800"/></p>
 <ul>
+<li>Enter <strong>Lab_QoS_v01</strong> in <strong>Name</strong> and <strong>Description</strong></li>
 <li>Click <strong>+Sequence Type</strong> and select <strong>QoS</strong> for new data policy type</li>
-<li>
-<p>Add <strong>+Sequence Rule</strong> to match on <strong>Application/Application Family List</strong>; Action <strong>Accept</strong> and assign to <strong>Forwarding Class</strong></p>
-</li>
-<li>
-<p>Configure the data policy to match on application list,  assign to forwarding class and DSCP value as show below.</p>
+<li>Add <strong>+Sequence Rule</strong> for following Match Conditions and Actions<ul>
+<li>Application/Application Family List: <strong>REALTIME</strong>, Action <strong>Accept</strong> and Forwarding Class: <strong>REALTIME</strong></li>
+<li>Application/Application Family List: <strong>SIGNALING</strong>, Action <strong>Accept</strong> and Forwarding Class: <strong>SIGNALING</strong>    </li>
+<li>Application/Application Family List: <strong>CRITICAL</strong>, Action <strong>Accept</strong> and Forwarding Class: <strong>CRITICAL</strong></li>
+<li>Default Match Conditions (match any): Forwarding Class: <strong>DEFAULT</strong></li>
+</ul>
 </li>
 </ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab3_1_2_2.PNG" width="800"/></p>
 <ul>
-<li>After <strong>Save Data Policy</strong>, go back to the <strong>Centralized Policy</strong> configuration and edit central policy <strong>LAB_Central_V01</strong></li>
+<li>After <strong>Save Data Policy</strong>, go back to the <strong>Centralized Policy</strong> configuration and edit central policy <strong>LAB_Central_V02</strong></li>
 </ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab3_1_2_3.PNG" width="800"/></p>
 <ul>
@@ -447,7 +449,8 @@
 <li>Click <strong>Localized Policy</strong> tab and <strong>Add Policy</strong></li>
 <li>Click <strong>Next</strong> move to <strong>configure Forwarding Classes/QoS</strong></li>
 <li>Click <strong>Add QoS Map</strong> drop down and select import existing. Search <strong>Lab_QoS_Map_v01</strong> and Import.</li>
-<li>Click next to pass ACL and route policy config. On Policy Overview, give a nme for the local policy and check <strong>Application</strong> at the bottom from Policy Settings.</li>
+<li>Click next to pass ACL and route policy config. On Policy Overview, Type <strong>LAB_Remote_Local_v01</strong> in Policy Name and Description filed.</li>
+<li>Check <strong>Application</strong> at the bottom from Policy Settings and <strong>Save Policy</strong></li>
 </ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab3_1_3_5.PNG" width="800"/></p>
 <h4 id="step14-apply-qos-queuing-policy">Step1.4: Apply QoS queuing policy</h4>
@@ -460,7 +463,7 @@
 <p><img src="https://leitian123.github.io/holent2901/img/lab3_1_4_1.PNG" width="800"/></p>
 <ul>
 <li>Click <strong>Update</strong> to push the new localized policy configuration.</li>
-<li>Repeat the above steps for template <strong>Lab_R2_V01</strong></li>
+<li>Repeat the above steps to associate policy for template <strong>Lab_R2_V01</strong></li>
 </ul>
 <p>Now you have the localized policy associated with device template for both remotes. Next you need reference the queueing policy on transport interfaces.</p>
 <ul>
@@ -636,7 +639,7 @@ src-addr                 dst-addr                 sport   dport   proto remote-t
 <p>Click <strong>Custom Options</strong> drop down on the top right and select <strong>Topology</strong> under <strong>Centralized Policy</strong></p>
 </li>
 <li>
-<p>Highlight topology policy <strong>LAB_Topo_RS1</strong> and select <strong>Edit</strong></p>
+<p>Highlight topology policy <strong>LAB_Topo_RS1_V02</strong> and select <strong>Edit</strong></p>
 </li>
 <li>Click <strong>TLOC</strong> from <strong>Sequence Type</strong> on the left</li>
 <li>
@@ -648,7 +651,7 @@ src-addr                 dst-addr                 sport   dport   proto remote-t
 <p><img src="https://leitian123.github.io/holent2901/img/lab3_3_1_1.PNG" width="800"/></p>
 </li>
 <li>
-<p>Click <strong>Sequence Rule</strong> to add a new rule; configure the rule to match on site list <strong>All-Remotes</strong>, Actions TLOC list <strong>RH-Tlocs</strong> and TLOC Action <strong>Backup</strong>.</p>
+<p>Click <strong>Sequence Rule</strong> to add a new rule; configure the rule to match on site list <strong>All-Remotes</strong>, Actions TLOC list <strong>RH-TLOCs</strong> and TLOC Action <strong>Backup</strong>.</p>
 <p><img src="https://leitian123.github.io/holent2901/img/lab3_3_1_2.PNG" width="800"/></p>
 </li>
 <li>
@@ -657,7 +660,12 @@ src-addr                 dst-addr                 sport   dport   proto remote-t
 </ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab3_3_1_3.PNG" width="800"/></p>
 <ul>
-<li>Follow the same steps to modify topology policy <strong>LAB_Topo_RS2</strong>.</li>
+<li>
+<p>click <strong>Save Control Policy</strong> to push policy update</p>
+</li>
+<li>
+<p>Follow the same steps to modify topology policy <strong>LAB_Topo_RS2_v02</strong>.</p>
+</li>
 </ul>
 <h4 id="step32-configure-on-demand-tunnel">Step3.2: Configure On-demand Tunnel</h4>
 <p>Enable Traffic Engineering service on RH to allow RH becomes backup path.</p>
@@ -803,19 +811,54 @@ Antireplay window size = 512
 </ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab3_4_1_1.PNG" width="800"/></p>
 <ul>
-<li>Configure the template with following fields and leave other fields as default value
-|filed name|value|
-|---|---|
-|Template Name|Lab_IPsec_Int_V01|
-|Description|Lab_IPsec_Int_V01|
-|Shutdown|No|
-|Interface Name|ipsec1|
-|IPv4 address|ipsec_tun_ip|
-|source|Interface|
-|IPsec Source Interface|GigabitEthernet2|
-|IPsec Destination IP Address|172.3.2.2|
-|Preshared Key|cisco123|</li>
+<li>Configure the template with following fields and leave other fields as default value</li>
 </ul>
+<table>
+<thead>
+<tr>
+<th>filed name</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Template Name</td>
+<td>Lab_IPsec_Int_V01</td>
+</tr>
+<tr>
+<td>Description</td>
+<td>Lab_IPsec_Int_V01</td>
+</tr>
+<tr>
+<td>Shutdown</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Interface Name</td>
+<td>ipsec1</td>
+</tr>
+<tr>
+<td>IPv4 address</td>
+<td>ipsec_tun_ip</td>
+</tr>
+<tr>
+<td>source</td>
+<td>Interface</td>
+</tr>
+<tr>
+<td>IPsec Source Interface</td>
+<td>GigabitEthernet2</td>
+</tr>
+<tr>
+<td>IPsec Destination IP Address</td>
+<td>172.3.2.2</td>
+</tr>
+<tr>
+<td>Preshared Key</td>
+<td>cisco123</td>
+</tr>
+</tbody>
+</table>
 <p><img src="https://leitian123.github.io/holent2901/img/lab3_4_1_2.PNG" width="800"/></p>
 <ul>
 <li>Add tunnel feature template <strong>Lab_IPsec_Int_V01</strong> to device template <strong>Lab_R1_V01</strong> and <strong>Lab_R2_V01</strong></li>
