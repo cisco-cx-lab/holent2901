@@ -999,7 +999,7 @@ traceroute to 1.1.1.1 (1.1.1.1), 30 hops max, 60 byte packets
 </li>
 <li>Add this VPN route and update template to push configure change</li>
 </ul>
-<p><img src="https://leitian123.github.io/holent2901/img/lab3_5_2_1.png" width="800"/></p>
+<p><img src="https://leitian123.github.io/holent2901/img/lab3_5_2_1.PNG" width="800"/></p>
 <ul>
 <li>ssh into remote1_ubuntu and run <code>traceroute 1.1.1.1</code> to verify the change</li>
 </ul>
@@ -1013,7 +1013,7 @@ traceroute to 1.1.1.1 (1.1.1.1), 30 hops max, 60 byte packets
 </code></pre>
 
 <ul>
-<li>instead of using DC for internet bound traffic, now remote sites uses local DIA </li>
+<li>From the traceroute you can see the remote site now uses local DIA for internet bound traffic.</li>
 </ul>
 <h2 id="task-6-cor-for-saas">Task 6: CoR for SaaS</h2>
 <p>Instead of using the DIA exit point as configured in previous task, for SaaS application box and salesforce, ACME wants to use the most optimal path. Configure the remote sites to dynamically chose local DIA or regional hub as exit point for box and salesforce based on application performance.</p>
