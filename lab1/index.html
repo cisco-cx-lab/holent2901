@@ -299,7 +299,7 @@
 <p>In this section, you will help ACME on advanced routing using local and central policy. You will perform the following tasks.</p>
 <ul>
 <li>
-<p>ACME DC routers have already tagged all the routes originated from DC1 with BGP community of 65010:1000; all the routes originated from DC2 with BGP community of 65020:2000. <strong>Please configure a route-policy to ensure default route (0.0.0.0/0) coming from DC to set an OMP tag of 100.</strong> For DC1 routes, setting an OMP tag of <strong>1000</strong>; for DC2 routes, setting an OMP tag of <strong>2000</strong>. (Lab_Task 1)</p>
+<p>ACME DC routers have already tagged all the routes originated from DC1 with BGP community of 65010:1000; all the routes originated from DC2 with BGP community of 65020:2000. <strong>Please configure a route-policy to ensure default route (0.0.0.0/0) coming from both DCs to set an OMP tag of 100.</strong> For DC1 routes, setting an OMP tag of <strong>1000</strong>; for DC2 routes, setting an OMP tag of <strong>2000</strong>. (Lab_Task 1)</p>
 </li>
 <li>
 <p>ACME wants to have a <strong>hub &amp; spoke topology between Remotes and DCs as well between Remotes and Regional hubs</strong>. Hub &amp; spoke topology will scale more by reducing NO. of tunnels required on the devices. (Lab_Task 2)</p>
@@ -314,14 +314,15 @@
 <p>Remotes sites receive more specific routes from both DCs, <strong>routes originated from local DC are preferred</strong>, if one DC goes down, it will use the routes from another DC as backup. In another words, from remote sites perspective, previously routes tagged with 1000 will prefer DC1; routes tagged with 2000 will prefer DC2.(Lab_Task 4)</p>
 </li>
 <li>
-<p>For remote sites to any other regional routes are forced to go through DC’s functional hub. For <strong>remote site1, it goes through WE1 in DC1 and DC2</strong>; for <strong>remote site 2, it goes through WE2 in DC1 and DC2</strong>.(Lab_Task 4)</p>
+<p>For remote sites to any other region, routes are forced to go through DC’s functional hub. For <strong>remote site1, it goes through WE1 in DC1 and DC2</strong>; for <strong>remote site 2, it goes through WE2 in DC1 and DC2</strong>.(Lab_Task 4)</p>
 </li>
 </ul>
-<p><span style="background-color:lightblue"> <span style="background-color:lightblue"> <strong>Note: In these lab exercises, it's possible that there are multiple ways to achieve the requirements. The lab guide provides a detailed step by step instruction for each taks. However you're welcomed to solve it with your own solution. Just be mindful with the time.</strong> </span></p>
+<p><span style="background-color:lightblue"> <span style="background-color:lightblue"> <strong>Note: In these lab exercises, it's possible that there are multiple ways to achieve the requirements. The lab guide provides a detailed step by step instruction for each tasks. However you're welcome to solve it with your own solution. Just be mindful with the time.</strong> </span></p>
 <h2 id="task-1-local-route-policy">Task 1: Local Route Policy</h2>
+<p>In this section, you are going to use localized policy to assign a <strong>tag</strong> for DC specific route as well default route. In later section you are going to create policy based on the <strong>tag</strong>.</p>
 <h4 id="step-11-verification-of-the-routes-received-on-dc-wes"><strong>Step 1.1</strong> Verification of the routes received on DC WEs.</h4>
 <ul>
-<li>SSH to <strong>DC1-WE1</strong> (repeat the same on DC1-WE2,DC2-WE1,DC2-WE2,R1-WE1 and R2-WE2 as well) and do <code>show ip route vrf 1</code> and make sure <strong>10.100.100.0/24, 10.200.200/24</strong> as well as <strong>0.0.0.0/0</strong> learned via BGP.</li>
+<li>SSH to <strong>DC1-WE1, DC1-WE2, DC2-WE1,DC2-WE2</strong> and do <code>show ip route vrf 1</code> and make sure <strong>10.100.100.0/24, 10.200.200/24</strong> as well as <strong>0.0.0.0/0</strong> learned via BGP.</li>
 </ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task1_iproute.png" width="800"/></p>
 <h4 id="step-12-verify-the-bgp-communities"><strong>Step 1.2</strong> Verify the BGP communities.</h4>
@@ -331,7 +332,7 @@
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task1_bgpcommunity.png" width="800"/></p>
 <h4 id="step-13-set-omp-tag-for-dc-specific-routes"><strong>Step 1.3</strong> set OMP tag for DC specific Routes</h4>
 <ul>
-<li>login vManage <strong>198.18.133.200</strong> and access policy configuration from <strong>Configuration - Policies</strong></li>
+<li>Log in to vManage <strong>https://198.18.133.200:8443</strong> and access policy configuration from <strong>Configuration - Policies</strong></li>
 <li>Click <strong>Custom Options</strong> drop down on the top right and select <strong>Route Policy</strong> under <strong>Localized Policy</strong></li>
 <li>
 <p>Click <strong>Add Route Policy</strong> to Create new</p>
@@ -366,7 +367,7 @@
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task1_new_lp_3.png" width="800"/></p>
 <h4 id="step-14-creating-a-local-policy"><strong>Step 1.4</strong> Creating a Local Policy</h4>
 <ul>
-<li>login vManage <strong>198.18.133.200</strong> and access policy configuration from <strong>Configuration - Policies</strong></li>
+<li>Log in to vManage <strong>198.18.133.200</strong> and access policy configuration from <strong>Configuration - Policies</strong></li>
 <li>Click on <strong>Localized Policy</strong>, then click on <strong>Add Policy</strong></li>
 </ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task1_new_lp_4.png" width="800"/></p>
@@ -428,6 +429,7 @@
 </ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task1_bgp_ft_5.png" width="800"/></p>
 <h2 id="task-2-hub-spoke-topologies">Task 2: Hub &amp; Spoke Topologies</h2>
+<p>In this section, you are going to use centralized policy to build hub &amp; spoke topology, with the hub and both DCs as well RH.</p>
 <h4 id="step-21-pre-config-verifications"><strong>Step 2.1.</strong> Pre-config verifications</h4>
 <ul>
 <li>SSH to <strong>R1-WE1</strong> and do <code>show sdwan omp route vpn 1</code></li>
@@ -451,7 +453,7 @@
 <h4 id="step-22-create-a-topology-for-centralized-policy"><strong>Step 2.2.</strong> Create a topology for centralized policy</h4>
 <ul>
 <li>
-<p>login vManage <strong>198.18.133.200</strong> and access policy configuration from <strong>Configuration - Policies</strong></p>
+<p>Log in to vManage <strong>198.18.133.200</strong> and access policy configuration from <strong>Configuration - Policies</strong></p>
 </li>
 <li>
 <p>Click <strong>Custom Options</strong> drop down on the top right and select <strong>Topology</strong> under <strong>Centralized Policy</strong></p>
@@ -506,7 +508,7 @@
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task2_topo_5.png" width="800"/></p>
 <h4 id="step-23-apply-the-topology-policy-to-centralized-policy"><strong>Step 2.3.</strong> Apply the topology policy to Centralized Policy</h4>
 <ul>
-<li>login vManage <strong>198.18.133.200</strong> and access policy configuration from <strong>Configuration - Policies</strong></li>
+<li>Log in to vManage <strong>198.18.133.200</strong> and access policy configuration from <strong>Configuration - Policies</strong></li>
 <li>Click <strong>Add Policy</strong> under <strong>Centralized Policy</strong></li>
 <li>Click next, you will see Configure Topology and VPN membership - Click <strong>Add topology</strong>, select <strong>Import Existing Topology</strong></li>
 <li>Click <strong>Custom Control(Route and TLOC)</strong>, select <strong>LAB_Topo_RS1</strong></li>
@@ -528,7 +530,7 @@ then click Save Policy</li>
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task2_topo_8.png" width="800"/></p>
 <h4 id="step-24-activate-the-first-centralized-policy"><strong>Step 2.4.</strong> Activate the first Centralized Policy</h4>
 <ul>
-<li>login vManage <strong>198.18.133.200</strong> and access policy configuration from <strong>Configuration - Policies - Centralized Policy</strong></li>
+<li>Log in to vManage <strong>198.18.133.200</strong> and access policy configuration from <strong>Configuration - Policies - Centralized Policy</strong></li>
 <li>locate policy <strong>LAB_Centeral_v01</strong> you have created in previous step. Click <strong>...</strong> for more option and select <strong>Activate</strong>. The policy will be pushed to vSmarts.</li>
 </ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task2_topo_9.png" width="800"/></p>
@@ -546,7 +548,7 @@ then click Save Policy</li>
 </ul>
 <p><span style="background-color:lightblue"> <strong>Note: In production network, it is always recommended to create a new version when you update your policy. So you can also change to the previous version as fallback plan.</strong></p>
 <ul>
-<li>login vManage <strong>198.18.133.200</strong> and access policy configuration from <strong>Configuration - Policies</strong></li>
+<li>Log in to vManage <strong>198.18.133.200</strong> and access policy configuration from <strong>Configuration - Policies</strong></li>
 <li>Click <strong>Custom Options</strong> drop down on the top right and select <strong>Topology</strong> under <strong>Centralized Policy</strong></li>
 <li>Locate policy <strong>LAB_Topo_RS1</strong>, click <strong>...</strong> and select <strong>Copy</strong>.</li>
 </ul>
@@ -557,12 +559,16 @@ then click Save Policy</li>
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task3_routes_2.png" width="800"/></p>
 <h4 id="step-32-edit-the-new-topology-policy"><strong>Step 3.2.</strong> Edit the new topology policy.</h4>
 <ul>
+<li>Click <strong>Custom Options</strong> drop down on the top right and select <strong>Topology</strong> under <strong>Centralized Policy</strong></li>
 <li>locate <strong>LAB_Topo_RS1_V02</strong> and click <strong>...</strong> select <strong>Edit</strong></li>
+</ul>
+<p><span style="background-color:lightblue"> <strong>Note: there is one existing accept all rule; you don't need to change that accept all rule but you need make sure place new rule ahead of this accept all rule.</strong></p>
+<ul>
 <li>you are going to add four new rules<ul>
 <li>rule1: match default &amp; originator of 1.1.10.1(DC1-WE1) then accept and set preference of 100</li>
 <li>rule2: match default &amp; originator of 1.1.20.1(DC2-WE1) then accept and set preference of 100</li>
-<li>rule3: match default &amp; site-list RH then accept</li>
-<li>rule4: match default then reject</li>
+<li>rule3: match default &amp; site-list <strong>RH</strong> then <strong>accept</strong></li>
+<li>rule4: match default then <strong>reject</strong></li>
 </ul>
 </li>
 <li>Drag &amp; drop the newly created rules to move it ahead of previous accept all rule.</li>
@@ -573,7 +579,7 @@ then click Save Policy</li>
 <h4 id="step-33-apply-the-policy"><strong>Step 3.3.</strong> Apply the policy</h4>
 <ul>
 <li>
-<p>login vManage <strong>198.18.133.200</strong> and access policy configuration from <strong>Configuration - Policies</strong></p>
+<p>Log in to vManage <strong>198.18.133.200</strong> and access policy configuration from <strong>Configuration - Policies</strong></p>
 </li>
 <li>
 <p>locate centralized policy <strong>LAB_Central_v01</strong>, click <strong>...</strong> and select <strong>Edit</strong></p>
@@ -608,7 +614,7 @@ then click Save Policy</li>
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task3_routes_8.png" width="800"/></p>
 <h4 id="step-35-create-new-topology"><strong>Step 3.5.</strong> Create new topology</h4>
 <ul>
-<li>login vManage <strong>198.18.133.200</strong> and access policy configuration from <strong>Configuration - Policies</strong></li>
+<li>Log in to vManage <strong>198.18.133.200</strong> and access policy configuration from <strong>Configuration - Policies</strong></li>
 <li>Click <strong>Custom Options</strong> on the upper right corner and select <strong>Topology</strong> under <strong>Centralized Policy</strong>.</li>
 <li>Click <strong>Add Topology</strong> and select <strong>Custom Control(Route&amp;TLOC)</strong></li>
 <li>Configure the new policy with following setting<ul>
@@ -628,7 +634,7 @@ then click Save Policy</li>
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task3_routes_9.png" width="800"/></p>
 <ul>
 <li>Apply this new topology to the current policy.</li>
-<li>login vManage <strong>198.18.133.200</strong> and access policy configuration from <strong>Configuration - Policies</strong></li>
+<li>Log in to vManage <strong>198.18.133.200</strong> and access policy configuration from <strong>Configuration - Policies</strong></li>
 <li>locate <strong>LAB_Central_v01</strong> and select <strong>Edit</strong></li>
 <li>Click Topology tab and click <strong>Add Topology</strong></li>
 <li>Select <strong>Import Existing Topology</strong> and select <strong>Custom Control( Route and TLOC)</strong> Policy Type then select <strong>default_route_from_DC</strong> from drop down; click Import.</li>
@@ -652,7 +658,7 @@ then click Save Policy</li>
 <p><strong>Well done! You have finished the default route handling task for R1-WE1.Let's do the same policy for R2-WE1.</strong></p>
 <h4 id="step-37-create-topology-policy-for-remote2"><strong>Step 3.7.</strong> Create topology policy for Remote2</h4>
 <ul>
-<li>login vManage <strong>198.18.133.200</strong> and access policy configuration from <strong>Configuration - Policies</strong></li>
+<li>Log in to vManage <strong>198.18.133.200</strong> and access policy configuration from <strong>Configuration - Policies</strong></li>
 <li>Click <strong>Custom Options</strong> on the upper right corner and select <strong>Topology</strong> under <strong>Centralized Policy</strong>.</li>
 <li>Locate <strong>LAB_Topo_RS1_v02</strong> click <strong>...</strong> select copy and change Name and Description to <strong>LAB_Topo_RS2_v02</strong> then click Copy.</li>
 </ul>
@@ -700,7 +706,7 @@ then click Save Policy</li>
 The specific routes from DC1 are tagged with 1000, from DC2 already tagged with 2000 in previous task. In this section, you are going to create different policies for BU1 and BU2 sites and set different OMP preference based on OMP tag.</p>
 <h4 id="step41-modify-topology-policy-for-remote1">Step4.1: Modify Topology policy for remote1</h4>
 <ul>
-<li>login vManage <strong>198.18.133.200</strong> and access policy configuration from <strong>Configuration - Policies</strong></li>
+<li>Log in to vManage <strong>198.18.133.200</strong> and access policy configuration from <strong>Configuration - Policies</strong></li>
 <li>Click <strong>Custom Options</strong> on the upper right corner and select <strong>Topology</strong> under <strong>Centralized Policy</strong>.</li>
 <li>locate topology <strong>LAB_Topo_RS1_V02</strong>. click <strong>...</strong> and select <strong>Edit</strong></li>
 <li>Select <strong>Route</strong> under <strong>Sequence Type</strong>, you are going to add four more rules.</li>
@@ -765,6 +771,7 @@ The specific routes from DC1 are tagged with 1000, from DC2 already tagged with 
 <li>Under <strong>Basic Configuration</strong> section, change <strong>ECMP</strong> to <strong>16</strong> as Global variable.</li>
 <li>Click update to push configuration changes.</li>
 </ul>
+<p><span style="background-color:lightblue"> <strong>Note: This OMP feature template is used on all device templates, so modify this one feature template will change configuration on all devices, in our case all 7 WAN Edges.</strong></p>
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task4_routes_4.png" width="800"/></p>
 <h4 id="step43-verification">Step4.3: Verification</h4>
 <ul>
@@ -779,7 +786,7 @@ You will see 10.100.100.0/0 is learned from 1.1.10.1; 10.200.200.0/24 is learned
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task4_routes_6.png" width="800"/></p>
 <h4 id="step44-modify-topology-policy-for-remote2">Step4.4: Modify Topology policy for remote2</h4>
 <ul>
-<li>login vManage <strong>198.18.133.200</strong> and access policy configuration from <strong>Configuration - Policies</strong></li>
+<li>Log in to vManage <strong>198.18.133.200</strong> and access policy configuration from <strong>Configuration - Policies</strong></li>
 <li>Click <strong>Custom Options</strong> on the upper right corner and select <strong>Topology</strong> under <strong>Centralized Policy</strong>.</li>
 <li>locate topology <strong>LAB_Topo_RS2_V02</strong>. click <strong>...</strong> and select <strong>Edit</strong></li>
 <li>Select <strong>Route</strong> under <strong>Sequence Type</strong>, you are going to add four more rules.</li>
@@ -867,7 +874,7 @@ You will see 10.100.100.0/0 is leared from 1.1.10.2; 10.200.200.0/24 is learned 
 </tr>
 </tbody>
 </table>
-<p>Solutions: Application Aware Routing (AAR) is one of the differentiator between SDWAN and traditional WAN technology where you can route traffic based upon Application's SLA. You can classify an application based upon traditional 5 tuples or even applications (Deep Pakcket Inspection). There three action keyword for the seleted application. Prefer; backup and strict. The key to remember is AAR is all about SLA.</p>
+<p>Solution: Application Aware Routing (AAR) is one of the differentiator between SDWAN and traditional WAN technology where you can route traffic based upon Application's SLA. You can classify an application based upon traditional 5 tuples or even applications (Deep Pakcket Inspection). There three action keyword for the seleted application. Prefer; backup and strict. The key to remember is AAR is all about SLA.</p>
 <p>Prefer means when the preferred color/s meets the SLA, this/these colors will be prefered. If all the preferred colors don't meet the SLA, then depends on if you have backup or strict configure, these two options are mutual exclusive.</p>
 <p>If backup color is configured which means when preferred color doesn't meet SLA, first it will use all other colors meeting the SLA regardless if that color is configured as backup or not as long as the color meets the SLA, if there are multiple such colors, it will do load sharing among them. If none of the colors meeting the SLAs, it will use the configured backup color.</p>
 <p>If strict is configured (note: stric and backup are mutual exclusive ), the matching traffic will be dropped when the preferred color is not configured.</p>
@@ -879,14 +886,19 @@ You will see 10.100.100.0/0 is leared from 1.1.10.2; 10.200.200.0/24 is learned 
 </ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task5_LTE_1.png" width="800"/></p>
 <ul>
-<li>Under <strong>Tunnel</strong> section, expand <strong>Advanced Options</strong>; change <strong>Last-Resort Circuit</strong> settings to <strong>On</strong>.</li>
-<li>Click <strong>Update</strong> to trigger configure push
-This setting will make LTE last-resort which means the interface will go down, and no traffic go across it until all other circuits become unavailable.
-<img src="https://leitian123.github.io/holent2901/img/lab_task5_LTE_2.png" width="800"/></li>
+<li>Under <strong>Tunnel</strong> section, expand <strong>Advanced Options</strong></li>
+<li>Change <strong>Last-Resort Circuit</strong> to <strong>Device Specific</strong> and give variable name <strong>vpn_if_tunnel_last_resort_circuit</strong>.</li>
 </ul>
+<p><img src="https://leitian123.github.io/holent2901/img/lab_task5_LTE_1a.png" width="800"/></p>
+<ul>
+<li>Click <strong>Update</strong> to trigger device configure change.</li>
+<li>Select <strong>vpn_if_tunnel_last_resort_circuit</strong> checkbox and <strong>Update</strong> to push configure change</li>
+</ul>
+<p>This setting will make LTE last-resort which means the interface will go down, and no traffic go across it until all other circuits become unavailable.</p>
+<p><img src="https://leitian123.github.io/holent2901/img/lab_task5_LTE_2.png" width="800"/></p>
 <h4 id="step52-last-resort-verification">Step5.2: Last-Resort verification.</h4>
 <ul>
-<li>SSH to <strong>RH</strong> and run <code>show ip int brief</code> You will notice Gig3 is down and Tunnel3 is down as well.</li>
+<li>SSH to <strong>RH-WE</strong> and run <code>show ip int brief</code> You will notice Gig3 is down and Tunnel3 is down as well.</li>
 </ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task5_LTE_3.png" width="800"/></p>
 <ul>
@@ -899,7 +911,7 @@ This setting will make LTE last-resort which means the interface will go down, a
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task5_LTE_5.png" width="800"/></p>
 <h4 id="step53-configure-sla-classes-for-app-aware-routing-aar">Step5.3: Configure SLA classes for app aware routing (AAR)</h4>
 <ul>
-<li>login vManage <strong>198.18.133.200</strong> and access policy configuration from <strong>Configuration - Policies</strong></li>
+<li>Log in to vManage <strong>198.18.133.200</strong> and access policy configuration from <strong>Configuration - Policies</strong></li>
 <li>Click <strong>Custom Options</strong> drop down on the top right and select <strong>Lists</strong> under <strong>Centralized Policy</strong></li>
 </ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task5_AAR_1.png" width="800"/></p>
@@ -965,7 +977,7 @@ This setting will make LTE last-resort which means the interface will go down, a
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task5_AAR_9.png" width="800"/></p>
 <h4 id="step55-lab-verification">Step5.5: Lab Verification</h4>
 <ul>
-<li>login vManage <strong>198.18.133.200</strong> and select <strong>Monitor - Network</strong></li>
+<li>Log in to vManage <strong>198.18.133.200</strong> and select <strong>Monitor - Network</strong> fron left panel</li>
 <li>click <strong>RH-WE1</strong> to bring up device monitor page, and select <strong>Troubleshooting</strong> from the panel on the left</li>
 <li>select <strong>Simulate Flows</strong> tool under <strong>Traffic</strong> and use the following value for simulated flow<ul>
 <li>VPN: <strong>VPN-1</strong></li>
@@ -999,7 +1011,7 @@ This setting will make LTE last-resort which means the interface will go down, a
 <p>Now let's verify it again.</p>
 </li>
 <li>
-<p>login vManage <strong>198.18.133.200</strong> and select <strong>Monitor - Network</strong></p>
+<p>Log in to vManage <strong>198.18.133.200</strong> and select <strong>Monitor - Network</strong></p>
 </li>
 <li>click <strong>RH-WE1</strong> to bring up device monitor page, and select <strong>Troubleshooting</strong> from the panel on the left</li>
 <li>select <strong>Simulate Flows</strong> tool under <strong>Traffic</strong> and use the following value for simulated flow<ul>
@@ -1020,7 +1032,7 @@ This setting will make LTE last-resort which means the interface will go down, a
 <ul>
 <li>Let's shutdown private2 interface and verify again</li>
 <li>Access template configuration from <strong>Configuration - Templates</strong></li>
-<li>Locate deice template <strong>Lab_RH_V01</strong>, click <strong>...</strong> and select <strong>Change Device Values</strong></li>
+<li>Locate device template <strong>Lab_RH_V01</strong>, click <strong>...</strong> and select <strong>Change Device Values</strong></li>
 <li>click <strong>...</strong> to select <strong>Edit Device Template</strong></li>
 <li>select the <strong>Shutdown(vpn_if_interface)</strong> checkbox under <strong>GigabitEthernet2</strong></li>
 <li>
@@ -1030,7 +1042,7 @@ This setting will make LTE last-resort which means the interface will go down, a
 <p>Now let's verify it again.</p>
 </li>
 <li>
-<p>login vManage <strong>198.18.133.200</strong> and select <strong>Monitor - Network</strong></p>
+<p>Log in to vManage <strong>198.18.133.200</strong> and select <strong>Monitor - Network</strong></p>
 </li>
 <li>click <strong>RH-WE1</strong> to bring up device monitor page, and select <strong>Troubleshooting</strong> from the panel on the left</li>
 <li>select <strong>Simulate Flows</strong> tool under <strong>Traffic</strong> and use the following value for simulated flow<ul>
@@ -1055,7 +1067,7 @@ This setting will make LTE last-resort which means the interface will go down, a
 <p>SDWAN Data Policy is a means to pin certain applications on the certain links.</p>
 <h4 id="step61-configure-data-policy">Step6.1: Configure Data Policy</h4>
 <ul>
-<li>login vManage <strong>198.18.133.200</strong> and access policy configuration from <strong>Configuration - Policies</strong></li>
+<li>Log in to vManage <strong>198.18.133.200</strong> and access policy configuration from <strong>Configuration - Policies</strong></li>
 <li>Click <strong>Custom Options</strong> drop down on the top right and select <strong>Traffic Policy</strong> under <strong>Centralized Policy</strong></li>
 <li>click <strong>Traffic Data</strong> and click <strong>Add Policy</strong> to create new data policy</li>
 <li><strong>Create New</strong> policy with following setting<ul>
@@ -1069,6 +1081,7 @@ This setting will make LTE last-resort which means the interface will go down, a
 </li>
 <li>click Actions and change to <strong>Accept</strong>, and click <strong>Local TLOC</strong> for action<ul>
 <li>Local TLOC (color): private1, private2, LTE</li>
+<li>Encapsulation: IPSEC</li>
 </ul>
 </li>
 </ul>
@@ -1082,6 +1095,7 @@ This setting will make LTE last-resort which means the interface will go down, a
 </li>
 <li>click Actions and change to <strong>Accept</strong>, and click <strong>Local TLOC</strong> for action<ul>
 <li>Local TLOC (color): private1, private2</li>
+<li>Encapsulation: IPSEC          </li>
 <li>check <strong>Restrict</strong> (this means traffic will be dropped when configured TLOC is unreachable)</li>
 </ul>
 </li>
@@ -1114,7 +1128,7 @@ This setting will make LTE last-resort which means the interface will go down, a
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task6_DP_5.png" width="800"/></p>
 <h4 id="step63-verify-application-pining-policy">Step6.3: verify application pining policy</h4>
 <ul>
-<li>login vManage <strong>198.18.133.200</strong> and select <strong>Monitor - Network</strong></li>
+<li>Log in to vManage <strong>198.18.133.200</strong> and select <strong>Monitor - Network</strong></li>
 <li>click <strong>RH-WE1</strong> to bring up device monitor page, and select <strong>Troubleshooting</strong> from the panel on the left</li>
 <li>select <strong>Simulate Flows</strong> tool under <strong>Traffic</strong> and use the following value for simulated flow<ul>
 <li>VPN: <strong>VPN-1</strong></li>
@@ -1167,7 +1181,7 @@ you can see the traffic is dropped (in the lab, it will follow service side defa
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task6_DP_10.png" width="800"/></p>
 <p>Before we proceed to the next lab, let's do one more simulation test.</p>
 <ul>
-<li>login vManage <strong>198.18.133.200</strong> and select <strong>Monitor - Network</strong></li>
+<li>Log in to vManage <strong>198.18.133.200</strong> and select <strong>Monitor - Network</strong></li>
 <li>click <strong>RH-WE1</strong> to bring up device monitor page, and select <strong>Troubleshooting</strong> from the panel on the left</li>
 <li>select <strong>Simulate Flows</strong> tool under <strong>Traffic</strong> and use the following value for simulated flow<ul>
 <li>VPN: <strong>VPN-1</strong></li>

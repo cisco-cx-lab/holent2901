@@ -296,11 +296,11 @@
               
                 <h1 id="lab-2-route-to-the-legacy-site">Lab 2: Route to the legacy site</h1>
 <hr />
-<p>In this section, you will help ACME to configure routing between sd-wan remote sites and legacy none sd-wan site. The legacy site is connected to SP <strong>priviate1</strong> with OSPF as CE-PE protocol. Legacy site prefix <strong>10.11.1.0/24</strong> is advertised to <strong>private1</strong> PE router; DC WAN Edge routers are receiving this prefix from service side over BGP.</p>
+<p>In this section, you will help ACME to configure routing between sd-wan remote sites and legacy non sd-wan site. The legacy site is connected to SP <strong>priviate1</strong> with OSPF as CE-PE protocol. Legacy site prefix <strong>10.11.1.0/24</strong> is advertised to <strong>private1</strong> PE router; DC WAN Edge routers are receiving this prefix from service side over BGP.</p>
 <p><img src="https://leitian123.github.io/holent2901/img/lab2_0_1.png" width="800"/></p>
 <p>To make sure traffic between sd-wan remotes and legacy site use optimal path, ACME requires
 - SD-WAN site Remote2 uses DC as transit site to reach legacy site over private2.
--  SD-WAN site Remote1 route directly over private 1 to legacy site.</p>
+- SD-WAN site Remote1 route directly over private 1 to legacy site.</p>
 <hr />
 <h2 id="step1-verify-current-route">Step1: Verify current route</h2>
 <ul>
@@ -329,7 +329,7 @@
 <h2 id="step2-route-policy-for-remote2">Step2: Route policy for Remote2</h2>
 <p>The requirement for remote2 is to use DC as transit site and use transport <strong>private2</strong>. To achieve that, you can modify the central policy created in <strong>lab1</strong> to set higher OMP preference for prefix <strong>10.11.1.0/24</strong> from color <strong>private2</strong>.</p>
 <ul>
-<li>login vManage <strong>198.18.133.200</strong> and access policy configuration from <strong>Configuration - Policies</strong></li>
+<li>Log in to vManage <strong>198.18.133.200</strong> and access policy configuration from <strong>Configuration - Policies</strong></li>
 <li>Click <strong>Custom Options</strong> on the upper right corner and select <strong>Lists</strong> under <strong>Centralized Policy</strong> as show below.</li>
 </ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab2_2_1.PNG" width="800"/></p>
@@ -358,8 +358,8 @@
 <p>The requirement for remote1 is to use <strong>private1</strong> route directly to legacy site. To achieve that, you can leak prefix <strong>10.11.1.0/24</strong> from VPN0 into service VPN.</p>
 <p>SP <strong>private1</strong> uses OSPF as PE-CE routing protocol; create OSPF feature template and attach to R1-WE1 VPN0.</p>
 <ul>
-<li>login vManage <strong>198.18.133.200</strong> and access feature template from <strong>Configuration - Template</strong> then click <strong>Feature</strong></li>
-<li>Click <strong>Add Template</strong> and select OSPF template as show below.</li>
+<li>Log in to vManage <strong>198.18.133.200</strong> and access feature template from <strong>Configuration - Template</strong> then click <strong>Feature</strong></li>
+<li>Click <strong>Add Template</strong>, pick <strong>CSR1000v</strong> under <strong>Select Devices</strong> and select OSPF template as show below.</li>
 </ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab2_3_1.PNG" width="800"/></p>
 <ul>
@@ -388,7 +388,7 @@
 <p><img src="https://leitian123.github.io/holent2901/img/lab2_3_6.PNG" width="800"/></p>
 <p>Configure route leaking between VPN0 and service VPN, so R1-WE1 will use the OSPF route learned from OSPF in VPN0 for prefix <strong>10.11.1.0/24</strong></p>
 <ul>
-<li>login vManage <strong>198.18.133.200</strong> and access feature template from <strong>Configuration - Template</strong> then click <strong>Feature</strong></li>
+<li>Log in to vManage <strong>198.18.133.200</strong> and access feature template from <strong>Configuration - Template</strong> then click <strong>Feature</strong></li>
 <li>Locate existing template <strong>"Lab_Remote_VPN1_V01"</strong>. Click <strong>"..."</strong> for more option and select Edit.<ul>
 <li>Move to <strong>Global Route Leak</strong> section. Add OSPF under <strong>Add New Route Leak from Global VPN to Service VPN</strong> </n></li>
 <li>Add connected under <strong>Add New Route Leak from Service VPN to Global VPN</strong> </n>
