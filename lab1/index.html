@@ -389,12 +389,12 @@
 <li>attach local policy to DC device templates <strong>(Lab_DC1_V01 &amp; Lab_DC2_V01)</strong><ul>
 <li>Access template configuration from <strong>Configuration - Templates</strong></li>
 <li>Under <strong>Device</strong> template tab, locate template <strong>Lab_DC1_V01</strong> and select <strong>Edit</strong></li>
-<li>under <strong>Additional Templates</strong> section, click the dropdown next to <strong>Policy</strong> and select <strong>LAB_DCs_Local_policy</strong>
+<li>Under <strong>Additional Templates</strong> section, click the dropdown next to <strong>Policy</strong> and select <strong>LAB_DCs_Local_policy</strong>
  <img src="https://leitian123.github.io/holent2901/img/lab1_1_4_4.PNG" width="800"/></li>
-<li>click <strong>update</strong> to trigger configure change</li>
+<li>Click <strong>update</strong> to trigger configure change</li>
 <li>Under <strong>Device</strong> template tab, locate template <strong>Lab_DC2_V01</strong> and select <strong>Edit</strong></li>
-<li>under <strong>Additional Templates</strong> section, click the dropdown next to <strong>Policy</strong> and select <strong>LAB_DCs_Local_policy</strong></li>
-<li>click <strong>update</strong> to trigger configure change</li>
+<li>Under <strong>Additional Templates</strong> section, click the dropdown next to <strong>Policy</strong> and select <strong>LAB_DCs_Local_policy</strong></li>
+<li>Click <strong>update</strong> to trigger configure change</li>
 </ul>
 </li>
 </ul>
@@ -472,12 +472,12 @@
 <li>Click <strong>+Sequence Rule</strong>, leave unchanged under Match(means match all)</li>
 <li>Click <strong>Actions</strong> and change to <strong>Accept</strong> (we'll come back and do the routes policy later).
 <img src="https://leitian123.github.io/holent2901/img/lab_task2_topo_2.png" width="800"/></li>
-<li>click <strong>+Sequence Type</strong> then select <strong>TLOC</strong></li>
-<li>click <strong>+Sequence Rule</strong>, select <strong>TLOC</strong>.</li>
+<li>Click <strong>+Sequence Type</strong> then select <strong>TLOC</strong></li>
+<li>Click <strong>+Sequence Rule</strong>, select <strong>TLOC</strong>.</li>
 <li>Under <strong>Match Conditions</strong>, selects <strong>DCs-BU1-TLOCs</strong> for <strong>TLOC List</strong> (this TLOC list has been pre-defined for you which includes all the TLOCs of DC1-WE1 and DC2-WE1</li>
 <li>Click <strong>Actions</strong>, change Actions to <strong>Accept</strong></li>
 <li>Click <strong>+Sequence Rule</strong>, select <strong>TLOC</strong></li>
-<li>under <strong>Match Conditions</strong>, selects <strong>RH-TLOCs</strong> for <strong>TLOC List</strong> (this TLOC list has been pre-defined for you which includes all the TLOCs of RH)</li>
+<li>Under <strong>Match Conditions</strong>, selects <strong>RH-TLOCs</strong> for <strong>TLOC List</strong> (this TLOC list has been pre-defined for you which includes all the TLOCs of RH)</li>
 <li>Click <strong>Actions</strong>, change Actions to <strong>Accept</strong></li>
 </ul>
 </li>
@@ -494,11 +494,11 @@
 <li>Click <strong>Actions</strong> change Actions to <strong>Accept</strong> (we'll come back and do the routes policy later).
 <img src="https://leitian123.github.io/holent2901/img/lab_task2_topo_4.png" width="800"/></li>
 <li>Click <strong>+Sequence Type</strong> then select <strong>TLOC</strong></li>
-<li>click <strong>+Sequence Rule</strong>, select <strong>TLOC</strong>.</li>
+<li>Click <strong>+Sequence Rule</strong>, select <strong>TLOC</strong>.</li>
 <li>Under <strong>Match Conditions</strong>, selects <strong>DCs-BU2-TLOCss</strong> for <strong>TLOC List</strong> (this TLOC list has been pre-defined for you which includes all the TLOCs of DC1-WE2 and DC2-WE2)</li>
 <li>Click <strong>Actions</strong>, change Actions to <strong>Accept</strong></li>
 <li>Click <strong>+Sequence Rule</strong>, select <strong>TLOC</strong></li>
-<li>under <strong>Match Conditions</strong>, selects <strong>RH-TLOCs</strong> for <strong>TLOC List</strong> (this TLOC list has been pre-defined for you which includes all the TLOCs of RH)</li>
+<li>Under <strong>Match Conditions</strong>, selects <strong>RH-TLOCs</strong> for <strong>TLOC List</strong> (this TLOC list has been pre-defined for you which includes all the TLOCs of RH)</li>
 <li>Click <strong>Actions</strong>, change Actions to <strong>Accept</strong></li>
 </ul>
 </li>
@@ -513,7 +513,7 @@
 <li>Click next, you will see Configure Topology and VPN membership - Click <strong>Add topology</strong>, select <strong>Import Existing Topology</strong></li>
 <li>Click <strong>Custom Control(Route and TLOC)</strong>, select <strong>LAB_Topo_RS1</strong></li>
 <li>Click on Add Topology</li>
-<li>follow the above steps to add topology <strong>LAB_Topo_RS2</strong> as well</li>
+<li>Follow the above steps to add topology <strong>LAB_Topo_RS2</strong> as well</li>
 </ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task2_topo_6.png" width="800"/></p>
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task2_topo_7.png" width="800"/></p>
@@ -531,7 +531,7 @@ then click Save Policy</li>
 <h4 id="step-24-activate-the-first-centralized-policy"><strong>Step 2.4.</strong> Activate the first Centralized Policy</h4>
 <ul>
 <li>Log in to vManage <strong>198.18.133.200</strong> and access policy configuration from <strong>Configuration - Policies - Centralized Policy</strong></li>
-<li>locate policy <strong>LAB_Centeral_v01</strong> you have created in previous step. Click <strong>...</strong> for more option and select <strong>Activate</strong>. The policy will be pushed to vSmarts.</li>
+<li>Locate policy <strong>LAB_Centeral_v01</strong> you have created in previous step. Click <strong>...</strong> for more option and select <strong>Activate</strong>. The policy will be pushed to vSmarts.</li>
 </ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task2_topo_9.png" width="800"/></p>
 <h4 id="step-25-verify-the-hub-spoke-topology"><strong>Step 2.5.</strong> Verify the hub &amp; spoke topology</h4>
@@ -560,21 +560,21 @@ then click Save Policy</li>
 <h4 id="step-32-edit-the-new-topology-policy"><strong>Step 3.2.</strong> Edit the new topology policy.</h4>
 <ul>
 <li>Click <strong>Custom Options</strong> drop down on the top right and select <strong>Topology</strong> under <strong>Centralized Policy</strong></li>
-<li>locate <strong>LAB_Topo_RS1_V02</strong> and click <strong>...</strong> select <strong>Edit</strong></li>
+<li>Locate <strong>LAB_Topo_RS1_V02</strong> and click <strong>...</strong> select <strong>Edit</strong></li>
 </ul>
 <p><span style="background-color:lightblue"> <strong>Note: there is one existing accept all rule; you don't need to change that accept all rule but you need make sure place new rule ahead of this accept all rule.</strong></p>
 <ul>
-<li>you are going to add four new rules<ul>
-<li>rule1: match default &amp; originator of 1.1.10.1(DC1-WE1) then accept and set preference of 100</li>
-<li>rule2: match default &amp; originator of 1.1.20.1(DC2-WE1) then accept and set preference of 100</li>
-<li>rule3: match default &amp; site-list <strong>RH</strong> then <strong>accept</strong></li>
-<li>rule4: match default then <strong>reject</strong></li>
+<li>You are going to add four new rules<ul>
+<li>Rule1: match default &amp; originator of 1.1.10.1(DC1-WE1) then accept and set preference of 100</li>
+<li>Rule2: match default &amp; originator of 1.1.20.1(DC2-WE1) then accept and set preference of 100</li>
+<li>Rule3: match default &amp; site-list <strong>RH</strong> then <strong>accept</strong></li>
+<li>Rule4: match default then <strong>reject</strong></li>
 </ul>
 </li>
 <li>Drag &amp; drop the newly created rules to move it ahead of previous accept all rule.</li>
 </ul>
 <p><span style="background-color:lightblue"> <strong>Note: vSmart does the lookup based on the order, if it finds the match, it will use that rule and it won't look for subsequent rule any more.</strong>
-- click <strong>Save Control policy</strong>.</p>
+- Click <strong>Save Control policy</strong>.</p>
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task3_routes_3.png" width="800"/></p>
 <h4 id="step-33-apply-the-policy"><strong>Step 3.3.</strong> Apply the policy</h4>
 <ul>
@@ -582,7 +582,7 @@ then click Save Policy</li>
 <p>Log in to vManage <strong>198.18.133.200</strong> and access policy configuration from <strong>Configuration - Policies</strong></p>
 </li>
 <li>
-<p>locate centralized policy <strong>LAB_Central_v01</strong>, click <strong>...</strong> and select <strong>Edit</strong></p>
+<p>Locate centralized policy <strong>LAB_Central_v01</strong>, click <strong>...</strong> and select <strong>Edit</strong></p>
 </li>
 </ul>
 <p><span style="background-color:lightblue"> <strong>Note: In production deployment, you always want to use the same practice of copying the current policy then apply it.</strong></p>
@@ -597,7 +597,7 @@ then click Save Policy</li>
 <ul>
 <li>Click on <strong>Policy Application</strong></li>
 <li>Under <strong>LAB_Topo_RS1_V02 - Outbound Site List</strong>, click <strong>New Site List</strong> and select <strong>RS1</strong>.</li>
-<li>click <strong>ADD</strong>, Save Policy Changes to Activate.</li>
+<li>Click <strong>ADD</strong>, Save Policy Changes to Activate.</li>
 </ul>
 <p><span style="background-color:lightblue"> <strong>Note: Outbound and Inbound are from vSmart perspective where outbound policy means how the routes are sent out from vSmart; inbound policy means how the routes are sent to the vSmart.</strong></p>
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task3_routes_6.png" width="800"/></p>
@@ -620,9 +620,9 @@ then click Save Policy</li>
 <li>Configure the new policy with following setting<ul>
 <li>Name: <strong>default_route_from_DC</strong></li>
 <li>Description: <strong>default_route_from_DC</strong></li>
-<li>click <strong>+Sequence Type</strong> and select <strong>Route</strong></li>
-<li>click <strong>+Sequence Rule</strong></li>
-<li>click <strong>Prefix List</strong> and <strong>Site</strong> under <strong>Match</strong>  </li>
+<li>Click <strong>+Sequence Type</strong> and select <strong>Route</strong></li>
+<li>Click <strong>+Sequence Rule</strong></li>
+<li>Click <strong>Prefix List</strong> and <strong>Site</strong> under <strong>Match</strong>  </li>
 <li>Under <strong>Match Conditions</strong>, select <strong>default</strong> from <strong>Prefix List</strong> dropdown</li>
 <li>Under <strong>Match Conditions</strong>, select <strong>DCs</strong> from <strong>Site List</strong> dropdown</li>
 <li>Click <strong>Actions</strong> select <strong>Accept</strong>; add <strong>Preference</strong> with value <strong>50</strong></li>
@@ -635,7 +635,7 @@ then click Save Policy</li>
 <ul>
 <li>Apply this new topology to the current policy.</li>
 <li>Log in to vManage <strong>198.18.133.200</strong> and access policy configuration from <strong>Configuration - Policies</strong></li>
-<li>locate <strong>LAB_Central_v01</strong> and select <strong>Edit</strong></li>
+<li>Locate <strong>LAB_Central_v01</strong> and select <strong>Edit</strong></li>
 <li>Click Topology tab and click <strong>Add Topology</strong></li>
 <li>Select <strong>Import Existing Topology</strong> and select <strong>Custom Control( Route and TLOC)</strong> Policy Type then select <strong>default_route_from_DC</strong> from drop down; click Import.</li>
 </ul>
@@ -664,7 +664,7 @@ then click Save Policy</li>
 </ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task3_routes_14.png" width="800"/></p>
 <ul>
-<li>locate newly created <strong>LAB_Topo_RS2_v02</strong>. click <strong>...</strong> select Edit</li>
+<li>Locate newly created <strong>LAB_Topo_RS2_v02</strong>. click <strong>...</strong> select Edit</li>
 <li>Select <strong>TLOC</strong> as the Sequence Type; select <strong>Rule1</strong> and click the pencil to <strong>Edit</strong>.</li>
 </ul>
 <p><span style="background-color:lightblue"> <strong>Note: We need to change the TLOC List from BU1 to BU2 as we'd like to use the BU2's functional hub which are DC1-WE2 and DC2-WE2 as the entry point for remote site 2(Remember remote site 2 represents the remote sites for BU2, where remote site 1 represents the remote sites for BU1).</strong></p>
@@ -678,12 +678,12 @@ then click Save Policy</li>
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task3_routes_15.png" width="800"/></p>
 <ul>
 <li>After <strong>Save Control Policy</strong>, access the <strong>Centralized Policy</strong> from <strong>Configuration - Policies</strong></li>
-<li>locate <strong>LAB_Central_v01</strong> and select <strong>Edit</strong>  </li>
+<li>Locate <strong>LAB_Central_v01</strong> and select <strong>Edit</strong>  </li>
 </ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task3_routes_16.png" width="800"/></p>
 <ul>
 <li>Under <strong>Topology</strong> tab, click <strong>Add Topology</strong> and select <strong>Import Existing Topology</strong></li>
-<li>change Policy Type to <strong>Custom Control( Route and TLOC )</strong>; select <strong>LAB_Topo_RS2_V02</strong> and Import.</li>
+<li>Change Policy Type to <strong>Custom Control( Route and TLOC )</strong>; select <strong>LAB_Topo_RS2_V02</strong> and Import.</li>
 </ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task3_routes_17.png" width="800"/></p>
 <ul>
@@ -692,14 +692,14 @@ then click Save Policy</li>
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task3_routes_18.png" width="800"/></p>
 <ul>
 <li>Click <strong>Policy Application</strong>; under <strong>LAB_Topo_RS2_V02</strong> click <strong>New Site List</strong> and select <strong>RS2</strong> as outbound site list.</li>
-<li>click Add, and <strong>Save Policy Changes</strong> to Activate.</li>
+<li>Click Add, and <strong>Save Policy Changes</strong> to Activate.</li>
 </ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task3_routes_19.png" width="800"/></p>
 <ul>
 <li>Once the policy has been pushed to vSmart, let's verify by SSH to <strong>R2-WE1</strong> and run <code>show ip route vrf 1</code>. Now, default route has two ECMP paths, one path for each DC.</li>
 </ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task3_routes_20.png" width="800"/>
-- do <code>show sdwan omp route vpn 1</code>.You will see that there are 4 paths in the OMP route table, however none of them is valid.</p>
+- Do <code>show sdwan omp route vpn 1</code>.You will see that there are 4 paths in the OMP route table, however none of them is valid.</p>
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task3_routes_21.png" width="800"/></p>
 <h2 id="task-4-specific-routes-handling">Task 4: Specific Routes handling</h2>
 <p>ACME wants to prefer more specific routes originated from its DC and use the other DC as backup. In the meanwhile, for BU1 (R1-WE1), it only needs to learn the routes from BU1's Headend devices (DC1-WE1, DC2-WE1); for BU2(R2-WE1), it only needs to learn the routes from BU2's Headend devices.(DC1-WE2, DC2-WE2)
@@ -708,9 +708,9 @@ The specific routes from DC1 are tagged with 1000, from DC2 already tagged with 
 <ul>
 <li>Log in to vManage <strong>198.18.133.200</strong> and access policy configuration from <strong>Configuration - Policies</strong></li>
 <li>Click <strong>Custom Options</strong> on the upper right corner and select <strong>Topology</strong> under <strong>Centralized Policy</strong>.</li>
-<li>locate topology <strong>LAB_Topo_RS1_V02</strong>. click <strong>...</strong> and select <strong>Edit</strong></li>
+<li>Locate topology <strong>LAB_Topo_RS1_V02</strong>. click <strong>...</strong> and select <strong>Edit</strong></li>
 <li>Select <strong>Route</strong> under <strong>Sequence Type</strong>, you are going to add four more rules.</li>
-<li>rule1<ul>
+<li>Rule1<ul>
 <li>Click <strong>Sequence Rule</strong>, select <strong>OMP Tag</strong> and <strong>TLOC</strong> for match condition</li>
 <li>Under <strong>Match Conditions</strong>, type <strong>1000</strong> in <strong>OMP Tag</strong>; <strong>DC1-BU1-TLOCs</strong> in <strong>TLOC List</strong></li>
 <li>Click <strong>Actions</strong>, change to <strong>Accept</strong> and set <strong>Preference</strong> of 100.</li>
@@ -790,28 +790,28 @@ You will see 10.100.100.0/0 is learned from 1.1.10.1; 10.200.200.0/24 is learned
 <li>Click <strong>Custom Options</strong> on the upper right corner and select <strong>Topology</strong> under <strong>Centralized Policy</strong>.</li>
 <li>locate topology <strong>LAB_Topo_RS2_V02</strong>. click <strong>...</strong> and select <strong>Edit</strong></li>
 <li>Select <strong>Route</strong> under <strong>Sequence Type</strong>, you are going to add four more rules.</li>
-<li>rule1<ul>
+<li>Rule1<ul>
 <li>Click <strong>Sequence Rule</strong>, select <strong>OMP Tag</strong> and <strong>TLOC</strong> for match condition</li>
 <li>Under <strong>Match Conditions</strong>, type <strong>1000</strong> in <strong>OMP Tag</strong>; <strong>DC1-BU2-TLOCs</strong> in <strong>TLOC List</strong></li>
 <li>Click <strong>Actions</strong>, change to <strong>Accept</strong> and set <strong>Preference</strong> of 100.</li>
 <li>Click <strong>Save Match And Actions</strong></li>
 </ul>
 </li>
-<li>rule2<ul>
+<li>Rule2<ul>
 <li>Click <strong>Sequence Rule</strong>, select <strong>OMP Tag</strong> and <strong>TLOC</strong> for match condition</li>
 <li>Under <strong>Match Conditions</strong>, type <strong>1000</strong> in <strong>OMP Tag</strong>; <strong>DC2-BU2-TLOCs</strong> in <strong>TLOC List</strong></li>
 <li>Click <strong>Actions</strong>, change to <strong>Accept</strong> and set <strong>Preference</strong> of 50</li>
 <li>Click <strong>Save Match And Actions</strong></li>
 </ul>
 </li>
-<li>rule3<ul>
+<li>Rule3<ul>
 <li>Click <strong>Sequence Rule</strong>, select <strong>OMP Tag</strong> and <strong>TLOC</strong> for match condition</li>
 <li>Under <strong>Match Conditions</strong>, type <strong>2000</strong> in <strong>OMP Tag</strong>; <strong>DC2-BU2-TLOCs</strong> in <strong>TLOC List</strong></li>
 <li>Click <strong>Actions</strong>, change to <strong>Accept</strong> and set <strong>Preference</strong> of 100.</li>
 <li>Click <strong>Save Match And Actions</strong>  </li>
 </ul>
 </li>
-<li>rule4<ul>
+<li>Rule4<ul>
 <li>Click <strong>Sequence Rule</strong>, select <strong>OMP Tag</strong> and <strong>TLOC</strong> for match condition</li>
 <li>Under <strong>Match Conditions</strong>, type <strong>2000</strong> in <strong>OMP Tag</strong>; <strong>DC1-BU2-TLOCs</strong> in <strong>TLOC List</strong></li>
 <li>Click <strong>Actions</strong>, change to <strong>Accept</strong> and set <strong>Preference</strong> of 50</li>
@@ -831,7 +831,7 @@ You should see each route (10.100.100.0/24 and 10.200.200.0/24) will have 12 pat
 </ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task4_routes_8.png" width="800"/></p>
 <ul>
-<li>run <code>show ip route vrf 1</code>
+<li>Run <code>show ip route vrf 1</code>
 You will see 10.100.100.0/0 is leared from 1.1.10.2; 10.200.200.0/24 is learned from 1.1.20.2 whis is desired.</li>
 </ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task4_routes_9.png" width="800"/></p>
@@ -916,7 +916,7 @@ You will see 10.100.100.0/0 is leared from 1.1.10.2; 10.200.200.0/24 is learned 
 </ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task5_AAR_1.png" width="800"/></p>
 <ul>
-<li>select <strong>SLA Class</strong> and confirm the classes are defined properly.</li>
+<li>Select <strong>SLA Class</strong> and confirm the classes are defined properly.</li>
 </ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task5_AAR_2.png" width="800"/></p>
 <ul>
@@ -954,12 +954,12 @@ You will see 10.100.100.0/0 is leared from 1.1.10.2; 10.200.200.0/24 is learned 
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task5_AAR_6.png" width="800"/></p>
 <ul>
 <li>Select the new policy <strong>LAB_Central_v02</strong>, click <strong>...</strong> for more option and select <strong>Edit</strong></li>
-<li>under <strong>Traffic Rules - Application Aware Routing</strong>, click <strong>Add Policy</strong> then <strong>Import Existing</strong>, select <strong>LAB_AAR_V01</strong> and Import.</li>
+<li>Under <strong>Traffic Rules - Application Aware Routing</strong>, click <strong>Add Policy</strong> then <strong>Import Existing</strong>, select <strong>LAB_AAR_V01</strong> and Import.</li>
 </ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task5_AAR_7.png" width="800"/></p>
 <ul>
 <li>Click <strong>Policy Application</strong> tab then select <strong>Application Aware Routing</strong><ul>
-<li>click <strong>New Site List and VPN List</strong> to add<ul>
+<li>Click <strong>New Site List and VPN List</strong> to add<ul>
 <li>New Site List: <strong>DCs and RH</strong></li>
 <li>VPN List: <strong>VPN1</strong></li>
 </ul>
@@ -967,7 +967,7 @@ You will see 10.100.100.0/0 is leared from 1.1.10.2; 10.200.200.0/24 is learned 
 </ul>
 </li>
 <li>
-<p>click on Add then <strong>Save Policy Changes</strong>
+<p>Click on Add then <strong>Save Policy Changes</strong>
 <img src="https://leitian123.github.io/holent2901/img/lab_task5_AAR_8.png" width="800"/></p>
 </li>
 <li>
@@ -978,8 +978,8 @@ You will see 10.100.100.0/0 is leared from 1.1.10.2; 10.200.200.0/24 is learned 
 <h4 id="step55-lab-verification">Step5.5: Lab Verification</h4>
 <ul>
 <li>Log in to vManage <strong>198.18.133.200</strong> and select <strong>Monitor - Network</strong> fron left panel</li>
-<li>click <strong>RH-WE1</strong> to bring up device monitor page, and select <strong>Troubleshooting</strong> from the panel on the left</li>
-<li>select <strong>Simulate Flows</strong> tool under <strong>Traffic</strong> and use the following value for simulated flow<ul>
+<li>Click <strong>RH-WE1</strong> to bring up device monitor page, and select <strong>Troubleshooting</strong> from the panel on the left</li>
+<li>Select <strong>Simulate Flows</strong> tool under <strong>Traffic</strong> and use the following value for simulated flow<ul>
 <li>VPN: <strong>VPN-1</strong></li>
 <li>Source/Interface for VPN-1: <strong>Gigabiethernet4 - ipv4 - 10.10.30.2</strong></li>
 <li>Source IP: <strong>10.10.30.2</strong></li>
@@ -1001,9 +1001,9 @@ You will see 10.100.100.0/0 is leared from 1.1.10.2; 10.200.200.0/24 is learned 
 <li>Now let's shutdown the private1 interface of the RH-WE1 and verify again.</li>
 <li>Access template configuration from <strong>Configuration - Templates</strong></li>
 <li>Locate deice template <strong>Lab_RH_V01</strong>, click <strong>...</strong> and select <strong>Change Device Values</strong></li>
-<li>click <strong>...</strong> to select <strong>Edit Device Template</strong></li>
-<li>select the <strong>Shutdown(vpn_if_interface)</strong> checkbox under <strong>GigabitEthernet1</strong></li>
-<li>click Update -&gt; next to trigger the configure change.</li>
+<li>Click <strong>...</strong> to select <strong>Edit Device Template</strong></li>
+<li>Select the <strong>Shutdown(vpn_if_interface)</strong> checkbox under <strong>GigabitEthernet1</strong></li>
+<li>Click Update -&gt; next to trigger the configure change.</li>
 </ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task5_AAR_12.png" width="800"/></p>
 <ul>
@@ -1013,8 +1013,8 @@ You will see 10.100.100.0/0 is leared from 1.1.10.2; 10.200.200.0/24 is learned 
 <li>
 <p>Log in to vManage <strong>198.18.133.200</strong> and select <strong>Monitor - Network</strong></p>
 </li>
-<li>click <strong>RH-WE1</strong> to bring up device monitor page, and select <strong>Troubleshooting</strong> from the panel on the left</li>
-<li>select <strong>Simulate Flows</strong> tool under <strong>Traffic</strong> and use the following value for simulated flow<ul>
+<li>Click <strong>RH-WE1</strong> to bring up device monitor page, and select <strong>Troubleshooting</strong> from the panel on the left</li>
+<li>Select <strong>Simulate Flows</strong> tool under <strong>Traffic</strong> and use the following value for simulated flow<ul>
 <li>VPN: <strong>VPN-1</strong></li>
 <li>Source/Interface for VPN-1: <strong>Gigabiethernet4 - ipv4 - 10.10.30.2</strong></li>
 <li>Source IP: <strong>10.10.30.2</strong></li>
@@ -1033,10 +1033,10 @@ You will see 10.100.100.0/0 is leared from 1.1.10.2; 10.200.200.0/24 is learned 
 <li>Let's shutdown private2 interface and verify again</li>
 <li>Access template configuration from <strong>Configuration - Templates</strong></li>
 <li>Locate device template <strong>Lab_RH_V01</strong>, click <strong>...</strong> and select <strong>Change Device Values</strong></li>
-<li>click <strong>...</strong> to select <strong>Edit Device Template</strong></li>
-<li>select the <strong>Shutdown(vpn_if_interface)</strong> checkbox under <strong>GigabitEthernet2</strong></li>
+<li>Click <strong>...</strong> to select <strong>Edit Device Template</strong></li>
+<li>Select the <strong>Shutdown(vpn_if_interface)</strong> checkbox under <strong>GigabitEthernet2</strong></li>
 <li>
-<p>click Update -&gt; next to trigger the configure change.</p>
+<p>Click Update -&gt; next to trigger the configure change.</p>
 </li>
 <li>
 <p>Now let's verify it again.</p>
@@ -1044,8 +1044,8 @@ You will see 10.100.100.0/0 is leared from 1.1.10.2; 10.200.200.0/24 is learned 
 <li>
 <p>Log in to vManage <strong>198.18.133.200</strong> and select <strong>Monitor - Network</strong></p>
 </li>
-<li>click <strong>RH-WE1</strong> to bring up device monitor page, and select <strong>Troubleshooting</strong> from the panel on the left</li>
-<li>select <strong>Simulate Flows</strong> tool under <strong>Traffic</strong> and use the following value for simulated flow<ul>
+<li>Click <strong>RH-WE1</strong> to bring up device monitor page, and select <strong>Troubleshooting</strong> from the panel on the left</li>
+<li>Select <strong>Simulate Flows</strong> tool under <strong>Traffic</strong> and use the following value for simulated flow<ul>
 <li>VPN: <strong>VPN-1</strong></li>
 <li>Source/Interface for VPN-1: <strong>Gigabiethernet4 - ipv4 - 10.10.30.2</strong></li>
 <li>Source IP: <strong>10.10.30.2</strong></li>
@@ -1069,43 +1069,43 @@ You will see 10.100.100.0/0 is leared from 1.1.10.2; 10.200.200.0/24 is learned 
 <ul>
 <li>Log in to vManage <strong>198.18.133.200</strong> and access policy configuration from <strong>Configuration - Policies</strong></li>
 <li>Click <strong>Custom Options</strong> drop down on the top right and select <strong>Traffic Policy</strong> under <strong>Centralized Policy</strong></li>
-<li>click <strong>Traffic Data</strong> and click <strong>Add Policy</strong> to create new data policy</li>
+<li>Click <strong>Traffic Data</strong> and click <strong>Add Policy</strong> to create new data policy</li>
 <li><strong>Create New</strong> policy with following setting<ul>
 <li>Name: <strong>LAB1_DP_V01</strong></li>
 <li>Description: <strong>LAB1_DP_V01</strong></li>
-<li>click <strong>+Sequence Type</strong> and select <strong>Custom</strong></li>
-<li>click <strong>+Sequence Rule</strong> and select <strong>protocol</strong> for Match condition</li>
-<li>under Match Conditions:<ul>
-<li>protocol: 6 (TCP)</li>
+<li>Click <strong>+Sequence Type</strong> and select <strong>Custom</strong></li>
+<li>Click <strong>+Sequence Rule</strong> and select <strong>protocol</strong> for Match condition</li>
+<li>Under Match Conditions:<ul>
+<li>Protocol: 6 (TCP)</li>
 </ul>
 </li>
-<li>click Actions and change to <strong>Accept</strong>, and click <strong>Local TLOC</strong> for action<ul>
+<li>Click Actions and change to <strong>Accept</strong>, and click <strong>Local TLOC</strong> for action<ul>
 <li>Local TLOC (color): private1, private2, LTE</li>
 <li>Encapsulation: IPSEC</li>
 </ul>
 </li>
 </ul>
 </li>
-<li>save <strong>Match and Actions</strong>
+<li>Save <strong>Match and Actions</strong>
 <img src="https://leitian123.github.io/holent2901/img/lab_task6_DP_1.png" width="800"/>  <ul>
-<li>click <strong>+Sequence Rule</strong> and select <strong>protocol</strong> for Match condition</li>
-<li>under Match Conditions:<ul>
-<li>protocol: 1 (ICMP)</li>
+<li>Click <strong>+Sequence Rule</strong> and select <strong>protocol</strong> for Match condition</li>
+<li>Under Match Conditions:<ul>
+<li>Protocol: 1 (ICMP)</li>
 </ul>
 </li>
-<li>click Actions and change to <strong>Accept</strong>, and click <strong>Local TLOC</strong> for action<ul>
+<li>Click Actions and change to <strong>Accept</strong>, and click <strong>Local TLOC</strong> for action<ul>
 <li>Local TLOC (color): private1, private2</li>
 <li>Encapsulation: IPSEC          </li>
-<li>check <strong>Restrict</strong> (this means traffic will be dropped when configured TLOC is unreachable)</li>
+<li>Check <strong>Restrict</strong> (this means traffic will be dropped when configured TLOC is unreachable)</li>
 </ul>
 </li>
-<li>save Match and Actions</li>
+<li>Save Match and Actions</li>
 </ul>
 </li>
 </ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task6_DP_2.png" width="800"/>
  - Click <strong>Default Action</strong>, and change action to <strong>Accept</strong>
- - click <strong>Save Match and Actions</strong> then click Save Data Policy</p>
+ - Click <strong>Save Match and Actions</strong> then click Save Data Policy</p>
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task6_DP_3.png" width="800"/></p>
 <h4 id="step62-apply-data-policy">Step6.2: Apply Data Policy</h4>
 <ul>
@@ -1117,9 +1117,9 @@ You will see 10.100.100.0/0 is leared from 1.1.10.2; 10.200.200.0/24 is learned 
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task6_DP_4.png" width="800"/></p>
 <ul>
 <li>Click <strong>Policy Application</strong> and select <strong>Traffic Data</strong></li>
-<li>click <strong>+ New Site List and VPN list</strong> and configure as following<ul>
-<li>check <strong>From Service</strong> checkbox</li>
-<li>select site list: <strong>RH</strong> and <strong>ALL-Remotes</strong></li>
+<li>Click <strong>+ New Site List and VPN list</strong> and configure as following<ul>
+<li>Check <strong>From Service</strong> checkbox</li>
+<li>Select site list: <strong>RH</strong> and <strong>ALL-Remotes</strong></li>
 <li>Select VPN list: <strong>VPN1</strong></li>
 </ul>
 </li>
@@ -1129,8 +1129,8 @@ You will see 10.100.100.0/0 is leared from 1.1.10.2; 10.200.200.0/24 is learned 
 <h4 id="step63-verify-application-pining-policy">Step6.3: verify application pining policy</h4>
 <ul>
 <li>Log in to vManage <strong>198.18.133.200</strong> and select <strong>Monitor - Network</strong></li>
-<li>click <strong>RH-WE1</strong> to bring up device monitor page, and select <strong>Troubleshooting</strong> from the panel on the left</li>
-<li>select <strong>Simulate Flows</strong> tool under <strong>Traffic</strong> and use the following value for simulated flow<ul>
+<li>Click <strong>RH-WE1</strong> to bring up device monitor page, and select <strong>Troubleshooting</strong> from the panel on the left</li>
+<li>Select <strong>Simulate Flows</strong> tool under <strong>Traffic</strong> and use the following value for simulated flow<ul>
 <li>VPN: <strong>VPN-1</strong></li>
 <li>Source/Interface for VPN-1: <strong>Gigabiethernet4 - ipv4 - 10.10.30.2</strong></li>
 <li>Source IP: <strong>10.10.30.2</strong></li>
@@ -1153,15 +1153,15 @@ you should see traffic is taking private1</li>
 <li>Let's shutdown both private1 and private2 interface and verify again</li>
 <li>Access template configuration from <strong>Configuration - Templates</strong></li>
 <li>Locate deice template <strong>Lab_RH_V01</strong>, click <strong>...</strong> and select <strong>Change Device Values</strong></li>
-<li>click <strong>...</strong> to select <strong>Edit Device Template</strong></li>
-<li>select the <strong>Shutdown(vpn_if_interface)</strong> checkbox under <strong>GigabitEthernet1</strong></li>
-<li>select the <strong>Shutdown(vpn_if_interface)</strong> checkbox under <strong>GigabitEthernet2</strong></li>
-<li>click Update -&gt; next to trigger the configure change.</li>
+<li>Click <strong>...</strong> to select <strong>Edit Device Template</strong></li>
+<li>Select the <strong>Shutdown(vpn_if_interface)</strong> checkbox under <strong>GigabitEthernet1</strong></li>
+<li>Select the <strong>Shutdown(vpn_if_interface)</strong> checkbox under <strong>GigabitEthernet2</strong></li>
+<li>Click Update -&gt; next to trigger the configure change.</li>
 </ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task6_DP_8.png" width="800"/></p>
 <ul>
-<li>click <strong>RH-WE1</strong> to bring up device monitor page, and select <strong>Troubleshooting</strong> from the panel on the left</li>
-<li>select <strong>Simulate Flows</strong> tool under <strong>Traffic</strong> and use the following value for simulated flow<ul>
+<li>Click <strong>RH-WE1</strong> to bring up device monitor page, and select <strong>Troubleshooting</strong> from the panel on the left</li>
+<li>Select <strong>Simulate Flows</strong> tool under <strong>Traffic</strong> and use the following value for simulated flow<ul>
 <li>VPN: <strong>VPN-1</strong></li>
 <li>Source/Interface for VPN-1: <strong>Gigabiethernet4 - ipv4 - 10.10.30.2</strong></li>
 <li>Source IP: <strong>10.10.30.2</strong></li>
@@ -1182,8 +1182,8 @@ you can see the traffic is dropped (in the lab, it will follow service side defa
 <p>Before we proceed to the next lab, let's do one more simulation test.</p>
 <ul>
 <li>Log in to vManage <strong>198.18.133.200</strong> and select <strong>Monitor - Network</strong></li>
-<li>click <strong>RH-WE1</strong> to bring up device monitor page, and select <strong>Troubleshooting</strong> from the panel on the left</li>
-<li>select <strong>Simulate Flows</strong> tool under <strong>Traffic</strong> and use the following value for simulated flow<ul>
+<li>Click <strong>RH-WE1</strong> to bring up device monitor page, and select <strong>Troubleshooting</strong> from the panel on the left</li>
+<li>Select <strong>Simulate Flows</strong> tool under <strong>Traffic</strong> and use the following value for simulated flow<ul>
 <li>VPN: <strong>VPN-1</strong></li>
 <li>Source/Interface for VPN-1: <strong>Gigabiethernet4 - ipv4 - 10.10.30.2</strong></li>
 <li>Source IP: <strong>10.10.30.2</strong></li>
@@ -1204,8 +1204,8 @@ you can see the traffic is dropped (in the lab, it will follow service side defa
 <li>Access policy configuration from <strong>Configuration - Policies</strong></li>
 <li>Locate <strong>LAB_Central_v02</strong> click <strong>...</strong> for more option and select <strong>Edit</strong></li>
 <li>Click <strong>Traffic Rules</strong> and select <strong>Traffic Data</strong></li>
-<li>select <strong>LAB1_DP_V01</strong> click <strong>...</strong> for more option and select <strong>Detach</strong></li>
-<li>click <strong>Save Policy Changes</strong> to Activate</li>
+<li>Select <strong>LAB1_DP_V01</strong> click <strong>...</strong> for more option and select <strong>Detach</strong></li>
+<li>Click <strong>Save Policy Changes</strong> to Activate</li>
 <li>Access template configuration from <strong>Configuration - Templates</strong></li>
 <li>Under <strong>Feature</strong> template tab, locate template <strong>Lab_RH_VPN0_LTE_V01</strong> and select <strong>Edit</strong></li>
 <li>Under <strong>Tunnel</strong> section, expand <strong>Advanced Options</strong>; change <strong>Last-Resort Circuit</strong> settings to <strong>Off</strong></li>

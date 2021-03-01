@@ -361,9 +361,9 @@
 <p><img src="https://leitian123.github.io/holent2901/img/lab3_1_1_2.PNG" width="800"/>  </p>
 <ul>
 <li>After save <strong>REALTIME</strong> class, add following three classes.</li>
-<li>class: <strong>SIGNALING</strong>  Queue: <strong>1</strong></li>
-<li>class: <strong>CRITICAL</strong> Queue: <strong>3</strong></li>
-<li>class: <strong>DEFAULT</strong>  Queue: <strong>2</strong></li>
+<li>Class: <strong>SIGNALING</strong>  Queue: <strong>1</strong></li>
+<li>Class: <strong>CRITICAL</strong> Queue: <strong>3</strong></li>
+<li>Class: <strong>DEFAULT</strong>  Queue: <strong>2</strong></li>
 </ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab3_1_1_3.PNG" width="800"/></p>
 <ul>
@@ -579,16 +579,16 @@
 <li>Access template configuration from <strong>Configuration - Templates</strong></li>
 <li>Under <strong>Feature</strong> template tab, locate template <strong>Lab_RH_VPN0_Private1_v01</strong> and select <strong>Edit</strong>  </li>
 <li>In <strong>TUNNEL</strong> section, configure the following</li>
-<li>select <strong>On</strong> for <strong>Per-tunnel QoS</strong> to enable per-tunnel QoS</li>
-<li>select <strong>On</strong> for <strong>Per-tunnel QoS Aggregator</strong> to set this as hub tunnel</li>
+<li>Select <strong>On</strong> for <strong>Per-tunnel QoS</strong> to enable per-tunnel QoS</li>
+<li>Select <strong>On</strong> for <strong>Per-tunnel QoS Aggregator</strong> to set this as hub tunnel</li>
 <li>Configure <strong>Tunnel Bandwidth Percent</strong> to <strong>80</strong> to set maximum bandwidth usage for overlay traffic</li>
 </ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab3_2_2_1.PNG" width="800"/></p>
 <ul>
 <li>Locate feature template <strong>Lab_RH_VPN0_Private2_V01</strong>, and select <strong>Edit</strong>  </li>
 <li>In <strong>TUNNEL</strong> section, configure the following</li>
-<li>select <strong>On</strong> for <strong>Per-tunnel QoS</strong> to enable per-tunnel QoS</li>
-<li>select <strong>On</strong> for <strong>Per-tunnel QoS Aggregator</strong> to set this as hub tunnel</li>
+<li>Select <strong>On</strong> for <strong>Per-tunnel QoS</strong> to enable per-tunnel QoS</li>
+<li>Select <strong>On</strong> for <strong>Per-tunnel QoS Aggregator</strong> to set this as hub tunnel</li>
 <li>Configure <strong>Tunnel Bandwidth Percent</strong> to <strong>80</strong> to set maximum bandwidth usage for overlay traffic  </li>
 </ul>
 <h4 id="step23-configure-spoke-role-on-remotes">Step2.3: Configure Spoke role on Remotes</h4>
@@ -615,7 +615,7 @@
 </li>
 <li>In the same feature template <strong>Lab_Remote_VPN0_Private2_v01</strong>, under <strong>BASIC CONFIGURATION</strong> section</li>
 <li>
-<p>specify the downstream bandwidth to 20Mbps for remote2</p>
+<p>Specify the downstream bandwidth to 20Mbps for remote2</p>
 <p><img src="https://leitian123.github.io/holent2901/img/lab3_2_2_4.PNG" width="800"/>  </p>
 </li>
 </ul>
@@ -671,7 +671,7 @@ src-addr                 dst-addr                 sport   dport   proto remote-t
 <p><img src="https://leitian123.github.io/holent2901/img/lab3_3_1_3.PNG" width="800"/></p>
 <ul>
 <li>
-<p>click <strong>Save Control Policy</strong> to push policy update</p>
+<p>Click <strong>Save Control Policy</strong> to push policy update</p>
 </li>
 <li>
 <p>Follow the same steps to modify topology policy <strong>LAB_Topo_RS2_v02</strong>.</p>
@@ -697,19 +697,19 @@ src-addr                 dst-addr                 sport   dport   proto remote-t
 <p><img src="https://leitian123.github.io/holent2901/img/lab3_3_2_2.PNG" width="800"/></p>
 <ul>
 <li>
-<p>locate device template <strong>Lab_R1_V01</strong> and change system template to <strong>Lab_Remote_System_V01</strong></p>
+<p>Locate device template <strong>Lab_R1_V01</strong> and change system template to <strong>Lab_Remote_System_V01</strong></p>
 <p><img src="https://leitian123.github.io/holent2901/img/lab3_3_2_3.PNG" width="800"/></p>
 <p>update and push configuration change.</p>
 </li>
 <li>
-<p>locate device template <strong>Lab_R2_V01</strong> and change system template to <strong>Lab_Remote_System_V01</strong>. update and push configuration change.</p>
+<p>Locate device template <strong>Lab_R2_V01</strong> and change system template to <strong>Lab_Remote_System_V01</strong>. update and push configuration change.</p>
 </li>
 </ul>
 <h4 id="step33-verify-on-demand-tunnel-between-remotes">Step3.3: Verify On-demand Tunnel between remotes</h4>
 <p>You can verify the dynamic tunnel between remotes from vManage.</p>
 <ul>
 <li>Log in to vManage <strong>198.18.133.200</strong> and access <strong>Monitor - Network</strong></li>
-<li>select WAN-Edge <strong>R1-WE1</strong></li>
+<li>Select WAN-Edge <strong>R1-WE1</strong></li>
 </ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab3_3_3_1.PNG" width="800"/></p>
 <ul>
@@ -721,8 +721,8 @@ src-addr                 dst-addr                 sport   dport   proto remote-t
 </ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab3_3_3_3.PNG" width="800"/></p>
 <ul>
-<li>type in <strong>on demand remote</strong> in <strong>Device Options</strong> filed    </li>
-<li>the output shows remote on demand tunnel to remote2 <strong>1.1.102.1</strong> is enabled and tunnel status is <strong>inactive</strong></li>
+<li>Type in <strong>on demand remote</strong> in <strong>Device Options</strong> filed    </li>
+<li>The output shows remote on demand tunnel to remote2 <strong>1.1.102.1</strong> is enabled and tunnel status is <strong>inactive</strong></li>
 </ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab3_3_3_4.PNG" width="800"/></p>
 <ul>
@@ -877,13 +877,13 @@ Antireplay window size = 512
 </ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab3_4_1_3.PNG" width="800"/></p>
 <ul>
-<li>click save to update and filed in <strong>172.4.101.1/24</strong> for tunnel IP Address</li>
+<li>Click save to update and filed in <strong>172.4.101.1/24</strong> for tunnel IP Address</li>
 </ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab3_4_1_4.PNG" width="800"/></p>
 <ul>
 <li>Locate device template <strong>Lab_R2_V01</strong> click Edit</li>
 <li>Add <strong>Lab_IPsec_Int_V01</strong> under VPN0</li>
-<li>click save to update and filed in <strong>172.4.102.1/24</strong> for tunnel IP Address</li>
+<li>Click save to update and filed in <strong>172.4.102.1/24</strong> for tunnel IP Address</li>
 </ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab3_4_1_5.PNG" width="800"/></p>
 <ul>
@@ -929,12 +929,12 @@ R1-WE1#
 
 <ul>
 <li>Next you need to route all traffic to cloud application <strong>16.16.16.16</strong> to the tunnel.</li>
-<li>locate feature template <strong>Lab_Remote_VPN1_V01</strong> and edit</li>
+<li>Locate feature template <strong>Lab_Remote_VPN1_V01</strong> and edit</li>
 <li>In <strong>IPSEC ROUTE</strong> section, add <strong>New IPSEC Route</strong> with prefix <strong>16.16.16.16/32</strong> interface <strong>ipsec1</strong></li>
 </ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab3_4_1_6.PNG" width="800"/></p>
 <ul>
-<li>click update to push configure change to both remote sites.</li>
+<li>Click update to push configure change to both remote sites.</li>
 </ul>
 <h4 id="step42-verify-sig-tunnel">Step4.2 : verify SIG tunnel</h4>
 <ul>
@@ -942,24 +942,24 @@ R1-WE1#
 <p>VNC login <strong>R1-VM1</strong> and <strong>R2-VM1</strong> with credential <strong>viptela</strong></p>
 </li>
 <li>
-<p>verify that you can ping <strong>16.16.16.16</strong> from the VM</p>
+<p>Verify that you can ping <strong>16.16.16.16</strong> from the VM</p>
 </li>
 </ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab3_4_2_1.PNG" width="800"/></p>
 <ul>
-<li>now try access <strong>16.16.16.16</strong> from browser. You should see this login page</li>
+<li>Now try access <strong>16.16.16.16</strong> from browser. You should see this login page</li>
 </ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab3_4_2_2.PNG" width="800"/></p>
 <h2 id="task-5-dia">Task 5: DIA</h2>
 <p>There are two options to enable DIA.</p>
 <ul>
 <li>
-<p>option 1: NAT DIA Route
+<p>Option 1: NAT DIA Route
 </n>
   In this option, a NAT route is configured under service VPN. You can direct local internet traffic from service VPN to transport VPN.</p>
 </li>
 <li>
-<p>option 2: Centralized data policy
+<p>Option 2: Centralized data policy
   </n>
   In this option, a centralized policy is applied to service side traffic based on ip prefixes, a match will redirect to transport VPN. Traffic that doesnt match the policy will stay in service VPN and route over IPSec tunnel.</p>
 </li>
@@ -992,7 +992,7 @@ traceroute to 1.1.1.1 (1.1.1.1), 30 hops max, 60 byte packets
 <h4 id="step53-add-nat-route-on-vpn-1">Step5.3: Add NAT route on VPN 1</h4>
 <ul>
 <li>Log in to vManage <strong>198.18.133.200</strong> and access template configuration from <strong>Configuration - Templates - Feature</strong></li>
-<li>locate <strong>Lab_Remote_VPN1_V01</strong> and <strong>Edit</strong></li>
+<li>Locate <strong>Lab_Remote_VPN1_V01</strong> and <strong>Edit</strong></li>
 <li>Under <strong>IPv4 ROUTE</strong>, click <strong>New IPv4 Route</strong><ul>
 <li>enter <strong>0.0.0.0/0</strong> for prefix</li>
 <li>select <strong>VPN</strong> for Gateway</li>
@@ -1060,7 +1060,7 @@ traceroute to 1.1.1.1 (1.1.1.1), 30 hops max, 60 byte packets
 </ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab3_6_3_4.PNG" width="800"/></p>
 <ul>
-<li>select <strong>Attach DIA Sites</strong>, select <strong>R1-WE1</strong> and <strong>R2-WE1</strong> and move it to <strong>selected Sites</strong>.       </li>
+<li>Select <strong>Attach DIA Sites</strong>, select <strong>R1-WE1</strong> and <strong>R2-WE1</strong> and move it to <strong>selected Sites</strong>.       </li>
 </ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab3_6_3_5.PNG" width="800"/>  </p>
 <h4 id="step64-verify-cor-saas">Step6.4 Verify CoR SaaS</h4>
