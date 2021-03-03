@@ -348,7 +348,7 @@
 <h4 id="step11-class-map-and-applications">Step1.1: class map and applications</h4>
 <ul>
 <li>
-<p>Log in to vManage <strong>198.18.133.200</strong> and access policy configuration from <strong>Configuration - Policies</strong></p>
+<p>Login to vManage <strong>198.18.133.200</strong> and access policy configuration from <strong>Configuration - Policies</strong></p>
 </li>
 <li>
 <p>Click <strong>Custom Options</strong> drop down on the top right and select <strong>Lists</strong> under <strong>Localized Policy</strong></p>
@@ -383,7 +383,7 @@
 <h4 id="step12-central-data-policy-for-classification">Step1.2: Central Data Policy for classification</h4>
 <ul>
 <li>
-<p>Log in to vManage <strong>198.18.133.200</strong> and access policy configuration from <strong>Configuration - Policies</strong></p>
+<p>Login to vManage <strong>198.18.133.200</strong> and access policy configuration from <strong>Configuration - Policies</strong></p>
 </li>
 <li>
 <p>Click <strong>Custom Options</strong> drop down on the top right and select <strong>Traffic Policy</strong> under <strong>Centralized Policy</strong></p>
@@ -424,7 +424,7 @@
 <h4 id="step13-local-qos-queuing-policy">Step1.3: Local QoS queuing policy</h4>
 <ul>
 <li>
-<p>Log in to vManage <strong>198.18.133.200</strong> and access policy configuration from <strong>Configuration - Policies</strong></p>
+<p>Login to vManage <strong>198.18.133.200</strong> and access policy configuration from <strong>Configuration - Policies</strong></p>
 </li>
 <li>
 <p>Click <strong>Custom Options</strong> drop down on the top right and select <strong>forwarding Class/QoS</strong> under <strong>Localized Policy</strong></p>
@@ -562,7 +562,7 @@
 <h4 id="step21-configure-qos-policy-on-rh">Step2.1: Configure QoS policy on RH</h4>
 <ul>
 <li>In taks 1, you have configured QoS policy on remote sites. Follow the same steps to configure QoS policy on RH <strong>RH-WE1</strong>.</li>
-<li>Log in to vManage <strong>198.18.133.200</strong> and access policy configuration from <strong>Configuration - Policies - Localized Policy</strong></li>
+<li>Login to vManage <strong>198.18.133.200</strong> and access policy configuration from <strong>Configuration - Policies - Localized Policy</strong></li>
 <li>Copy polocy <strong>LAB_Remote_Local_v01</strong> and name new policy <strong>LAB_RH_Local_v01</strong>.</li>
 <li>Access template configuration from <strong>Configuration - Templates</strong></li>
 <li>Locate device template <strong>Lab_RH_V01</strong> and attach localized policy <strong>LAB_RH_Local_v01</strong> to the device template.  </li>
@@ -643,7 +643,7 @@ src-addr                 dst-addr                 sport   dport   proto remote-t
 <p>In Lab1 you have created hub and spoke topology for both remote sites. In order to create dynamic on-demand tunnel between remotes, first you need modify the topology policy to include a <strong>tloc-action backup</strong> action.</p>
 <ul>
 <li>
-<p>Log in to vManage <strong>198.18.133.200</strong> and access policy configuration from <strong>Configuration - Policies</strong></p>
+<p>Login to vManage <strong>198.18.133.200</strong> and access policy configuration from <strong>Configuration - Policies</strong></p>
 </li>
 <li>
 <p>Click <strong>Custom Options</strong> drop down on the top right and select <strong>Topology</strong> under <strong>Centralized Policy</strong></p>
@@ -708,7 +708,7 @@ src-addr                 dst-addr                 sport   dport   proto remote-t
 <h4 id="step33-verify-on-demand-tunnel-between-remotes">Step3.3: Verify On-demand Tunnel between remotes</h4>
 <p>You can verify the dynamic tunnel between remotes from vManage.</p>
 <ul>
-<li>Log in to vManage <strong>198.18.133.200</strong> and access <strong>Monitor - Network</strong></li>
+<li>Login to vManage <strong>198.18.133.200</strong> and access <strong>Monitor - Network</strong></li>
 <li>Select WAN-Edge <strong>R1-WE1</strong></li>
 </ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab3_3_3_1.PNG" width="800"/></p>
@@ -816,7 +816,7 @@ Antireplay window size = 512
 </code></pre>
 
 <ul>
-<li>Log in to vManage <strong>198.18.133.200</strong> and access template configuration from <strong>Configuration - Templates - Feature</strong></li>
+<li>Login to vManage <strong>198.18.133.200</strong> and access template configuration from <strong>Configuration - Templates - Feature</strong></li>
 <li>Add new IPsec interface feature template as show below</li>
 </ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab3_4_1_1.PNG" width="800"/></p>
@@ -984,14 +984,14 @@ traceroute to 1.1.1.1 (1.1.1.1), 30 hops max, 60 byte packets
 </ul>
 <h4 id="step52-enable-nat-on-lte-transport">Step5.2: Enable NAT on LTE transport</h4>
 <ul>
-<li>Log in to vManage <strong>198.18.133.200</strong> and access template configuration from <strong>Configuration - Templates - Feature</strong></li>
+<li>Login to vManage <strong>198.18.133.200</strong> and access template configuration from <strong>Configuration - Templates - Feature</strong></li>
 <li>locate template <strong>Lab_Remote_VPN0_LTE_V01</strong> and click <strong>...</strong> to select <strong>Edit</strong></li>
 <li>Under <strong>NAT</strong> section, change NAT checkbox to <strong>On</strong>. leave other fields as default.</li>
 <li>Click <strong>Update</strong> to push configure change.</li>
 </ul>
 <h4 id="step53-add-nat-route-on-vpn-1">Step5.3: Add NAT route on VPN 1</h4>
 <ul>
-<li>Log in to vManage <strong>198.18.133.200</strong> and access template configuration from <strong>Configuration - Templates - Feature</strong></li>
+<li>Login to vManage <strong>198.18.133.200</strong> and access template configuration from <strong>Configuration - Templates - Feature</strong></li>
 <li>Locate <strong>Lab_Remote_VPN1_V01</strong> and <strong>Edit</strong></li>
 <li>Under <strong>IPv4 ROUTE</strong>, click <strong>New IPv4 Route</strong><ul>
 <li>enter <strong>0.0.0.0/0</strong> for prefix</li>
@@ -1022,7 +1022,7 @@ traceroute to 1.1.1.1 (1.1.1.1), 30 hops max, 60 byte packets
 <p><img src="https://leitian123.github.io/holent2901/img/lab3_6_0_0.png" width="800"/></p>
 <h4 id="step61-enable-cloud-onramp-for-saas">Step6.1 Enable Cloud OnRamp for SaaS</h4>
 <ul>
-<li>Log in to vManage <strong>198.18.133.200</strong> and access <strong>Administration - Settings</strong></li>
+<li>Login to vManage <strong>198.18.133.200</strong> and access <strong>Administration - Settings</strong></li>
 <li>Edit <strong>Cloud onRamp for SaaS</strong> and check <strong>Enabled</strong></li>
 </ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab3_6_1_1.PNG" width="800"/></p>
