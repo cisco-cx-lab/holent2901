@@ -386,17 +386,19 @@
 </ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task1_new_lp_6.png" width="800"/></p>
 <ul>
-<li>Attach local policy to DC device templates <strong>(Lab_DC1_V01 &amp; Lab_DC2_V01)</strong></li>
+<li>Attach local policy to DC device templates <strong>(Lab_DC1_V01 &amp; Lab_DC2_V01)</strong>
+<span style="background-color:lightblue"> <strong>Note: Make sure attach the policy on DC1&amp;DC2 device-templates before process.</strong><ul>
+<li>Access template configuration from <strong>Configuration - Templates</strong></li>
+<li>Under <strong>Device</strong> template tab, locate template <strong>Lab_DC1_V01</strong> and select <strong>Edit</strong></li>
+<li>Under <strong>Additional Templates</strong> section, click the dropdown next to <strong>Policy</strong> and select <strong>LAB_DCs_Local_policy</strong>
+ <img src="https://leitian123.github.io/holent2901/img/lab1_1_4_4.PNG" width="800"/></li>
+<li>Click <strong>update</strong> to trigger configure change</li>
+<li>Under <strong>Device</strong> template tab, locate template <strong>Lab_DC2_V01</strong> and select <strong>Edit</strong></li>
+<li>Under <strong>Additional Templates</strong> section, click the dropdown next to <strong>Policy</strong> and select <strong>LAB_DCs_Local_policy</strong></li>
+<li>Click <strong>update</strong> and <strong>Next</strong> to configuration change window. Click the checkbox to <strong>Confirm configuration changes</strong> and click OK to push the change.</li>
 </ul>
-<p><span style="background-color:lightblue"> <strong>Note: Make sure attach the policy on DC1&amp;DC2 device-templates before process.</strong>
-    - Access template configuration from <strong>Configuration - Templates</strong>
-    - Under <strong>Device</strong> template tab, locate template <strong>Lab_DC1_V01</strong> and select <strong>Edit</strong>
-    - Under <strong>Additional Templates</strong> section, click the dropdown next to <strong>Policy</strong> and select <strong>LAB_DCs_Local_policy</strong>
- <img src="https://leitian123.github.io/holent2901/img/lab1_1_4_4.PNG" width="800"/>
-    - Click <strong>update</strong> to trigger configure change
-    - Under <strong>Device</strong> template tab, locate template <strong>Lab_DC2_V01</strong> and select <strong>Edit</strong>
-    - Under <strong>Additional Templates</strong> section, click the dropdown next to <strong>Policy</strong> and select <strong>LAB_DCs_Local_policy</strong>
-    - Click <strong>update</strong> and <strong>Next</strong> to configuration change window. Click the checkbox to <strong>Confirm configuration changes</strong> and click OK to push the change.</p>
+</li>
+</ul>
 <h4 id="step-15-apply-the-route-policy"><strong>Step 1.5</strong> apply the route-policy</h4>
 <ul>
 <li>Access feature template configuration from <strong>Configuration - Templates - Feature</strong></li>
