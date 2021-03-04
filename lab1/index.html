@@ -386,22 +386,22 @@
 </ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task1_new_lp_6.png" width="800"/></p>
 <ul>
-<li>Attach local policy to DC device templates <strong>(Lab_DC1_V01 &amp; Lab_DC2_V01)</strong><ul>
-<li>Access template configuration from <strong>Configuration - Templates</strong></li>
-<li>Under <strong>Device</strong> template tab, locate template <strong>Lab_DC1_V01</strong> and select <strong>Edit</strong></li>
-<li>Under <strong>Additional Templates</strong> section, click the dropdown next to <strong>Policy</strong> and select <strong>LAB_DCs_Local_policy</strong>
- <img src="https://leitian123.github.io/holent2901/img/lab1_1_4_4.PNG" width="800"/></li>
-<li>Click <strong>update</strong> to trigger configure change</li>
-<li>Under <strong>Device</strong> template tab, locate template <strong>Lab_DC2_V01</strong> and select <strong>Edit</strong></li>
-<li>Under <strong>Additional Templates</strong> section, click the dropdown next to <strong>Policy</strong> and select <strong>LAB_DCs_Local_policy</strong></li>
-<li>Click <strong>update</strong> to trigger configure change</li>
+<li>Attach local policy to DC device templates <strong>(Lab_DC1_V01 &amp; Lab_DC2_V01)</strong></li>
 </ul>
-</li>
-</ul>
+<p><span style="background-color:lightblue"> <strong>Note: Make sure attach the policy on DC1&amp;DC2 device-templates before process.</strong></p>
+<pre><code>- Access template configuration from **Configuration - Templates**
+- Under **Device** template tab, locate template **Lab_DC1_V01** and select **Edit**
+- Under **Additional Templates** section, click the dropdown next to **Policy** and select **LAB_DCs_Local_policy**
+</code></pre>
+<p><img src="https://leitian123.github.io/holent2901/img/lab1_1_4_4.PNG" width="800"/>
+    - Click <strong>update</strong> to trigger configure change
+    - Under <strong>Device</strong> template tab, locate template <strong>Lab_DC2_V01</strong> and select <strong>Edit</strong>
+    - Under <strong>Additional Templates</strong> section, click the dropdown next to <strong>Policy</strong> and select <strong>LAB_DCs_Local_policy</strong>
+    - Click <strong>update</strong> and <strong>Next</strong> to configuration change window. Click the checkbox to <strong>Confirm configuration changes</strong> and click OK to push the change.</p>
 <h4 id="step-15-apply-the-route-policy"><strong>Step 1.5</strong> apply the route-policy</h4>
 <ul>
 <li>Access feature template configuration from <strong>Configuration - Templates - Feature</strong></li>
-<li>Locate feture template <strong>Lab_DC_VPN1_BGP_V01</strong> and select three dots then click <strong>Edit</strong>.</li>
+<li>Locate feature template <strong>Lab_DC_VPN1_BGP_V01</strong> and select three dots then click <strong>Edit</strong>.</li>
 </ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task1_bgp_ft_1.png" width="800"/></p>
 <ul>
@@ -1147,7 +1147,7 @@ you should see traffic is taking private1</li>
 <ul>
 <li>Change the Protocol to 6 (TCP) and simulate again</li>
 </ul>
-<p>You should not see any changes as private1 is only available circuit.</p>
+<p>You should not see any changes as the private1 is only available circuit.</p>
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task6_DP_7.png" width="800"/></p>
 <ul>
 <li>Let's shutdown both private1 and private2 interface and verify again</li>
@@ -1196,7 +1196,7 @@ you can see the traffic is dropped (in the lab, it will follow service side defa
 </li>
 <li>Click <strong>Simulate</strong></li>
 </ul>
-<p>you should see traffic is taking both private1 &amp; private2.</p>
+<p>You should see traffic is taking both private1 &amp; private2.</p>
 <p><strong>Question: In the previous AAR lab says private1 should be preferred, and we have verified that behavior earlier. Why this is taking both private1 and private2 now?</strong></p>
 <p>This is because our Data Policy says TCP traffic can use all the colors, when you have both AAR and Data Policy configured, Data Policy will take the final decision. You have to be careful with that when designing your AAR and DP. Avoid having both configured for the same application on same sites.</p>
 <p><span style="background-color:lightblue"> <strong>Note: In later sections of the lab, you will need to use LTE interface and central data policy. Please disable last-resort on LTE of RH-WE1. Also detach data policy LAB1_DP_V01</strong></p>
