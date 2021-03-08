@@ -87,11 +87,11 @@
     </li>
     <li class="toctree-l3"><a class="reference internal" href="../lab1/#step-12-verify-the-bgp-communities">Step 1.2 Verify the BGP communities.</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="../lab1/#step-13-set-omp-tag-for-dc-specific-routes">Step 1.3 set OMP tag for DC specific Routes</a>
+    <li class="toctree-l3"><a class="reference internal" href="../lab1/#step-13-set-the-omp-tag-for-dc-specific-routes">Step 1.3 set the OMP tag for DC specific Routes</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="../lab1/#step-14-creating-a-local-policy">Step 1.4 Creating a Local Policy</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="../lab1/#step-15-apply-the-route-policy">Step 1.5 apply the route-policy</a>
+    <li class="toctree-l3"><a class="reference internal" href="../lab1/#step-15-apply-the-route-policy">Step 1.5 Apply the route-policy</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="../lab1/#step-16-verify-omp-tags">Step 1.6 Verify OMP Tags</a>
     </li>
@@ -123,7 +123,7 @@
     </li>
     <li class="toctree-l3"><a class="reference internal" href="../lab1/#step-35-create-new-topology">Step 3.5. Create new topology</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="../lab1/#step-36-verify">Step 3.6. verify</a>
+    <li class="toctree-l3"><a class="reference internal" href="../lab1/#step-36-verify">Step 3.6. Verify</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="../lab1/#step-37-create-topology-policy-for-remote2">Step 3.7. Create topology policy for Remote2</a>
     </li>
@@ -149,7 +149,7 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="../lab1/#task-5-application-aware-routing">Task 5: Application Aware Routing</a>
         <ul>
-    <li class="toctree-l3"><a class="reference internal" href="../lab1/#step51-configure-rh-lte-interface-be-used-only-when-all-other-circuits-are-unavailable">Step5.1: Configure RH LTE interface be used only when all other circuits are unavailable.</a>
+    <li class="toctree-l3"><a class="reference internal" href="../lab1/#step51-configure-the-rh-lte-interface-be-used-only-when-all-other-circuits-are-unavailable">Step5.1: Configure the RH LTE interface be used only when all other circuits are unavailable.</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="../lab1/#step52-last-resort-verification">Step5.2: Last-Resort verification.</a>
     </li>
@@ -561,9 +561,9 @@
 <p>In this section, you will configure the RH WAN edge router (<strong>RH-WE1</strong>) to shape tunnel traffic to each remote. This per-tunnel QoS will make sure RH cannot send excessive traffic to remotes and overrun it.</p>
 <h4 id="step21-configure-qos-policy-on-rh">Step2.1: Configure QoS policy on RH</h4>
 <ul>
-<li>In taks 1, you have configured QoS policy on remote sites. Follow the same steps to configure QoS policy on RH <strong>RH-WE1</strong>.</li>
+<li>In task 1, you have configured QoS policy on remote sites. Follow the same steps to configure QoS policy on RH <strong>RH-WE1</strong>.</li>
 <li>Login to vManage <strong>198.18.133.200</strong> and access policy configuration from <strong>Configuration - Policies - Localized Policy</strong></li>
-<li>Copy polocy <strong>LAB_Remote_Local_v01</strong> and name new policy <strong>LAB_RH_Local_v01</strong>.</li>
+<li>Copy policy <strong>LAB_Remote_Local_v01</strong> and name new policy <strong>LAB_RH_Local_v01</strong>.</li>
 <li>Access template configuration from <strong>Configuration - Templates</strong></li>
 <li>Locate device template <strong>Lab_RH_V01</strong> and attach localized policy <strong>LAB_RH_Local_v01</strong> to the device template.  </li>
 <li>Update following feature templates<ul>
@@ -1052,7 +1052,7 @@ traceroute to 1.1.1.1 (1.1.1.1), 30 hops max, 60 byte packets
 </ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab3_6_3_2.PNG" width="800"/></p>
 <ul>
-<li>In the pop up window, under <strong>Interface</strong> field select interface <strong>GigabitEthernet4</strong> from the list. This will allow gateway site sends</li>
+<li>In the pop up window, under <strong>Interface</strong> field select interface <strong>GigabitEthernet4</strong> from the list.</li>
 </ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab3_6_3_3.PNG" width="800"/></p>
 <ul>
