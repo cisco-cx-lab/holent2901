@@ -629,17 +629,22 @@ then click Save Policy</li>
 </li>
 </ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task3_routes_9a.PNG" width="800"/>  </p>
-<pre><code>- Click **+Sequence Type** and select **Route**
-- Click **+Sequence Rule**
-    - Click **Prefix List** and **Site** under **Match**  
-    - Under **Match Conditions**, select **default** from **Prefix List** dropdown
-    - Under **Match Conditions**, select **DCs** from **Site List** dropdown
-    - Click **Actions** select **Accept**; add **Preference** with value **50**
-- Click **+Sequence Rule** to add catch-all rule
-    - leave unchange Under **Match Conditions**(means match all)
-    - Click **Actions** select **Accept**; add **Preference** with value **0**
-    - Click **Save Match And Actions**
-</code></pre>
+<ul>
+<li>Click <strong>+Sequence Type</strong> and select <strong>Route</strong></li>
+<li>Click <strong>+Sequence Rule</strong><ul>
+<li>Click <strong>Prefix List</strong> and <strong>Site</strong> under <strong>Match</strong>  </li>
+<li>Under <strong>Match Conditions</strong>, select <strong>default</strong> from <strong>Prefix List</strong> dropdown</li>
+<li>Under <strong>Match Conditions</strong>, select <strong>DCs</strong> from <strong>Site List</strong> dropdown</li>
+<li>Click <strong>Actions</strong> select <strong>Accept</strong>; add <strong>Preference</strong> with value <strong>50</strong></li>
+</ul>
+</li>
+<li>Click <strong>+Sequence Rule</strong> to add catch-all rule<ul>
+<li>leave unchange Under <strong>Match Conditions</strong>(means match all)</li>
+<li>Click <strong>Actions</strong> select <strong>Accept</strong>; add <strong>Preference</strong> with value <strong>0</strong></li>
+<li>Click <strong>Save Match And Actions</strong></li>
+</ul>
+</li>
+</ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task3_routes_9.png" width="800"/></p>
 <ul>
 <li>Apply this new topology to the current policy.</li>
