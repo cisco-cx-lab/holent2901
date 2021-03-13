@@ -317,7 +317,7 @@
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task1_iproute.png" width="800"/></p>
 <h4 id="step-12-verify-the-bgp-communities"><strong>Step 1.2</strong> Verify the BGP communities.</h4>
 <ul>
-<li>10.100.100.0/24 should tag with 65010:1000; 10.200.200.0/24 should tag with 65020:2000. Execute <code>show ip bgp vpnv4 vrf 1 &lt;prefix&gt;</code> (10.100.100.0/24 and 10.200.200.0/24) on DC1-WE1,WE2 and DC2-WE1,WE2.</li>
+<li>10.100.100.0/24 should tag with 65010:1000; 10.200.200.0/24 should tag with 65020:2000. Execute <code>show ip bgp vpnv4 vrf 1 &lt;prefix&gt;</code> (10.100.100.0/24 and 10.200.200.0/24) on DC1-WE1,DC1-WE2 and DC2-WE1,DC2-WE2.</li>
 </ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task1_bgpcommunity.png" width="800"/></p>
 <h4 id="step-13-set-the-omp-tag-for-dc-specific-routes"><strong>Step 1.3</strong> set the OMP tag for DC specific Routes</h4>
@@ -346,10 +346,9 @@
 <li>Match <strong>community-list DC2_Routes</strong>, <strong>Accept</strong> and Set <strong>OMP Tag 2000</strong></li>
 </ul>
 </li>
-<li>
-<p>Click <strong>Default Action</strong> on the left panel, and change default <strong>Reject</strong> action to <strong>Accept</strong></p>
-</li>
 </ul>
+<p><span style="background-color:lightblue"> <span style="background-color:lightblue"> <strong>Note: Match Criteria has option "OR","AND" "EXACT". It makes difference when multiple community lists are used in match condition. In this lab, we are only match one community. You can leave it as default OR option.</strong> </span>
+- Click <strong>Default Action</strong> on the left panel, and change default <strong>Reject</strong> action to <strong>Accept</strong></p>
 <p><img src="https://leitian123.github.io/holent2901/img/lab1_1_3_3.PNG" width="800"/></p>
 <ul>
 <li>Then click on <strong>Save Route Policy</strong></li>
@@ -383,7 +382,7 @@
 <li>Under the <strong>Device</strong> template tab, locate template <strong>Lab_DC1_V01</strong> and select <strong>Edit</strong></li>
 <li>Under the <strong>Additional Templates</strong> section, click the dropdown next to <strong>Policy</strong> and select <strong>LAB_DCs_Local_policy</strong>
  <img src="https://leitian123.github.io/holent2901/img/lab1_1_4_4.PNG" width="800"/></li>
-<li>Click <strong>update</strong> to trigger the configure change</li>
+<li>Click <strong>update</strong> and <strong>Next</strong> to configuration change window. Click the checkbox to <strong>Confirm configuration changes</strong> and click OK to push the change.</li>
 <li>Under the <strong>Device</strong> template tab, locate template <strong>Lab_DC2_V01</strong> and select <strong>Edit</strong></li>
 <li>Under the <strong>Additional Templates</strong> section, click the dropdown next to <strong>Policy</strong> and select <strong>LAB_DCs_Local_policy</strong></li>
 <li>Click <strong>update</strong> and <strong>Next</strong> to configuration change window. Click the checkbox to <strong>Confirm configuration changes</strong> and click OK to push the change.</li>
@@ -430,7 +429,7 @@
 </ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task2_Routes_1.png" width="800"/></p>
 <p><strong>Question: Do you know why the default route learned from private2 shown as invalid and unreachable (Inv,U)</strong>? </n></p>
-<p>This is because R1-WE1 doesn't have a transport with private 2 color. If you watch the route on R2-WE1, you should notice the next hop from private 1 marked as <strong>(Inv,U)</strong> for the same reason, because the private 1 color doesn't exist on R2-WE1.</p>
+<p>This is because R1-WE1 doesn't have a transport with private 2 color. If you check the route on R2-WE1, you should notice the next hop from private 1 marked as <strong>(Inv,U)</strong> for the same reason, because the private 1 color doesn't exist on R2-WE1.</p>
 <p><strong>Question: Did you notice the default route is learned from 1.1.30.1 which is the Regional Hub(RH)? Do you know why?</strong> </n></p>
 <p>To answer this question, we will check the route table at vSmart as all the routes are advertised by vSmart. SSH to vSmart and run <code>show omp route vpn 1 0.0.0.0/0 detail | t</code></p>
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task2_Routes_2.png" width="800"/></p>
@@ -443,7 +442,7 @@
 <p>You will see 12 ECMP routes marked as <strong>C,R</strong> (Chosen,Resolved). Why 12? This is because we have 4 DC wEdges each with 3 transports, so there are total of 12 paths. </n></p>
 <p>The next question will be why there are only 4 paths on the remote wEdges? This is because the ECMP settings on the wEdge by default are set to 4. If you change it to the current maximum of 16, you will see all 12 paths.(It will be increased to a maximum of 128 in a future release) </n></p>
 <p><span style="background-color:lightblue"> <strong>Note: vSmart randomly selects 4 paths (or whatever the max ECMP value is set to) and installs them on the device. This may pose problem in a large deployment where multiple paths is more than 16.</strong></p>
-<p>In this exercise we will purposely keep the default ECMP setting and learn how to solve this issue with a centralized policy.</p>
+<p>In this exercise we will keep the default ECMP setting and solve this issue with a centralized policy.</p>
 <h4 id="step-22-create-a-topology-for-centralized-policy"><strong>Step 2.2.</strong> Create a topology for centralized policy</h4>
 <ul>
 <li>
@@ -464,15 +463,17 @@
 <li>Description: <strong>LAB topology for Remote Site 1</strong></li>
 <li>Click <strong>+Sequence Type</strong> and select <strong>Route</strong></li>
 <li>Click <strong>+Sequence Rule</strong>, leave unchanged under Match(means match all)</li>
-<li>Click <strong>Actions</strong> and change to <strong>Accept</strong> (we'll come back and do the route policy later).
+<li>Click <strong>Actions</strong> and change to <strong>Accept</strong> (we'll come back and do the route policy later).</li>
+<li>Click <strong>Save Match And Actions</strong> to save the rule
 <img src="https://leitian123.github.io/holent2901/img/lab_task2_topo_2.png" width="800"/></li>
 <li>Click <strong>+Sequence Type</strong> then select <strong>TLOC</strong></li>
-<li>Click <strong>+Sequence Rule</strong>, select <strong>TLOC</strong>.</li>
+<li>Click <strong>+Sequence Rule</strong>, select <strong>TLOC</strong> for March condition</li>
 <li>Under <strong>Match Conditions</strong>, selects <strong>DCs-BU1-TLOCs</strong> for <strong>TLOC List</strong> (this TLOC list has been pre-defined for you which includes all the TLOCs of DC1-WE1 and DC2-WE1</li>
 <li>Click <strong>Actions</strong>, change Actions to <strong>Accept</strong></li>
 <li>Click <strong>+Sequence Rule</strong>, select <strong>TLOC</strong></li>
 <li>Under <strong>Match Conditions</strong>, selects <strong>RH_TLOCs</strong> for <strong>TLOC List</strong> (this TLOC list has been pre-defined for you which includes all the TLOCs of RH)</li>
 <li>Click <strong>Actions</strong>, change Actions to <strong>Accept</strong></li>
+<li>Click <strong>Save Match And Actions</strong> to save the rule</li>
 </ul>
 </li>
 <li>Then click save Control Policy.</li>
@@ -488,12 +489,14 @@
 <li>Click <strong>Actions</strong> change Actions to <strong>Accept</strong> (we'll come back and do the route policy later).
 <img src="https://leitian123.github.io/holent2901/img/lab_task2_topo_4.png" width="800"/></li>
 <li>Click <strong>+Sequence Type</strong> then select <strong>TLOC</strong></li>
-<li>Click <strong>+Sequence Rule</strong>, select <strong>TLOC</strong>.</li>
+<li>Click <strong>+Sequence Rule</strong>, select <strong>TLOC</strong> for March condition</li>
 <li>Under <strong>Match Conditions</strong>, selects <strong>DCs-BU2-TLOCs</strong> for <strong>TLOC List</strong> (this TLOC list has been pre-defined for you which includes all the TLOCs of DC1-WE2 and DC2-WE2)</li>
 <li>Click <strong>Actions</strong>, change Actions to <strong>Accept</strong></li>
+<li>Click <strong>Save Match And Actions</strong> to save the rule    </li>
 <li>Click <strong>+Sequence Rule</strong>, select <strong>TLOC</strong></li>
 <li>Under <strong>Match Conditions</strong>, selects <strong>RH-TLOCs</strong> for <strong>TLOC List</strong> (this TLOC list has been pre-defined for you which includes all the TLOCs of RH)</li>
 <li>Click <strong>Actions</strong>, change Actions to <strong>Accept</strong></li>
+<li>Click <strong>Save Match And Actions</strong> to save the rule    </li>
 </ul>
 </li>
 <li>Then click save Control Policy.</li>
