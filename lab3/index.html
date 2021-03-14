@@ -293,7 +293,7 @@
 <li>Add QoS and make sure consistent QoS policies are applied across the SD-WAN fabric.</li>
 <li>Regional hub has higher bandwidth on WAN circuits compare to remote sites. This bandwidth mismatch could potentially cause packet drops on remote sites. Configure the sd-wan fabric to prevent this potential issue.</li>
 <li>Due to the latency sensitive application requirement, a spoke to spoke tunnel is needed between remote sites. Configure the sd-wan fabric to build on-demand tunnel between remote sites.</li>
-<li>Cloud Application (16.16.16.16) requires inspection services on all users. Configure IPSec tunnel to SIG provider for inspection services and configure the sd-wan fabric to route all traffic to this application over a IPSec tunnel.  </li>
+<li>Cloud Application (16.16.16.16) requires inspection services for all users. Configure IPSec tunnel to SIG provider for inspection services and configure the sd-wan fabric to route all traffic to this application over a IPSec tunnel.  </li>
 <li>ACME wants to reduce the bandwidth consumption on private WAN links. Configure the sd-wan fabric to route public cloud and Internet traffic over local internet access.</li>
 <li>For SaaS application, configure the sd-wan fabric to use either local DIA or RH based on application performance.</li>
 </ul>
@@ -354,20 +354,17 @@
 <ul>
 <li>After save <strong>REALTIME</strong> class, add following three classes.</li>
 <li>Class: <strong>SIGNALING</strong>  Queue: <strong>1</strong></li>
-<li>Class: <strong>CRITICAL</strong> Queue: <strong>3</strong></li>
 <li>Class: <strong>DEFAULT</strong>  Queue: <strong>2</strong></li>
+<li>Class: <strong>CRITICAL</strong> Queue: <strong>3</strong></li>
 </ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab3_1_1_3.PNG" width="800"/></p>
 <ul>
 <li>Click <strong>Custom Options</strong> drop down on the top right and select <strong>Lists</strong> under <strong>Centralized Policy</strong></li>
-</ul>
-<p><img src="https://leitian123.github.io/holent2901/img/lab3_1_1_4.PNG" width="800"/>     </p>
-<ul>
 <li>Click <strong>Application</strong> list type on the left and add <strong>New Application List</strong>. In the application configure window enter <strong>REALTIME</strong> in Application List Name, and select "<strong>RTP(Real Time Protocol)</strong>, <strong>WebEX</strong>, <strong>Zoom</strong>" from Application drop list.</li>
 </ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab3_1_1_5.PNG" width="800"/></p>
 <ul>
-<li>After same "REALTIME" Application, add following two Applications</li>
+<li>After save "REALTIME" Application, add following two Applications</li>
 <li>Application List Name: <strong>SIGNALING</strong> Application: <strong>Real Time Control Protocol, Media Gateway Control Protocol, Session Initiation Protocol</strong></li>
 <li>Application List Name: <strong>CRITICAL</strong> Application: <strong>Secure Shell, SImple Network Management Protocol, SMB</strong></li>
 </ul>
@@ -381,7 +378,7 @@
 <p>Click <strong>Custom Options</strong> drop down on the top right and select <strong>Traffic Policy</strong> under <strong>Centralized Policy</strong></p>
 </li>
 <li>
-<p>Select <strong>Traffic Data</strong> and select <strong>Create New</strong> from Add Policy drop list</p>
+<p>Select <strong>Traffic Data</strong> and select Add Policy to <strong>Create New</strong> data policy</p>
 </li>
 </ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab3_1_2_1.PNG" width="800"/></p>
@@ -407,7 +404,7 @@
 <p><img src="https://leitian123.github.io/holent2901/img/lab3_1_2_4.PNG" width="800"/></p>
 <ul>
 <li>Click <strong>Policy Application</strong> tab on the top then click <strong>Traffic Data</strong> to assign the qos data policy.</li>
-<li>To have consistent QoS policy for the fabric, We will apply the QoS policy to all sites and all VPNs on service side as below screenshot.</li>
+<li>To have consistent QoS policy for the fabric, We will apply the QoS policy to all sites and all VPNs on service side as show in below screenshot.</li>
 </ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab3_1_2_5.PNG" width="800"/></p>
 <ul>
@@ -449,8 +446,8 @@
 <li>Click <strong>Localized Policy</strong> tab and <strong>Add Policy</strong></li>
 <li>Click <strong>Next</strong> move to <strong>configure Forwarding Classes/QoS</strong></li>
 <li>Click <strong>Add QoS Map</strong> drop down and select import existing. Search <strong>Lab_QoS_Map_v01</strong> and Import.</li>
-<li>Click next to pass ACL and route policy config. On Policy Overview, Type <strong>LAB_Remote_Local_v01</strong> in Policy Name and Description filed.</li>
-<li>Check <strong>Application</strong> at the bottom from Policy Settings and <strong>Save Policy</strong></li>
+<li>Click next proceeding to Policy Overview. Type <strong>LAB_Remote_Local_v01</strong> in Policy Name and Description filed.</li>
+<li>Check <strong>Netflow</strong> and <strong>Application</strong> at the bottom from Policy Settings and <strong>Save Policy</strong></li>
 </ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab3_1_3_5.PNG" width="800"/></p>
 <h4 id="step-14-apply-qos-queuing-policy">Step 1.4: Apply QoS queuing policy</h4>
@@ -566,53 +563,62 @@
 </li>
 <li>Under ACL/QOS section, hardcode <strong>Lab_QoS_Map_v01</strong> for QoS Map field.</li>
 </ul>
+<p><span style="background-color:Khaki"> <span style="background-color:lightblue"> <strong>Note: To avoid configuration push for each feature template update, you can make a copy for each feature template, update on new feature templates, then associate the new feature templates on device template.</strong>. </span></p>
 <h4 id="step-22-configure-hub-role-on-rh">Step 2.2: Configure Hub role on RH</h4>
 <ul>
 <li>Access template configuration from <strong>Configuration - Templates</strong></li>
 <li>Under <strong>Feature</strong> template tab, locate template <strong>Lab_RH_VPN0_Private1_v01</strong> and select <strong>Edit</strong>  </li>
-<li>In <strong>TUNNEL</strong> section, configure the following</li>
+<li>Configure teh following under <strong>TUNNEL</strong> section<ul>
 <li>Select <strong>On</strong> for <strong>Per-tunnel QoS</strong> to enable per-tunnel QoS</li>
 <li>Select <strong>On</strong> for <strong>Per-tunnel QoS Aggregator</strong> to set this as hub tunnel</li>
 <li>Configure <strong>Tunnel Bandwidth Percent</strong> to <strong>80</strong> to set maximum bandwidth usage for overlay traffic</li>
 </ul>
+</li>
+<li>Click update to push configuration change  </li>
+</ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab3_2_2_1.PNG" width="800"/></p>
 <ul>
 <li>Locate feature template <strong>Lab_RH_VPN0_Private2_V01</strong>, and select <strong>Edit</strong>  </li>
-<li>In <strong>TUNNEL</strong> section, configure the following</li>
+<li>Configure teh following under <strong>TUNNEL</strong> section<ul>
 <li>Select <strong>On</strong> for <strong>Per-tunnel QoS</strong> to enable per-tunnel QoS</li>
 <li>Select <strong>On</strong> for <strong>Per-tunnel QoS Aggregator</strong> to set this as hub tunnel</li>
 <li>Configure <strong>Tunnel Bandwidth Percent</strong> to <strong>80</strong> to set maximum bandwidth usage for overlay traffic  </li>
+</ul>
+</li>
+<li>Click update to push configuration change  </li>
 </ul>
 <h4 id="step-23-configure-spoke-role-on-remotes">Step 2.3: Configure Spoke role on Remotes</h4>
 <ul>
 <li>Access template configuration from <strong>Configuration - Templates</strong></li>
 <li>Under <strong>Feature</strong> template tab, locate template <strong>Lab_Remote_VPN0_Private1_v01</strong> and select <strong>Edit</strong></li>
-<li>In <strong>TUNNEL</strong> section, configure <strong>On</strong> for <strong>Per-tunnel QoS</strong> to enable per-tunnel QoS. Since this is spoke, we will leave <strong>Per-tunnel QoS Aggregator</strong> off.</li>
+<li>Under <strong>TUNNEL</strong> section, configure <strong>On</strong> for <strong>Per-tunnel QoS</strong> to enable per-tunnel QoS. Since this is spoke, we will leave <strong>Per-tunnel QoS Aggregator</strong> off.</li>
 </ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab3_2_2_2.PNG" width="800"/></p>
 <ul>
 <li>To configure a device as spoke role, you will also need to configure the downstream bandwidth.</li>
 <li>In the same feature template <strong>Lab_Remote_VPN0_Private1_v01</strong>, under <strong>BASIC CONFIGURATION</strong> section</li>
 <li>Specify the downstream bandwidth to 10Mbps for remote1</li>
+<li>Click update to push configuration change  </li>
 </ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab3_2_2_3.PNG" width="800"/></p>
 <ul>
 <li>locate template <strong>Lab_Remote_VPN0_Private2_v01</strong> and select <strong>Edit</strong></li>
 <li>
-<p>In <strong>TUNNEL</strong> section, configure <strong>On</strong> for <strong>Per-tunnel QoS</strong> to enable per-tunnel QoS. Since this is spoke, we will leave <strong>Per-tunnel QoS Aggregator</strong> off.</p>
+<p>Under <strong>TUNNEL</strong> section, configure <strong>On</strong> for <strong>Per-tunnel QoS</strong> to enable per-tunnel QoS. Since this is spoke, we will leave <strong>Per-tunnel QoS Aggregator</strong> off.</p>
 <p><img src="https://leitian123.github.io/holent2901/img/lab3_2_2_2.PNG" width="800"/></p>
 </li>
 <li>
 <p>To configure a device as spoke role, you will also need to configure the downstream bandwidth.</p>
 </li>
 <li>In the same feature template <strong>Lab_Remote_VPN0_Private2_v01</strong>, under <strong>BASIC CONFIGURATION</strong> section</li>
+<li>Specify the downstream bandwidth to 20Mbps for remote2</li>
 <li>
-<p>Specify the downstream bandwidth to 20Mbps for remote2</p>
+<p>Click update to push configuration change  </p>
 <p><img src="https://leitian123.github.io/holent2901/img/lab3_2_2_4.PNG" width="800"/>  </p>
 </li>
 </ul>
 <h4 id="step-24-verify-per-tunnel-qos">Step 2.4: Verify per-tunnel QOS</h4>
-<p>To verify per-tunnel QoS is working as configured. SSH into <strong>RH-WE1</strong> and run the commands as show below</p>
+<p>SSH into <strong>RH-WE1</strong>, run <code>show platform software sdwan qos policy</code> and <code>show platform software sdwan qos target</code> to verify per-tunnel QoS is working as configured.</p>
 <pre><code>RH-WE1#show platform software sdwan qos policy
 ============ Session QoS Policy Database ============
 policy              bandwidth     remaining-ratio template
@@ -628,6 +634,7 @@ src-addr                 dst-addr                 sport   dport   proto remote-t
 172.2.6.2                172.2.7.2                12346   12346   IPSEC 1.1.102.1       SDWANSession4210705   Tunnel2        SDWANPolicy4210705    20000
 </code></pre>
 
+<p>From the show outputs, you can find the system creates two new Hierarchical QoS Policy Maps, one for each remote site. The parent level shaper rate is equal to the downstream bandwidth you configured in previous step.</p>
 <h2 id="task-3-on-demand-tunnel">Task 3: On-demand Tunnel</h2>
 <p>Hub and Spoke topology can reduce the CPU and memory usage on WAN Edge, but sometime a spoke to spoke tunnel is needed. Dynamic on-demand tunnel offers the benefits of having direct spoke to spoke tunnel while keep the low CPU and memory usage on WAN Edge.</p>
 <p>To improve latency of traffic between remotes, configure dynamic on-demand tunnel between remote1 and remote2.</p>
@@ -653,7 +660,7 @@ src-addr                 dst-addr                 sport   dport   proto remote-t
 <p><img src="https://leitian123.github.io/holent2901/img/lab3_3_1_1.PNG" width="800"/></p>
 </li>
 <li>
-<p>Click <strong>Sequence Rule</strong> to add a new rule; configure the rule to match on site list <strong>All-Remotes</strong>, Actions TLOC list <strong>RH-TLOCs</strong> and TLOC Action <strong>Backup</strong>.</p>
+<p>Click <strong>Sequence Rule</strong> to add a new rule; configure the rule to match on site list <strong>All-Remotes</strong>, Actions TLOC list <strong>RH_TLOCs</strong> and TLOC Action <strong>Backup</strong>.</p>
 <p><img src="https://leitian123.github.io/holent2901/img/lab3_3_1_2.PNG" width="800"/></p>
 </li>
 <li>
@@ -670,15 +677,15 @@ src-addr                 dst-addr                 sport   dport   proto remote-t
 </li>
 </ul>
 <h4 id="step-32-configure-on-demand-tunnel">Step 3.2: Configure On-demand Tunnel</h4>
-<p>Enable Traffic Engineering service on RH to allow RH becomes backup path.</p>
+<p>Enable Traffic Engineering service on RH to allow RH as backup path.</p>
 <ul>
 <li>Access template configuration from <strong>Configuration - Templates</strong></li>
 <li>Under <strong>Feature</strong> template tab, locate template <strong>Lab_RH_VPN0_v01</strong> and select <strong>Edit</strong></li>
-<li>In <strong>SERVICE</strong> section, add <strong>TE</strong> from service type drop down, and add it to this feature template.</li>
+<li>Under <strong>SERVICE</strong> section, click <strong>New Service</strong> and select <strong>TE</strong> from service type drop down to add it to this feature template.</li>
 </ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab3_3_2_1.PNG" width="800"/></p>
 <ul>
-<li>Update and push configure change.</li>
+<li>Update to push configure change.</li>
 </ul>
 <p>On remote sites, R1-WE1 and R2-WE2, enable on-demand on system template.</p>
 <ul>
@@ -691,11 +698,14 @@ src-addr                 dst-addr                 sport   dport   proto remote-t
 <li>
 <p>Locate device template <strong>Lab_R1_V01</strong> and change system template to <strong>Lab_Remote_System_V01</strong></p>
 <p><img src="https://leitian123.github.io/holent2901/img/lab3_3_2_3.PNG" width="800"/></p>
-<p>update and push configuration change.</p>
 </li>
 <li>
-<p>Locate device template <strong>Lab_R2_V01</strong> and change system template to <strong>Lab_Remote_System_V01</strong>. update and push configuration change.</p>
+<p>Update to push configuration change.</p>
 </li>
+<li>
+<p>Locate device template <strong>Lab_R2_V01</strong> and change system template to <strong>Lab_Remote_System_V01</strong>.</p>
+</li>
+<li>Update to push configuration change.</li>
 </ul>
 <h4 id="step-33-verify-on-demand-tunnel-between-remotes">Step 3.3: Verify On-demand Tunnel between remotes</h4>
 <p>You can verify the dynamic tunnel between remotes from vManage.</p>
@@ -719,7 +729,7 @@ src-addr                 dst-addr                 sport   dport   proto remote-t
 <p><img src="https://leitian123.github.io/holent2901/img/lab3_3_3_4.PNG" width="800"/></p>
 <ul>
 <li>Dynamic on demand tunnel is triggered by traffic between the local and remote sites. That's why you see status of on demand remote is inactive. Let's generate bi-directional traffic between remote1 and remote2 to trigger on demand tunnel.</li>
-<li>ssh into <strong>R1-VM1</strong>, and type <code>ssh 10.10.102.10</code> to login <strong>R2-VM2</strong> with credential <strong>viptela/viptela</strong></li>
+<li>ssh into <strong>R1-VM1</strong> (the Ubuntu host), and run <code>ssh 10.10.102.10</code> to login <strong>R2-VM2</strong> with credential <strong>viptela/viptela</strong></li>
 </ul>
 <pre><code>Welcome to Ubuntu 16.04.2 LTS (GNU/Linux 4.8.0-36-generic x86_64)
 
@@ -870,16 +880,18 @@ Antireplay window size = 512
 <p><img src="https://leitian123.github.io/holent2901/img/lab3_4_1_3.PNG" width="800"/></p>
 <ul>
 <li>Click save to update and filed in <strong>172.4.101.1/24</strong> for tunnel IP Address</li>
+<li>Click <strong>Update</strong> to configure device</li>
 </ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab3_4_1_4.PNG" width="800"/></p>
 <ul>
 <li>Locate device template <strong>Lab_R2_V01</strong> click Edit</li>
 <li>Add <strong>Lab_IPsec_Int_V01</strong> under VPN0</li>
 <li>Click save to update and filed in <strong>172.4.102.1/24</strong> for tunnel IP Address</li>
+<li>Click <strong>Update</strong> to configure device</li>
 </ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab3_4_1_5.PNG" width="800"/></p>
 <ul>
-<li>The ipsec tunnel will be <strong>UP</strong> on both remote sites. You can verify the tunnel status from <strong>show ip interface brief</strong></li>
+<li>The ipsec tunnel will come <strong>UP</strong> on both remote sites. You can verify the tunnel status from <strong>show ip interface brief</strong></li>
 </ul>
 <pre><code>R2-WE1#sh ip int b
 Interface              IP-Address      OK? Method Status                Protocol
@@ -920,13 +932,15 @@ R1-WE1#
 </code></pre>
 
 <ul>
-<li>Next you need to route all traffic to cloud application <strong>16.16.16.16</strong> to the tunnel.</li>
+<li>Next you need to route all traffic to cloud application <strong>16.16.16.16</strong> to the tunnel.<ul>
 <li>Locate feature template <strong>Lab_Remote_VPN1_V01</strong> and edit</li>
-<li>In <strong>IPSEC ROUTE</strong> section, add <strong>New IPSEC Route</strong> with prefix <strong>16.16.16.16/32</strong> interface <strong>ipsec1</strong></li>
+<li>Under <strong>IPSEC ROUTE</strong> section, add <strong>New IPSEC Route</strong> with prefix <strong>16.16.16.16/32</strong> interface <strong>ipsec1</strong></li>
+</ul>
+</li>
 </ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab3_4_1_6.PNG" width="800"/></p>
 <ul>
-<li>Click update to push configure change to both remote sites.</li>
+<li>Click <strong>Add</strong> to add this ipsec route. Click update to push configure change to both remote sites.</li>
 </ul>
 <h4 id="step-42-verify-sig-tunnel">Step 4.2 : verify SIG tunnel</h4>
 <ul>
@@ -939,7 +953,7 @@ R1-WE1#
 </ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab3_4_2_1.PNG" width="800"/></p>
 <ul>
-<li>Now try access <strong>16.16.16.16</strong> from browser. You should see this login page</li>
+<li>Now try access <strong>http://16.16.16.16</strong> from browser. You should see this login page</li>
 </ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab3_4_2_2.PNG" width="800"/></p>
 <h2 id="task-5-dia">Task 5: DIA</h2>
@@ -961,13 +975,13 @@ R1-WE1#
 <ul>
 <li>ssh into remote1_ubuntu and run <code>traceroute 1.1.1.1</code></li>
 </ul>
-<pre><code>viptela@remote1_ubuntu:~$ traceroute 1.1.1.1
+<pre><code>viptela@remote2_ubuntu:~$ traceroute 1.1.1.1
 traceroute to 1.1.1.1 (1.1.1.1), 30 hops max, 60 byte packets
- 1  10.10.101.1 (10.10.101.1)  0.911 ms  0.740 ms  0.917 ms
- 2  172-1-5-2.lightspeed.hstntx.sbcglobal.net (172.1.5.2)  12.696 ms  12.019 ms  11.901 ms
- 3  10.10.10.2 (10.10.10.2)  7.851 ms  11.806 ms 10.10.20.2 (10.10.20.2)  9.840 ms
+ 1  10.10.102.1 (10.10.102.1)  2.870 ms  2.772 ms  2.640 ms
+ 2  172-3-6-7.lightspeed.irvnca.sbcglobal.net (172.3.6.7)  10.756 ms 172-2-3-2.lightspeed.dybhfl.sbcglobal.net (172.2.3.2)  9.857 ms 172-3-6-7.lightspeed.irvnca.sbcglobal.net (172.3.6.7)  11.087 ms
+ 3  10.10.11.2 (10.10.11.2)  10.525 ms  11.484 ms  14.044 ms
  4  * * *
- 5  198.18.128.1 (198.18.128.1)  12.450 ms * *
+ 5  * 198.18.128.1 (198.18.128.1)  15.788 ms *
 
 </code></pre>
 
@@ -1010,7 +1024,7 @@ traceroute to 1.1.1.1 (1.1.1.1), 30 hops max, 60 byte packets
 <li>From the traceroute you can see the remote site now uses local DIA for internet bound traffic.</li>
 </ul>
 <h2 id="task-6-cor-for-saas">Task 6: CoR for SaaS</h2>
-<p>Instead of using the DIA exit point as configured in previous task, for SaaS application box and salesforce, ACME wants to use the most optimal path. Configure the remote sites to dynamically chose local DIA or regional hub as exit point for box and salesforce based on application performance.</p>
+<p>Instead of using the DIA exit point as configured in previous task, for SaaS application <strong>box and salesforce</strong>, ACME wants to use the most optimal path. Configure the remote sites to dynamically chose local DIA or regional hub as exit point for <strong>box and salesforce</strong> based on application performance.</p>
 <p><img src="https://leitian123.github.io/holent2901/img/lab3_6_0_0.png" width="800"/></p>
 <h4 id="step-61-enable-cloud-onramp-for-saas">Step 6.1 Enable Cloud OnRamp for SaaS</h4>
 <ul>
@@ -1029,7 +1043,7 @@ traceroute to 1.1.1.1 (1.1.1.1), 30 hops max, 60 byte packets
 </ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab3_6_2_2.PNG" width="800"/></p>
 <ul>
-<li>Cloud OnRamp for SaaS uses existing AAR policy, we will keep the system created policy for SaaS. Click <strong>Save Policy</strong> to proceed the policy update.</li>
+<li>Cloud OnRamp for SaaS uses existing AAR policy, we will keep the system created policy for SaaS. Click <strong>Save Policy</strong> to activate the policy update.</li>
 </ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab3_6_2_3.PNG" width="800"/></p>
 <h4 id="step-63-add-sites">Step 6.3 Add sites</h4>
@@ -1056,7 +1070,7 @@ traceroute to 1.1.1.1 (1.1.1.1), 30 hops max, 60 byte packets
 </ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab3_6_3_5.PNG" width="800"/>  </p>
 <h4 id="step-64-verify-cor-saas">Step 6.4 Verify CoR SaaS</h4>
-<p>Click <strong>Manage Cloud OnRamp for SaaS</strong> to verify QoE status, DIA status, exit interface on each WAN Edge for SaaS application.    </p>
+<p>Click <strong>Manage Cloud OnRamp for SaaS</strong> and select the Application to verify QoE status, DIA status, exit interface on each WAN Edge for SaaS application.    </p>
 <p><img src="https://leitian123.github.io/holent2901/img/lab3_6_4_1.PNG" width="800"/></p>
 <p><span style="background-color:lightblue"> <strong>Note: Your output may not match the screenshot on the vQoE score and DIA Status. This is expected.</strong>  </p>
 <ul>
