@@ -165,6 +165,8 @@
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../lab2/">Lab 2 Tasks</a>
     <ul>
+    <li class="toctree-l2"><a class="reference internal" href="../lab2/#-sd-wan-site-remote1-route-directly-over-private-1-to-legacy-site">- SD-WAN site Remote1 route directly over private 1 to legacy site.</a>
+    </li>
     <li class="toctree-l2"><a class="reference internal" href="../lab2/#step1-verify-current-route">Step1: Verify current route</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="../lab2/#step2-route-policy-for-remote2">Step2: Route policy for Remote2</a>
@@ -560,10 +562,10 @@ then click Save Policy</li>
 <li>Click the <strong>Custom Options</strong> drop down on the top right and select <strong>Topology</strong> under <strong>Centralized Policy</strong></li>
 <li>Locate <strong>LAB_Topo_RS1_V02</strong> and click <strong>...</strong> select <strong>Edit</strong></li>
 </ul>
-<p><span style="background-color:lightblue"> <strong>Note: there is one existing accept all rule; you don't need to change the accept all rule but you do need make sure the new rule is placed ahead of this accept all rule.</strong></p>
+<p><span style="background-color:lightblue"> <strong>Note: there is one existing accept all rule; you don't need to change the accept all rule but you do need make sure the new rules are placed ahead of this accept all rule.</strong></p>
 <ul>
-<li>You are going to add four new rules<ul>
-<li>Rule1: match the default &amp; originator of 1.1.10.1(DC1-WE1) then accept and set preference of 100</li>
+<li>For <strong>Sequence Type</strong> Route rule, you are going to add four new rules<ul>
+<li>Rule1: match <strong>Prefix List</strong> default &amp; <strong>originator</strong> of 1.1.10.1(DC1-WE1) then accept and set preference of 100</li>
 <li>Rule2: match default &amp; originator of 1.1.20.1(DC2-WE1) then accept and set preference of 100</li>
 <li>Rule3: match default &amp; site-list <strong>RH</strong> then <strong>accept</strong></li>
 <li>Rule4: match default and then <strong>reject</strong></li>
@@ -597,7 +599,7 @@ then click Save Policy</li>
 <ul>
 <li>Click on <strong>Policy Application</strong></li>
 <li>Under <strong>LAB_Topo_RS1_V02 - Outbound Site List</strong>, click <strong>New Site List</strong> and select <strong>RS1</strong>.</li>
-<li>Click <strong>ADD</strong>, Save Policy Changes to Activate.</li>
+<li>Click <strong>Add</strong>, Save Policy Changes to Activate.</li>
 </ul>
 <p><span style="background-color:lightblue"> <strong>Note: The Outbound and Inbound options are from the vSmart's perspective where outbound policy means how the routes are sent out from vSmart; inbound policy means how the routes are sent to the vSmart.</strong></p>
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task3_routes_6.png" width="800"/></p>
@@ -606,13 +608,13 @@ then click Save Policy</li>
 <li>SSH to <strong>R1-WE1</strong> and do <code>show sdwan omp route</code> and check the learned TLOC for the default route as well as preference.
 </n></li>
 </ul>
-<p>We're expecting the routes which are learned from DC1-WE1 and DC2-WE1 with preference of 100. However, the output shows the routes are not changed at all, the three installed routes are still learned from RH and no preference set either. Why is that?</p>
+<p><span style="background-color:yellow"> <strong>We're expecting the routes which are learned from DC1-WE1 and DC2-WE1 with preference of 100. However, the output shows the routes are not changed at all, the three installed routes are still learned from RH and no preference set either. Why is that?</strong></p>
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task3_routes_7.png" width="800"/></p>
 <p>Let's check omp route table on the vSmart, SSH to vSmart and run <code>show omp route | t</code>. </n></p>
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task3_routes_8.png" width="800"/></p>
-<p>As you recall, the OMP routes don't have any changes either where 3 paths learned from RH are marked with C,R due to routes being originated from Static which are preferred over originated from iBGP. But why doesn't the outbound policy that is setting the routes originated from DC1-WE1 and DC2-WE1 work? <strong>this is because the outbound policy will only look for the chosen routes with C.R by default, the other routes not learned from the DCs are not chosen without C,R</strong>, so those routes are not even going through the outbound policies. There are multiple way of changing this behavior such as using inbound policy or configure send-backup path, or make every route with C.R. We're not going cover all solutions in this lab.</p>
+<p>As you recall, the OMP routes don't have any changes either where 3 paths learned from RH are marked with C,R due to routes being originated from Static which are preferred over originated from iBGP. But why doesn't the outbound policy that is setting the routes originated from DC1-WE1 and DC2-WE1 work? <strong>This is because by default the outbound policy will only apply to the routes with "C,R", the routes without "C,R" are not applicable</strong>. So the routes from DCs are not even going through the outbound policies. There are multiple ways to change this default behavior such as using inbound policy or configure send-backup path, or make every route with C.R. In this lab, we are going to use inbound policy to influence the route.</p>
 <p>Let's configure an vSmart <strong>inbound policy</strong> to make the default routes learned from DCs have a higher OMP preference than RH's.</p>
-<p><span style="background-color:lightblue"> <strong>Note: Using vSmart inbound policy may not be an ideal solution for certain scenarios. It is recommended to use outbound policy only if an outbound policy can NOT meet the requirements without additional inbound policy since using outbound policy is simple and maintains full visibility of vSmart.</strong></p>
+<p><span style="background-color:lightblue"> <strong>Note: Using vSmart inbound policy may not be an ideal solution for all scenarios. It is recommended to use outbound policy, because it is simple and maintains full visibility of vSmart. vSmart inbound policy can be considered only if outbound policy can NOT meet the requirements.</strong></p>
 <h4 id="step-35-create-new-topology"><strong>Step 3.5.</strong> Create new topology</h4>
 <ul>
 <li>Login to vManage <strong>198.18.133.200</strong> and access policy configuration from <strong>Configuration - Policies</strong></li>
@@ -625,7 +627,6 @@ then click Save Policy</li>
 <li>Click <strong>+Sequence Rule</strong><ul>
 <li>leave unchange Under <strong>Match Conditions</strong>(means match all)</li>
 <li>Click <strong>Actions</strong>, change action to <strong>Accept</strong></li>
-<li>Click <strong>Save Match And Actions</strong></li>
 </ul>
 </li>
 </ul>
@@ -644,7 +645,7 @@ then click Save Policy</li>
 <li>Click <strong>+Sequence Rule</strong> to add catch-all rule<ul>
 <li>leave unchange Under <strong>Match Conditions</strong>(means match all)</li>
 <li>Click <strong>Actions</strong> select <strong>Accept</strong>; add <strong>Preference</strong> with value <strong>0</strong></li>
-<li>Click <strong>Save Match And Actions</strong></li>
+<li>Click <strong>Save Match And Actions</strong> and <strong>Save Control Policy</strong></li>
 </ul>
 </li>
 </ul>
@@ -652,7 +653,7 @@ then click Save Policy</li>
 <ul>
 <li>Apply this new topology to the current policy.</li>
 <li>Login to vManage <strong>198.18.133.200</strong> and access policy configuration from <strong>Configuration - Policies</strong></li>
-<li>Locate <strong>LAB_Central_v01</strong> and select <strong>Edit</strong></li>
+<li>Locate <strong>LAB_Central_v01</strong> under Centralized Policy and select <strong>Edit</strong></li>
 <li>Click Topology tab and click <strong>Add Topology</strong></li>
 <li>Select <strong>Import Existing Topology</strong> and select <strong>Custom Control( Route and TLOC)</strong> Policy Type then select <strong>default_route_from_DC</strong> from drop down; click Import.</li>
 </ul>
@@ -721,9 +722,9 @@ then click Save Policy</li>
 - Do <code>show sdwan omp route vpn 1</code>.You will see that there are 4 paths in the OMP route table, however none of them is valid.</p>
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task3_routes_21.png" width="800"/></p>
 <h2 id="task-4-specific-routes-handling">Task 4: Specific Routes handling</h2>
-<p>ACME wants to prefer more specific routes originated from its DC and use the other DC as backup. For BU1 (R1-WE1), we only need to learn the routes from BU1's Headend devices (DC1-WE1 and DC2-WE1); for BU2(R2-WE1), we only need to learn the routes from BU2's Headend devices.(DC1-WE2 and DC2-WE2).
+<p>ACME wants to prefer more specific routes originated from its DC and use the other DC as backup. For BU1 (R1-WE1), it only needs to learn the routes from BU1's Headend devices (DC1-WE1 and DC2-WE1); for BU2(R2-WE1), it onlys need to learn the routes from BU2's Headend devices.(DC1-WE2 and DC2-WE2).
 </n></p>
-<p>The specific routes from DC1 are tagged with 1000; DC2 was already tagged with 2000 in previous task. In this section, you are going to create different policies for BU1 and BU2 sites and set different OMP preference based on OMP tag.</p>
+<p>The specific routes from DC1 are tagged with 1000; DC2 are tagged with 2000 in previous task. In this section, you are going to create different policies for BU1 and BU2 sites and set different OMP preference based on OMP tag.</p>
 <h4 id="step-41-modify-topology-policy-for-remote1">Step 4.1: Modify Topology policy for remote1</h4>
 <ul>
 <li>Login to vManage <strong>198.18.133.200</strong> and access policy configuration from <strong>Configuration - Policies</strong></li>
@@ -1095,7 +1096,7 @@ You will see route 10.100.100.0/24 is learned from 1.1.10.1, and route 10.200.20
 </ul>
 <p>You should see the traffic is taking LTE interface only.
 <img src="https://leitian123.github.io/holent2901/img/lab_task5_AAR_14.png" width="800"/></p>
-<p><strong>Great! You're completed lab1. Before you proceed further, let's no shutdown the private1 and private2 interfaces by changing the device value of RH-WE1's device template.</strong></p>
+<p><strong>Great! You've completed lab1. Before you proceed to next lab, let's no shutdown private1 and private2 interfaces, and disable LTE last-resort by changing the device value of RH-WE1's device template.</strong></p>
 <p><img src="https://leitian123.github.io/holent2901/img/lab_task5_AAR_15.png" width="800"/></p>
 <p><a href="JAVASCRIPT:scroll(0,0)" style="color:blue">Back to Top</a></p>
               

@@ -165,6 +165,8 @@
                     </li>
                     <li class="toctree-l1 current"><a class="reference internal current" href="./">Lab 2 Tasks</a>
     <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#-sd-wan-site-remote1-route-directly-over-private-1-to-legacy-site">- SD-WAN site Remote1 route directly over private 1 to legacy site.</a>
+    </li>
     <li class="toctree-l2"><a class="reference internal" href="#step1-verify-current-route">Step1: Verify current route</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#step2-route-policy-for-remote2">Step2: Route policy for Remote2</a>
@@ -288,10 +290,11 @@
 <hr />
 <p>In this section, you will help ACME to configure routing between sd-wan remote sites and legacy non sd-wan site. The legacy site is connected to SP <strong>private1</strong> with OSPF as CE-PE protocol. Legacy site prefix <strong>10.11.1.0/24</strong> is advertised to <strong>private1</strong> PE router; DC WAN Edge routers are receiving this prefix from service side over BGP.</p>
 <p><img src="https://leitian123.github.io/holent2901/img/lab2_0_1.png" width="800"/></p>
-<p>To make sure traffic between sd-wan remotes and legacy site use optimal path, ACME requires
-- SD-WAN site Remote2 uses DC as transit site to reach legacy site over private2.
-- SD-WAN site Remote1 route directly over private 1 to legacy site.</p>
-<hr />
+<p>To make sure traffic between sd-wan remotes and legacy site using optimal path, ACME requires</p>
+<ul>
+<li>SD-WAN site Remote2 uses DC as transit site to reach legacy site over private2.</li>
+</ul>
+<h2 id="-sd-wan-site-remote1-route-directly-over-private-1-to-legacy-site">- SD-WAN site Remote1 route directly over private 1 to legacy site.</h2>
 <h2 id="step1-verify-current-route">Step1: Verify current route</h2>
 <ul>
 <li>SSH into ubuntu host in Remote1 and Remote2.</li>
@@ -315,7 +318,7 @@
 </ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab2_1_1.PNG" width="800"/></p>
 <p><img src="https://leitian123.github.io/holent2901/img/lab2_1_2.PNG" width="800"/></p>
-<p>As show from the traceroute, ubuntu host from both remote sites are using DC1 as transit site to reach prefix <strong>10.11.1.0/24</strong> from legacy site.</p>
+<p>As show from the traceroute, ubuntu host from both remote sites are using DC as transit site to reach prefix <strong>10.11.1.0/24</strong> from legacy site.</p>
 <h2 id="step2-route-policy-for-remote2">Step2: Route policy for Remote2</h2>
 <p>The requirement for remote2 is to use DC as transit site and use transport <strong>private2</strong>. To achieve that, you can modify the central policy created in <strong>lab1</strong> to set higher OMP preference for prefix <strong>10.11.1.0/24</strong> from color <strong>private2</strong>.</p>
 <ul>
@@ -331,15 +334,18 @@
 <li>Click <strong>Custom Options</strong> on the upper right corner and select <strong>Topology</strong> under <strong>Centralized Policy</strong>.</li>
 <li>Select Topology policy <strong>LAB_Topo_RS2_v02</strong> created in lab1, and click the <strong>"..."</strong> to Edit.</li>
 <li>Select <strong>Route</strong> under <strong>Sequence Type</strong> from the left.</li>
-</ul>
-<p><img src="https://leitian123.github.io/holent2901/img/lab2_2_3.PNG" width="800"/></p>
-<ul>
 <li>Click <strong>Sequence Rule</strong> to add new rule. Add <strong>Prefix List</strong> and <strong>Color List</strong> in Match conditions</li>
 <li>Under Match Conditions, select <strong>Legacy_prefix</strong> for <strong>Prefix List</strong> and <strong>private2</strong> for color list</li>
 <li>Click <strong>Actions</strong> to select <strong>Accept</strong>. click <strong>Preference</strong> set <strong>Preference</strong> 200.</li>
+<li>Click <strong>Save Match And Actions</strong> to save the rule</li>
+<li>Save Control Policy to Activate the change</li>
 </ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab2_2_4.PNG" width="800"/></p>
-<p><span style="background-color:Khaki"> <span style="background-color:lightblue"> <strong>Note: After save, move the new created rule to the top by drag and drop the sequence number left to the rule</strong>. </span></p>
+<p><span style="background-color:Khaki"> <span style="background-color:lightblue"> <strong>Note: After save, move the new created rule above the catch all rule by drag and drop the sequence number left to the rule</strong>. </span></p>
+<ul>
+<li>SSH into <strong>R2-WE1</strong> and run <strong>show sdwan omp route vpn 1</strong>. Verify preference 200 is assigned to <strong>private2</strong> color for prefix <strong>10.11.1.0/24</strong></li>
+</ul>
+<p><img src="https://leitian123.github.io/holent2901/img/lab2_2_5a.PNG" width="800"/></p>
 <ul>
 <li>Run <code>traceroute 10.11.1.1</code> again from Remote2 host and compare the path from previous output.</li>
 </ul>
@@ -349,7 +355,7 @@
 <p>SP <strong>private1</strong> uses OSPF as PE-CE routing protocol; create OSPF feature template and attach to R1-WE1 VPN0.</p>
 <ul>
 <li>Login to vManage <strong>198.18.133.200</strong> and access feature template from <strong>Configuration - Template</strong> then click <strong>Feature</strong></li>
-<li>Click <strong>Add Template</strong>, pick <strong>CSR1000v</strong> under <strong>Select Devices</strong> and select OSPF template as show below.</li>
+<li>Click <strong>Add Template</strong>, pick <strong>CSR1000v</strong> under <strong>Select Devices</strong> and select Cisco OSPF template as show below.</li>
 </ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab2_3_1.PNG" width="800"/></p>
 <ul>
@@ -362,21 +368,26 @@
 </ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab2_3_2b.PNG" width="800"/></p>
 <ul>
-<li>Enable OSPF Area 0 on interface GigabitEthernet1</li>
+<li>Enable OSPF <strong>Area 0</strong> on interface GigabitEthernet1</li>
 </ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab2_3_3.PNG" width="800"/>  </p>
 <ul>
-<li>Access device template from <strong>Configuration - Template</strong> then locate template <strong>Lab_R1_V01</strong>. Click <strong>"..."</strong> for more option and select Edit.</li>
+<li>
+<p>Save the OSPF feature template</p>
+</li>
+<li>
+<p>Access device template from <strong>Configuration - Template</strong> then locate template <strong>Lab_R1_V01</strong>. Click <strong>"..."</strong> for more option and select Edit.</p>
+</li>
 <li>Move to <strong>Transport &amp; Management VPN</strong> section, Add <strong>Cisco OSPF</strong> template and select <strong>Lab_OSPF_VPN0_V01</strong> from dropdown list.</li>
 </ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab2_3_4.PNG" width="800"/>   </p>
 <ul>
 <li>Update the device template and trigger vManage to update R1-VE1 configuration.</li>
-<li>After vManage complete the push, SSH into <strong>R1-WE1</strong> to verify new OSPF neighbor and routes learned OSPF routes.</li>
+<li>After vManage complete the configuration push, SSH into <strong>R1-WE1</strong> to verify new OSPF neighbor and routes learned from OSPF neighbor.</li>
 </ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab2_3_5.PNG" width="800"/></p>
 <p><img src="https://leitian123.github.io/holent2901/img/lab2_3_6.PNG" width="800"/></p>
-<p>Configure route leaking between VPN0 and service VPN, so R1-WE1 will use the OSPF route learned from OSPF in VPN0 for prefix <strong>10.11.1.0/24</strong></p>
+<p>Configure route leaking between VPN0 and service VPN, so R1-WE1 will use the OSPF route learned from VPN0 for prefix <strong>10.11.1.0/24</strong></p>
 <ul>
 <li>Login to vManage <strong>198.18.133.200</strong> and access feature template from <strong>Configuration - Template</strong> then click <strong>Feature</strong></li>
 <li>Locate existing template <strong>"Lab_Remote_VPN1_V01"</strong>. Click <strong>"..."</strong> for more option and select Edit.<ul>
@@ -387,7 +398,7 @@
 </ul>
 </li>
 </ul>
-<p><span style="background-color:lightblue"> <strong>Note: As optional task, you can add route policy to limit the routes being leaked between Global and service VPN</strong></p>
+<p><span style="background-color:lightblue"> <strong>Note: You can also add route policy to limit the routes being leaked between Global and service VPN</strong></p>
 <ul>
 <li>SSH into R1-WE1 to verify route <strong>10.10.101.0/24</strong>being added in global route table</li>
 </ul>
@@ -400,6 +411,7 @@
 <li>Now let's verify the new route path from remote1 Ubuntu host. Run <code>traceroute 10.11.1.1</code> again from Remote1 host and compare the result from previous output.</li>
 </ul>
 <p><img src="https://leitian123.github.io/holent2901/img/lab2_3_10.PNG" width="800"/>  </p>
+<p><strong>Great! You've completed lab1.</strong></p>
 <p><a href="JAVASCRIPT:scroll(0,0)" style="color:blue">Back to Top</a></p>
               
             </div>
