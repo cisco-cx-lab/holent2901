@@ -167,8 +167,6 @@
                     </li>
                     <li class="toctree-l1 current"><a class="reference internal current" href="./">Lab 2 Tasks</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#-sd-wan-site-remote1-route-directly-over-private-1-to-legacy-site">- SD-WAN site Remote1 route directly over private 1 to legacy site.</a>
-    </li>
     <li class="toctree-l2"><a class="reference internal" href="#step1-verify-current-route">Step1: Verify current route</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#step2-route-policy-for-remote2">Step2: Route policy for Remote2</a>
@@ -294,9 +292,14 @@
 <p><img src="https://leitian123.github.io/holent2901/img/lab2_0_1.png" width="800"/></p>
 <p>To make sure traffic between sd-wan remotes and legacy site using optimal path, ACME requires</p>
 <ul>
-<li>SD-WAN site Remote2 uses DC as transit site to reach legacy site over private2.</li>
+<li>
+<p>SD-WAN site Remote2 uses DC as transit site to reach legacy site over private2.</p>
+</li>
+<li>
+<p>SD-WAN site Remote1 route directly over private 1 to legacy site.</p>
+</li>
 </ul>
-<h2 id="-sd-wan-site-remote1-route-directly-over-private-1-to-legacy-site">- SD-WAN site Remote1 route directly over private 1 to legacy site.</h2>
+<hr />
 <h2 id="step1-verify-current-route">Step1: Verify current route</h2>
 <ul>
 <li>SSH into ubuntu host in Remote1 and Remote2.</li>
